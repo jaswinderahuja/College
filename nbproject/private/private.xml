@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/pramata/proxy/company/company/config/initializers/devise.rb</file>
+            <file>file:/home/pramata/proxy/company/company/db/migrate/20161023122924_devise_create_users.rb</file>
+            <file>file:/home/pramata/proxy/company/company/config/database.yml</file>
+            <file>file:/home/pramata/proxy/company/company/config/routes.rb</file>
+            <file>file:/home/pramata/proxy/company/company/Gemfile</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/confirmations/new.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/registrations/new.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/shared/_links.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/layouts/application.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/sessions/new.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/layouts/landing.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/layouts/_header.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/config/environments/production.rb</file>
+            <file>file:/home/pramata/proxy/company/company/config/environments/development.rb</file>
+            <file>file:/home/pramata/proxy/company/company/config/environments/test.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/landing_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/landing/index.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/vendor/assets/stylesheets/paperkit/css/examples.css</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/users/sessions_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/dashboard_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/authenticated_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/layouts/_right_nav.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/landing/_right_nav.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/dashboard/index.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/dashboard/_right_nav.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/public/javascripts/campus_connect/utilities.js</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/sessions/_right_nav.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/users/registrations_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/users/unlocks_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/controllers/application_controller.rb</file>
+            <file>file:/home/pramata/proxy/company/company/app/views/users/registrations/_right_nav.html.erb</file>
+            <file>file:/home/pramata/proxy/company/company/app/assets/stylesheets/application.css</file>
+        </group>
+    </open-files>
+</project-private>
