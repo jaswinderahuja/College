@@ -22,7 +22,18 @@
         <%=javascript_include_tag "/stylesheets/paperkit/assets/js/ct-paper-checkbox.js"%>
         <%=javascript_include_tag "/stylesheets/paperkit/assets/js/ct-paper-radio.js"%>
         <%=javascript_include_tag "campus_connect/utilities.js"%>
+        <%=javascript_include_tag "campus_connect/locations.js"%>
+        <%= javascript_include_tag 'handlebars-v4.0.5.js' %>
+
         <%= render 'layouts/header' %>
         <%=yield%>
+
+        <%= render :partial=>"colleges/location_handlebar" %>
+        <script type="text/javascript">
+          $(document).ready(function () {
+              CampusConnect.Locations.init();
+          });
+
+        </script>
     </body>
 </html>

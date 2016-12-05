@@ -1,0 +1,23 @@
+<div class="wrapper">
+    <div class="register-background">
+        <div class="filter-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                        <div class="register-card col-md-6">
+                            <h3 class="title">College Details</h3>
+                            <%= form_tag('/create') do  %>
+                                <%= label_tag 'CollegeName', 'College Name' %>
+                                <%= text_field_tag :college,nil,placeholder:'Enter college name', class: 'form-control' %>
+                                <div id="location">
+                                </div>
+                              <button class="btn btn-success btn-block">Submit</button>
+                            <%end%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
