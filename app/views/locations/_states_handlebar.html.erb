@@ -1,0 +1,13 @@
+<script id="states-template" type="text/x-handlebars-template">
+  <div id="content">
+    <!-- states list -->
+    <div id="stateDiv">
+      <select id="states" name="state" class="form-control"  onchange="CampusConnect.Locations.getCities(this.value)">
+        <option value="0">Select State</option>
+        {{#each states}}
+          <option value="{{id}}" label="{{value}}">{{this}} </option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</script>

@@ -9,8 +9,23 @@
                             <%= form_tag('/create') do  %>
                                 <%= label_tag 'CollegeName', 'College Name' %>
                                 <%= text_field_tag :college,nil,placeholder:'Enter college name', class: 'form-control' %>
-                                <div id="location">
+                                <%= label_tag 'country', 'Country Name' %>
+
+                                <div id="country_container">
                                 </div>
+                                
+                                <div id="state_container">
+                                </div>
+                                <div id="city_container">
+                                </div>
+                                <%= text_field_tag :landline,nil,placeholder:'Enter landline #', class: 'form-control' %>
+                                <%= text_field_tag :phone1,nil,placeholder:'Enter phone #', class: 'form-control' %>
+                                <%= text_field_tag :email1,nil,placeholder:'Enter email #', class: 'form-control' %>
+                                <%= text_field_tag :phone2,nil,placeholder:'Enter phone #', class: 'form-control' %>
+                                <%= text_field_tag :email2,nil,placeholder:'Enter email #', class: 'form-control' %>
+                                <%= text_field_tag :phone3,nil,placeholder:'Enter phone #', class: 'form-control' %>
+                                <%= text_field_tag :email3,nil,placeholder:'Enter email #', class: 'form-control' %>
+
                               <button class="btn btn-success btn-block">Submit</button>
                             <%end%>
                         </div>

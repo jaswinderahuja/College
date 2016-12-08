@@ -28,7 +28,9 @@
         <%= render 'layouts/header' %>
         <%=yield%>
 
-        <%= render :partial=>"colleges/location_handlebar" %>
+        <%= render :partial=>"locations/country_handlebar" %>
+        <%= render :partial=>"locations/states_handlebar" %>
+        <%= render :partial=>"locations/cities_handlebar" %>
         <script type="text/javascript">
           $(document).ready(function () {
               CampusConnect.Locations.init();
