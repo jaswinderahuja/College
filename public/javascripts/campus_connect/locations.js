@@ -44,6 +44,17 @@ CampusConnect.Locations = function () {
             }
         });
 
+        // empty state template
+          var html = stateTemplate;
+          console.log(html);
+          $("#state_container").html(html);
+        // empty city template
+          var html = cityTemplate;
+          console.log(html);
+          $("#city_container").html(html);
+
+
+
       };
   return {
     getStates:getStates,

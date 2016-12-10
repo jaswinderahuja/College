@@ -1,11 +1,11 @@
 <script id="location-tempate" type="text/x-handlebars-template">
-  <div id="content">
+  <div id="content" >
 
     <div id="country_div">
       <select id="country" name="country" class="form-control" onchange="CampusConnect.Locations.getStates(this.value)" >
         <option value="0">Select Country</option>
         {{#each countries}}
-          <option value="{{id}}" label="{{value}}">{{this}} </option>
+          <option value="{{id}}" label="{{value}}">{{value}} </option>
         {{/each}}
       </select>
     </div>
