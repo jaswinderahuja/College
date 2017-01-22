@@ -1,0 +1,192 @@
+<div class="wrapper">
+    <div class="register-background">
+        <div class="filter-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                        <div class="register-card col-md-9" style="
+">
+                            <h3 class="title">College Details</h3>
+                            <form action="/colleges/create" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Rm9cnbl4yea/Z8ZqW9G/bba1BPynsaYEtCJsdJvfJN/8e+B1VtvW7GMVec5KmGqVORGf6pf2Tjzt3qra5oeVUw==">
+                               <label class="control-label " for="universityName">
+                                    University Name
+                                </label>
+                                <div class="input-group addon">   
+                                 <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                <input type="text" name="university" id="university" placeholder="Enter university name" class="form-control form-group required">
+                                </div>
+                                <label for="CollegeName">College Name</label>
+                                <input type="text" name="college" id="college" placeholder="Enter college name" class="form-control">
+                                <div style="float:left;width:100%">
+                                    <label for="address_line1">Address line #1</label>
+                                    <input type="text" name="address_line1" id="address_line1" placeholder="Enter address" class="form-control">
+                                </div>
+                                <div style="float:left;width:100%">
+                                    <label for="address_line2">Address line #2</label>
+                                    <input type="text" name="address_line2" id="address_line2" placeholder="Enter address landmark" class="form-control">
+                                </div>
+                                
+                                <div style="float:left;width:50%">
+                                    <label for="pin">Pin Code</label>                                    
+                                    <div id="pin_container">
+                                        <input type="text" name="pin_code" id="pin_code" placeholder="Enter Pin code #" class="form-control">
+                                    </div>
+                                </div>
+                                
+                                <div style="float:left;padding-left:10px;width:50%">
+                                    <label for="city">City/Town Name</label>                                    
+                                     <input type="text" name="city" id="city" placeholder="Enter city" class="form-control">
+                                    <!-- <div id="city_container">
+                                    </div> -->
+                                </div>
+
+                                <div style="float:left;width:50%">
+                                    <label for="state">State Name</label>
+                                     <input type="text" name="state" id="state" placeholder="Enter state" class="form-control">
+
+                                    <!-- <div id="state_container">
+                                    </div> -->
+                                </div>
+
+                                <div style="float:left;padding-left:10px;width:50%"> 
+                                    <label for="country">Country Name</label>                                    
+                                    <input type="text" name="country" id="country" placeholder="Enter country" class="form-control">
+
+                                    <!-- <div id="country_container">
+                                    </div> -->
+                                </div>   
+                                
+                                
+                                
+                                
+                                <div style="float:left;width:20%">
+                                    <label for="code">code #</label>
+                                    <input type="number" name="code" id="code" class="form-control">
+                                </div>                                    
+                                <div style="float:left;padding-left:10px;width:80%">
+                                    <label for="Landline">Landline #</label>
+                                    <input type="text" name="landline" id="landline" placeholder="Enter landline #" class="form-control">
+                                 </div>   
+                                <div style="float:left;width:50%">
+                                    <label for="phone1">Phone #-1</label>
+                                    <input type="text" name="phone1" id="phone1" placeholder="Enter phone #" class="form-control">
+                                </div>
+                                <div style="float:left;padding-left:10px;width:50%">                                
+                                    <label for="phone2">Phone  #-2</label>
+                                    <input type="text" name="phone2" id="phone2" placeholder="Enter phone #" class="form-control">
+                                </div>
+
+                                <label for="email">email #-1</label>
+                                <input type="text" name="email1" id="email1" placeholder="Enter email #" class="form-control">
+                                <label for="email">email #-2</label>
+                                <input type="text" name="email2" id="email2" placeholder="Enter email #" class="form-control">
+                                
+                              <button class="btn btn-success btn-block">Submit</button>
+</form>                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="wrapper">
+    <div class="register-background">
+        <div class="filter-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 registration-signUp">
+                    <div class="registration-signup-header">
+                        <h3>College Details</h3>
+                    </div>
+                        <form class="form-horizontal" role="form"> 
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="universityName">
+                                    University Name
+                                </label>
+                                <div class="col-sm-6 ">
+                                    <input type="text" class="form-control" name="unviersity" required placeholder="Enter University Name" minlength="1" maxlength="50">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="CollegeName">
+                                    College Name
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="College" required placeholder="Enter College Name" minlength="1" maxlength="50">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="address1">
+                                    Correspondance Address 
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="address1" required placeholder="Enter Address" minlength="1" maxlength="70">
+                                </div>
+                            </div>
+                            <div class="form-group ">
+                                <label class="control-label col-sm-5" for="address2"></label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="address2" required placeholder="Enter Address" minlength="1" maxlength="70">
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="country">
+                                    Country Name
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="countryName" required placeholder="Enter Country Name" >
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="city">
+                                    City/Town Name
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="cityName" required placeholder="Enter City/Town Name Here" >
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="state">
+                                    State
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="stateName" required placeholder="Enter Your State Name Here" >
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="pincode">
+                                    Pin Code
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="number" class="form-control" name="pinCode" required placeholder="Enter Your pin code Here" >
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="control-label col-sm-5" for="pincode">
+                                    Email
+                                </label>
+                                <div class="col-sm-6">
+                                    <input type="email" class="form-control" name="pinCode" required placeholder="Enter Your Email Here" >
+                                </div>
+                            </div>
+                            <div class="form-group required register-button">
+                                <button class="btn btn-register" type="submit">
+                                    <strong>
+                                        Submit
+                                    </strong>
+                                </button>
+                            </div>
+                        </form>
+                    </div>                
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+
+ -->
+
+

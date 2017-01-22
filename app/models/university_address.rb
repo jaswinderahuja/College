@@ -1,3 +1,4 @@
 class UniversityAddress < ApplicationRecord
-  belongs_to :pin_code
+  belongs_to :university
+
 end

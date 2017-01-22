@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205004512) do
+ActiveRecord::Schema.define(version: 20170108115244) do
 
   create_table "approving_bodies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -31,17 +31,43 @@ ActiveRecord::Schema.define(version: 20161205004512) do
     t.string   "address1"
     t.string   "address2"
     t.integer  "pin_code"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.integer  "college_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["city_id"], name: "index_college_addresses_on_city_id", using: :btree
+    t.index ["college_id"], name: "index_college_addresses_on_college_id", using: :btree
+    t.index ["country_id"], name: "index_college_addresses_on_country_id", using: :btree
+    t.index ["state_id"], name: "index_college_addresses_on_state_id", using: :btree
+  end
+
+  create_table "college_contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email_1"
+    t.string   "email_2"
+    t.string   "phone_number_1"
+    t.string   "phone_number_2"
+    t.integer  "college_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["college_id"], name: "index_college_contact_details_on_college_id", using: :btree
+  end
+
+  create_table "college_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "college_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["college_id"], name: "index_college_users_on_college_id", using: :btree
+    t.index ["user_id"], name: "index_college_users_on_user_id", using: :btree
   end
 
   create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",               null: false
-    t.integer  "college_address_id"
     t.integer  "is_affliated_to_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.index ["college_address_id"], name: "index_colleges_on_college_address_id", using: :btree
   end
 
   create_table "colleges_courses", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,19 +76,8 @@ ActiveRecord::Schema.define(version: 20161205004512) do
     t.index ["college_id", "course_id"], name: "index_colleges_courses_on_college_id_and_course_id", unique: true, using: :btree
   end
 
-  create_table "contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email_1"
-    t.string   "email_2"
-    t.string   "phone_number_1"
-    t.string   "phone_number_2"
-    t.integer  "college_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["college_id"], name: "index_contact_details_on_college_id", using: :btree
-  end
-
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "shortname",  null: false
+    t.string   "shortname"
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,11 +114,9 @@ ActiveRecord::Schema.define(version: 20161205004512) do
   end
 
   create_table "universities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                  null: false
-    t.integer  "university_address_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.index ["university_address_id"], name: "index_universities_on_university_address_id", using: :btree
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "universities_approving_bodies", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -116,8 +129,45 @@ ActiveRecord::Schema.define(version: 20161205004512) do
     t.string   "address1"
     t.string   "address2"
     t.integer  "pin_code"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.integer  "university_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.index ["city_id"], name: "index_university_addresses_on_city_id", using: :btree
+    t.index ["country_id"], name: "index_university_addresses_on_country_id", using: :btree
+    t.index ["state_id"], name: "index_university_addresses_on_state_id", using: :btree
+    t.index ["university_id"], name: "index_university_addresses_on_university_id", using: :btree
+  end
+
+  create_table "university_contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "university_id"
+    t.string   "email_1"
+    t.string   "email_2"
+    t.string   "phone_number_1"
+    t.string   "phone_number_2"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["university_id"], name: "index_university_contact_details_on_university_id", using: :btree
+  end
+
+  create_table "university_courses", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "university_id"
+    t.integer  "course_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["course_id"], name: "index_university_courses_on_course_id", using: :btree
+    t.index ["university_id"], name: "index_university_courses_on_university_id", using: :btree
+  end
+
+  create_table "university_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "university_id"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["university_id"], name: "index_university_users_on_university_id", using: :btree
+    t.index ["user_id"], name: "index_university_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -143,10 +193,23 @@ ActiveRecord::Schema.define(version: 20161205004512) do
   end
 
   add_foreign_key "cities", "states"
-  add_foreign_key "colleges", "college_addresses"
-  add_foreign_key "contact_details", "colleges"
+  add_foreign_key "college_addresses", "cities"
+  add_foreign_key "college_addresses", "colleges"
+  add_foreign_key "college_addresses", "countries"
+  add_foreign_key "college_addresses", "states"
+  add_foreign_key "college_contact_details", "colleges"
+  add_foreign_key "college_users", "colleges"
+  add_foreign_key "college_users", "users"
   add_foreign_key "courses", "departments"
   add_foreign_key "pin_codes", "cities"
   add_foreign_key "states", "countries"
-  add_foreign_key "universities", "university_addresses"
+  add_foreign_key "university_addresses", "cities"
+  add_foreign_key "university_addresses", "countries"
+  add_foreign_key "university_addresses", "states"
+  add_foreign_key "university_addresses", "universities"
+  add_foreign_key "university_contact_details", "universities"
+  add_foreign_key "university_courses", "courses"
+  add_foreign_key "university_courses", "universities"
+  add_foreign_key "university_users", "universities"
+  add_foreign_key "university_users", "users"
 end

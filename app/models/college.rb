@@ -1,3 +1,3 @@
 class College < ApplicationRecord
-  belongs_to :college_address
+	has_many :college_users
 end

@@ -1,3 +1,4 @@
 class University < ApplicationRecord
-  belongs_to :university_address
+	has_many :university_addresses
+	has_many :university_users
 end
