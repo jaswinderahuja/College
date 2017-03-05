@@ -1,5 +1,5 @@
 class DashboardController < AuthenticatedController
-  layout 'landing'
+  layout 'dashboard'
   before_filter :college_registration_exists?
   
 
@@ -8,7 +8,7 @@ class DashboardController < AuthenticatedController
   	if current_user.university_users.present? or current_user.college_users.present?
   	else
   	    redirect_to(:controller=>"college_registeration",:action=>"index") 	
-	end
+  	end
   end
 
   def index
