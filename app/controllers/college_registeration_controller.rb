@@ -17,10 +17,11 @@ class CollegeRegisterationController < ApplicationController
           puts "it's a univeristy"
         end
     else
-      if College.find_by_name(college).blank?
+      if College.where(:name=>college).blank?
         save_college(params)
       end
     end
+    redirect_to(:controller=>"dashboard",:action=>"index")
   end
 
 
@@ -96,23 +97,23 @@ class CollegeRegisterationController < ApplicationController
       state = State.find_by_name(state_name)
       city = City.find_by_name(city_name)
       pin_code = PinCode.find_by_pin_code(pcode) 
-
-      if country.blank?
-          country = Country.create(:name=>country_name)
-          state = State.create(:name=>state_name,:country_id=>country.id)
-          city = City.create(:name=>city_name,:state_id=>state.id)
-          pin_code = PinCode.create(:pin_code=>pcode,:city_id=>city.id)
-      elsif country.present? and state.blank?
-          state = State.create(:name=>state_name,:country_id=>country.id)
-          city = City.create(:name=>city_name,:state_id=>state.id)
-          pin_code = PinCode.create(:pin_code=>pcode,:city_id=>city.id)
-      elsif country.present? and state.present? and city.blank?
-          city = City.create(:name=>city_name,:state_id=>state.id)
-          pin_code = PinCode.create(:pin_code=>pcode,:city_id=>city.id)
-      else
-          pin_code = PinCode.create(:pin_code=>pcode,:city_id=>city.id)                  
+      
+      if country.nil? 
+        country = Country.create(:name=>country_name)
       end
-      return [country.id,state.id,city.id,pin_code.id]
+
+      if state.nil?
+         state = State.create(:name=>state_name,:country_id=>country.id)
+      end
+
+      if city.nil?
+         city = City.create(:name=>city_name,:state_id=>state.id)
+      end
+
+      if pin_code.nil?
+         pin_code = PinCode.create(:pin_code=>pcode,:city_id=>city.id)
+      end
+      return [country.id,state.id,city.id,pin_code.pin_code]
   end
 
   def save_university_address(params)
@@ -178,17 +179,6 @@ class CollegeRegisterationController < ApplicationController
       end
   end
 
-
-
-  # def save_address(params)
-  #     code = params["pin_code"].to_i
-  #     pin_code = PinCode.find_by_pin_code(code) 
-  #     if !pin_code.present?
-  #       city_id = params["city"].to_i
-  #       pin_code = PinCode.create(:pin_code=>code,:city_id=>city_id)
-  #     end
-  #     return pin_code
-  # end
 
 protected
 
