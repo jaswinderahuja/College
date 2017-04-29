@@ -1,32 +1,51 @@
-<div class="wrapper">
-    <div class="register-background">
-        <div class="filter-black">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
-                        <div class="register-card col-md-6">
-                            <h3 class="title">Log in</h3>
+<div class="ui middle aligned center aligned grid">
+  <div class="six wide column">
 
-                            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>     
-
-                              <%= f.label :email %><br />
-                              <%= f.email_field :email, autofocus: true ,class: 'form-control'%>
-
-                                <%= f.label :password %><br />
-                                <%= f.password_field :password, autocomplete: "off",class: 'form-control',placeholder: "" %>
-
-
-                                <% if devise_mapping.rememberable? -%>
-                                  <%= f.check_box :remember_me %>
-                                  <%= f.label :remember_me %>
-                                <% end %>
-                                <button class="btn btn-success btn-block">Log In</button>
-                              <% end %>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="ui icon warning message hidden">
+          <i class="lock icon"></i>
+          <div class="content">
+            <div class="header">
+              Login failed!
             </div>
-        </div>
+            <p>You might have misspelled your username or password!</p>
+          </div>
     </div>
+    <h2 class="ui image header">
+      <div class="content">
+        Log-in to your account
+      </div>
+    </h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html=>{:class=>"ui large form"}) do |f| %>     
+      <div class="ui   segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <%= f.email_field :email, autofocus: true,placeholder: "E-mail address" %>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <%= f.password_field :password, autocomplete: "off",placeholder: "" %>
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button">
+        Login</button>
+        <div class="ui horizontal divider">
+          Or
+        </div>
+        <div  class="ui other-login">
+            <button class="ui basic button">
+              <i class=""> <img class="avatar ui image" src="/images/google.png"></i>
+              <span> Google<span>            
+            </button>
 
+        </div>
+      </div>
+     <%end %>
+
+    <div class="ui segment">
+      New to us? <a href="#">Register</a>
+    </div>
+  </div>
+</div>

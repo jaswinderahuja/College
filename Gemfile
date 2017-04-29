@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
 #Ruby 2.3.1
+gem 'less-rails-semantic_ui'
+gem 'autoprefixer-rails'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

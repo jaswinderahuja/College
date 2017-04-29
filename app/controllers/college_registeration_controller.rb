@@ -1,5 +1,5 @@
 class CollegeRegisterationController < ApplicationController
-  layout 'landing'
+  layout 'users'
   before_action :user_status
 
   
@@ -14,7 +14,7 @@ class CollegeRegisterationController < ApplicationController
     if college == university
         if University.find_by_name(university).blank?
           save_university(params)
-          puts "it a univeristy"
+          puts "it's a univeristy"
         end
     else
       if College.find_by_name(college).blank?

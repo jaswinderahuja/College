@@ -1,4 +1,35 @@
-<nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation-demo" id="register-navbar">
+<style type="text/css">
+  
+  .ui.menu .item img.logo {
+    margin-right: 1.5em;
+  }
+  .main.container {
+    margin-top: 7em;
+  }
+  
+.ui.menu .item:before {
+    width:0px;
+  }
+  </style>
+
+<div class="ui fixed menu">
+    <div class="ui container">
+    <div class="left menu">
+      <a href="#" class="header item">
+        <h3>CampusConnect</h3>
+      </a>
+      </div>
+      <div class="right menu">
+           <%= render partial: 'right_nav' %>
+      </div>
+      
+    </div>
+  </div>
+
+<br/>
+<br/>
+
+<!-- <nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation-demo" id="register-navbar">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">CampusConnect</a>
@@ -10,4 +41,4 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->

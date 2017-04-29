@@ -1,4 +1,142 @@
-<div class="wrapper">
+<div class="ui middle aligned center aligned grid">
+  <div class="six wide column">
+
+    <div class="ui icon warning message hidden">
+          <i class="lock icon"></i>
+          <div class="content">
+            <div class="header">
+              Login failed!
+            </div>
+            <p>You might have misspelled your username or password!</p>
+          </div>
+    </div>
+    <h2 class="ui image header">
+      <div class="content">
+        Lets's Introduce your College
+      </div>
+    </h2>
+    <%= form_tag({controller: "college_registeration",action: "create"},method: "post", :class=>"ui large form") do %>
+      <div class="ui segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="university icon"></i>
+            <%= text_field_tag "university",nil, placeholder: "Enter university name"%>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="university icon"></i>
+            <%= text_field_tag "college",nil, placeholder: "Enter College name"%>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="building icon"></i>
+            <%= text_field_tag "address_line1",nil,placeholder: "Enter Address"%>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="location arrow icon"></i>
+            <%= text_field_tag "address_line2",nil,placeholder: "Enter Address landmark"%>
+          </div>
+        </div>
+        <div class="field">
+        <!-- <label>Name</label> -->
+        <div class="two fields">
+          <div class="field">
+            <div class="ui left icon input">
+                <i class="map pin icon"></i>
+                <%= text_field_tag "code",nil,placeholder: "Enter pincode #" %>
+            </div>
+          </div>
+          <div class="field">
+              <div class="ui left icon input">
+                <i class="marker icon"></i>
+                <%= text_field_tag "city",nil,placeholder: "Enter city"%>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <!-- <label>Name</label> -->
+        <div class="two fields">
+          <div class="field">
+            <div class="ui left icon input">
+                <i class="map icon"></i>
+                <%= text_field_tag "state",nil,placeholder: "Enter State" %>
+            </div>
+          </div>
+          <div class="field">
+              <div class="ui left icon input">
+                <i class="map icon"></i>
+                <%= text_field_tag "country",nil,placeholder: "Enter country"%>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui horizontal divider">
+          <p>Information required to be in touch</p>
+      </div>
+      <div class="field">
+        <!-- <label>Some Important Information</label> -->
+        <div class="two fields">
+          <div class="field">
+            <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <%= text_field_tag "email1",nil,placeholder: "Enter Email 1" %>
+            </div>
+          </div>
+          <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <%= text_field_tag "email2",nil,placeholder: "Enter Email 2"%>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <!-- <label>Some Important Information</label> -->
+        <div class="two fields">
+          <div class="field">
+            <div class="ui left icon input">
+                <i class="volume control phone icon"></i>
+                <%= text_field_tag "phone1",nil,placeholder: "Enter phone # 1" %>
+            </div>
+          </div>
+          <div class="field">
+              <div class="ui left icon input">
+                <i class="volume control phone icon"></i>
+                <%= text_field_tag "phone2",nil,placeholder: "Enter phone # 2"%>
+              </div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="field">
+        <div class="ui left icon input">
+            <i class="text telephone icon"></i>
+            <%= text_field_tag "landline",nil,placeholder: "Enter Landline #"%>
+        </div>
+      </div>
+
+
+        <button class="ui fluid large teal submit button">
+        Submit</button>
+        
+    </div>
+     <%end %>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="wrapper">
     <div class="register-background">
         <div class="filter-black">
             <div class="container">
@@ -7,6 +145,7 @@
                         <div class="register-card col-md-9" style="
 ">
                             <h3 class="title">College Details</h3>
+
                             <form action="/colleges/create" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="Rm9cnbl4yea/Z8ZqW9G/bba1BPynsaYEtCJsdJvfJN/8e+B1VtvW7GMVec5KmGqVORGf6pf2Tjzt3qra5oeVUw==">
                                <label class="control-label " for="universityName">
                                     University Name
@@ -36,24 +175,17 @@
                                 <div style="float:left;padding-left:10px;width:50%">
                                     <label for="city">City/Town Name</label>                                    
                                      <input type="text" name="city" id="city" placeholder="Enter city" class="form-control">
-                                    <!-- <div id="city_container">
-                                    </div> -->
+
                                 </div>
 
                                 <div style="float:left;width:50%">
                                     <label for="state">State Name</label>
                                      <input type="text" name="state" id="state" placeholder="Enter state" class="form-control">
-
-                                    <!-- <div id="state_container">
-                                    </div> -->
                                 </div>
 
                                 <div style="float:left;padding-left:10px;width:50%"> 
                                     <label for="country">Country Name</label>                                    
                                     <input type="text" name="country" id="country" placeholder="Enter country" class="form-control">
-
-                                    <!-- <div id="country_container">
-                                    </div> -->
                                 </div>   
                                 
                                 
@@ -90,7 +222,7 @@
         </div>
     </div>
 </div>
-
+ -->
 
 <!-- <div class="wrapper">
     <div class="register-background">
