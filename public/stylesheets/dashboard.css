@@ -2,7 +2,50 @@ html, body {
    height: 100%;
 }
 
-.wrapper, .row {
+.ui.menu .item img.logo {
+    margin-right: 1.5em;
+  }
+  .main.container {
+    margin-top: 7em;
+  }
+
+  .ui.menu .item:before {
+    width:0px;
+  }
+  .container.main-content{
+   margin-top: 20px;
+   padding: 20px;
+ }
+
+ .main-content .ui.cards > .card {
+  margin:auto;
+  margin-bottom: 20px;
+  margin-left: 200px;
+  width: 75%;
+}
+
+.img-circle {
+  width: 75%;
+  background: #fff;
+  margin-left: 15%;
+  z-index: 1000;
+  position: inherit;
+  margin-top: 20px;
+  border: 1px solid rgba(52,73,94,.44);
+  padding: 4px;
+}
+.img-circle {
+  border-radius: 50%;
+}
+.profile_pic {
+  width: 50%;
+  padding-left: 20px;
+  padding-bottom: 30px;
+  margin-left: 35px;
+}
+
+
+/*.wrapper, .row {
    height: 100%;
    margin-left:0;
    margin-right:0;
@@ -335,3 +378,4 @@ ul.msg_list li a .image img {
     float: right !important;
   }
 }
+*/

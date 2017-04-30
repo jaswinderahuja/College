@@ -1,152 +1,127 @@
-<div class="wrapper" style="position:relative">
-    	   <div class="row row-offcanvas row-offcanvas-left">
-        <!-- sidebar -->
-        <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
-        	<div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span class="collapse in hidden-xs">CampusConnect</span></a>
-            </div>
-<!--             <div class="clearfix"></div> -->
-            <div class="profile clearfix collapse in hidden-xs">
-              <div class="profile_pic">
-                <img src="images/Thapar_Uni_logo.jpg" alt="..." class="img-circle profile_img">
-              </div>
-              <div class="profile_info">
-                <span>Welcome,</span>
-                <h4>Thapar Univ</h4>
-              </div>
-            </div>
+    <div class="ui vertical inverted sidebar menu left overlay">
+      <div class="profile_pic">
+        <img src="/images/Thapar_Uni_logo.jpg" class="img-circle profile_img">  
+        <span style="color:#fff">Thapar University</span>
+      </div>
+      <h4 class="ui horizontal divider header inverted">
+        <i class="tag icon left"></i>
+        Navigation
+      </h4>
 
-            <h4 class="collapse in hidden-xs">General</h4>
-
-            <ul class="nav" id="menu">
-            	<li><a href="#"><i class="fa fa-home"></i> <span class="collapse in hidden-xs">Home</span></a></li>
-                <li><a href="#"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Dashboard</span></a></li>
-                <li>
-                    <a href="#" data-target="#item1" data-toggle="collapse"><i class="fa fa-list"></i> <span class="collapse in hidden-xs">Forms <span class="caret"></span></span></a>
-                    <ul class="nav nav-stacked collapse left-submenu" id="item1">
-                        <li><a href="google.com">Create Drive</a></li>
-                        <li><a href="gmail.com">View Two</a></li>
-                    </ul>
-                </li>
-                <li><a href="#"><i class="fa fa-paperclip"></i> <span class="collapse in hidden-xs">Saved</span></a></li>
-                <li><a href="#"><i class="fa fa-refresh"></i> <span class="collapse in hidden-xs">Refresh</span></a></li>
-                
-                <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> <span class="collapse in hidden-xs">Link</span></a></li>
-            </ul>
-        </div>
-    <!-- /sidebar -->
-     <!-- top navigation -->
-     	<div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <!-- <a id="menu_toggle"><i class="fa fa-bars"></i></a> -->
-                <p><a href="#" data-toggle="offcanvas"><i class="fa fa-navicon fa-2x"></i></a></p>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image"></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-    <!-- / top navigation end  -->
-
-        <!-- main right col -->
-        <div class="column col-sm-10 col-xs-11" id="main">
-            <!-- <p><a href="#" data-toggle="offcanvas"><i class="fa fa-navicon fa-2x"></i></a></p> -->
-            
-                Dashboard
-            
-        </div>
-        <!-- /main -->
+      <a class="item">
+        <i class="home icon"></i>
+        Home
+      </a>
+      <a class="item">
+        <i class="block layout icon"></i>
+        Topics
+      </a>
+      <a class="item">
+        <i class="smile icon"></i>
+        Friends
+      </a>
+      <a class="item">
+        <i class="calendar icon"></i>
+        History
+      </a>
     </div>
-</div>
 
-<script>
-	$('[data-toggle=offcanvas]').click(function() {
-		    $('.row-offcanvas').toggleClass('active');
-		    $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
-		});
-</script>
+    <div class="main-content container">
+
+      <div class="ui search" style="margin-bottom:25px;margin-left:70%">
+        <div class="ui icon input">
+          <input class="prompt" type="text" placeholder="Search here...">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div>
+
+      <div class="pusher">
+        <div class="ui cards">
+          <div class="card">
+            <div class="middle aligned content">
+              <img class="left floated small ui image" src="/images/logo.png">
+              <div class="header">
+                Pramata knowledge solution pvt ltd.
+              </div>
+              <div class="meta">
+                Bangalore
+              </div>
+              <div class="other details">
+               some other information can come here as well  
+               some other information can come here as well  
+               some other information can come here as well  
+               some other information can come here as well  
+             </div>
+        </div>
+        <div class="extra content">
+         <a>
+          <i class="users icon"></i>
+          2 Members
+        </a>
+        <div class="ui right floated button">
+          Action
+        </div>
+
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="middle aligned content">
+          <img class="left floated small ui image" src="/images/logo.png">
+          <div class="header">
+            Pramata knowledge solution pvt ltd.
+          </div>
+          <div class="meta">
+            Bangalore
+          </div>
+          <div class="other details">
+           some other information can come here as well  
+           some other information can come here as well  
+           some other information can come here as well  
+           some other information can come here as well  
+         </div>
+          <!-- <div class="description">
+            description about the company goes here, and other necessary detail can also be added here
+          </div> -->
+        </div>
+        <div class="extra content">
+         <a>
+          <i class="users icon"></i>
+          2 Members
+        </a>
+        <div class="ui right floated button">
+          Action
+        </div>
+
+          <!-- <div class="ui two buttons">
+            <div class="ui basic green button">Approve</div>
+            <div class="ui basic red button">Decline</div>
+          </div> -->
+        </div>
+      </div>
+      
+        </div>
+      </div>  
+    </div>
+  
+  <script>
+    var content = [
+    {
+      title: 'Horse',
+      description: 'An Animal'
+    },
+    {
+      title: 'Cow',
+      description: 'Another Animal'
+    } ];
+
+    $('.ui.search').search({
+      source : content,
+      searchFields: [
+      'title'
+      ],
+      searchFullText: false
+    });
+
+  </script>
