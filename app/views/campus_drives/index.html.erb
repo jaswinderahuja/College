@@ -1,0 +1,140 @@
+<div class="ui vertical inverted sidebar menu left overlay">
+  <div class="profile_pic">
+    <img src="/images/Thapar_Uni_logo.jpg" class="img-circle profile_img">
+    <span style="color:#fff">Thapar University</span>
+  </div>
+  <h4 class="ui horizontal divider header inverted">
+  <i class="tag icon left"></i>
+  Navigation
+  </h4>
+  <a class="item">
+    <i class="home icon"></i>
+    Home
+  </a>
+  <a class="item">
+    <i class="block layout icon"></i>
+    Dashboard
+  </a>
+  <a class="item">
+    <i class="smile icon"></i>
+    Friends
+  </a>
+  <a class="item">
+    <i class="calendar icon"></i>
+    History
+  </a>
+</div>
+<!-- main content goes here -->
+<div class="pusher">
+  <div class="ui middle aligned center aligned grid">
+    <div class="seven wide column">
+      <div class="ui icon warning message hidden">
+        <i class="lock icon"></i>
+        <div class="content">
+          <div class="header">
+            Login failed!
+          </div>
+          <p>You might have misspelled your username or password!</p>
+        </div>
+      </div>
+      <br/>
+      <br/>
+      <h2 class="ui image header">
+      <div class="content">
+        <p>Lets's Transform your students to employees </p>
+      </div>
+      </h2>
+      <%= form_tag({controller: "campus_drives",action: "create"},method: "post", :class=>"ui large form") do %>
+      <div class="ui segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="university icon"></i>
+            <%= text_field_tag "college",nil, placeholder: "Enter College name"%>
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="marker icon"></i>
+            <%= text_field_tag "address_line1",nil,placeholder: "Enter Address"%>
+          </div>
+        </div>
+        <div class="field">
+          <!-- <label>Name</label> -->
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="calendar icon"></i>
+                <%= text_field_tag "date_of_drive",nil,placeholder: "Enter date for drive" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="student icon"></i>
+                <%= text_field_tag "no_of_students",nil,placeholder: "Enter # of students open for drive"%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <!-- <label>Name</label> -->
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="pin icon"></i>
+                <%= text_field_tag "dept",nil,placeholder: "Enter Department Name" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <%= text_field_tag "hod_email",nil,placeholder: "Email of head of department"%>
+              </div>
+            </div>
+          </div>
+        </div>
+       <div class="ui horizontal divider">
+          <p>Coordinators specific for this Drive</p>
+        </div>
+        <div class="field">
+          <!-- <label>Some Important Information</label> -->
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <%= text_field_tag "coordinator_email_1",nil,placeholder: "Enter coordinator email 1" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <%= text_field_tag "coordinator_email_2",nil,placeholder: "Enter coordinator email 2"%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <!-- <label>Some Important Information</label> -->
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="volume control phone icon"></i>
+                <%= text_field_tag "phone1",nil,placeholder: "Enter phone # 1" %>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="volume control phone icon"></i>
+                <%= text_field_tag "phone2",nil,placeholder: "Enter phone # 2"%>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="ui fluid large teal submit button">
+        Submit</button>
+        
+      </div>
+      <%end %>
+    </div>
+  </div>
+</div>

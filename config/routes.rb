@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'campus_drives/create'
+
+  get 'campus_drives/index'
+
   get  'college_registeration/index'
   get  'college_registeration/index_back'
   post 'college_registeration/create'

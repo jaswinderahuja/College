@@ -2,6 +2,9 @@ html, body {
    height: 100%;
 }
 
+.margin-10{
+  margin-left:10px;
+}
 .ui.menu .item img.logo {
     margin-right: 1.5em;
   }
@@ -21,7 +24,7 @@ html, body {
   margin:auto;
   margin-bottom: 20px;
   margin-left: 200px;
-  width: 75%;
+  width: 70%;
 }
 
 .img-circle {

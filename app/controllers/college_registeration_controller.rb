@@ -180,12 +180,4 @@ class CollegeRegisterationController < ApplicationController
   end
 
 
-protected
-
-  def user_status
-     if !user_signed_in?
-        redirect_to(:controller=>"landing",:action=>"index")
-     end 
-  end
-
 end

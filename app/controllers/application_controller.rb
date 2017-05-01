@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:firstname,:lastname])
   end  
+
+  def user_status
+	 if !user_signed_in?
+	    redirect_to(:controller=>"landing",:action=>"index")
+	 end 
+  end
+
 end
