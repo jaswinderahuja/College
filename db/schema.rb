@@ -10,12 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108115244) do
+ActiveRecord::Schema.define(version: 20170501125231) do
 
   create_table "approving_bodies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "campus_drives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "college_id"
+    t.datetime "date_of_drive"
+    t.string   "address"
+    t.integer  "no_of_students"
+    t.integer  "department_id"
+    t.string   "hod_email"
+    t.string   "coordinator_email_1"
+    t.string   "coordinator_email_2"
+    t.string   "coordinator_phone_1"
+    t.string   "coordinator_phone_2"
+    t.string   "description"
+    t.boolean  "status"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["college_id"], name: "index_campus_drives_on_college_id", using: :btree
+    t.index ["department_id"], name: "index_campus_drives_on_department_id", using: :btree
   end
 
   create_table "cities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -192,6 +211,8 @@ ActiveRecord::Schema.define(version: 20170108115244) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "campus_drives", "colleges"
+  add_foreign_key "campus_drives", "departments"
   add_foreign_key "cities", "states"
   add_foreign_key "college_addresses", "cities"
   add_foreign_key "college_addresses", "colleges"

@@ -1,51 +1,54 @@
 <div class="ui middle aligned center aligned grid">
   <div class="six wide column">
-
     <div class="ui icon warning message hidden">
-          <i class="lock icon"></i>
-          <div class="content">
-            <div class="header">
-              Login failed!
-            </div>
-            <p>You might have misspelled your username or password!</p>
-          </div>
+      <i class="lock icon"></i>
+      <div class="content">
+        <div class="header">
+          Login failed!
+        </div>
+        <p>You might have misspelled your username or password!</p>
+      </div>
     </div>
     <h2 class="ui image header">
-      <div class="content">
-        Log-in to your account
-      </div>
+    <div class="content">
+      Log-in to your account
+    </div>
     </h2>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html=>{:class=>"ui large form"}) do |f| %>     
-      <div class="ui   segment">
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="user icon"></i>
-            <%= f.email_field :email, autofocus: true,placeholder: "E-mail address" %>
-          </div>
-        </div>
-        <div class="field">
-          <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <%= f.password_field :password, autocomplete: "off",placeholder: "" %>
-          </div>
-        </div>
-        <button class="ui fluid large teal submit button">
-        Login</button>
-        <div class="ui horizontal divider">
-          Or
-        </div>
-        <div  class="ui other-login">
-            <button class="ui basic button">
-              <i class=""> <img class="avatar ui image" src="/images/google.png"></i>
-              <span> Google<span>            
-            </button>
-
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name),:html=>{:class=>"ui large form"}) do |f| %>
+    <div class="ui   segment">
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <%= f.email_field :email, autofocus: true,placeholder: "E-mail address" %>
         </div>
       </div>
-     <%end %>
-
-    <div class="ui segment">
-      New to us? <a href="#">Register</a>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= f.password_field :password, autocomplete: "off",placeholder: "" %>
+        </div>
+      </div>
+      <button class="ui fluid large teal submit button">
+      Login</button>
+      <div class="ui horizontal divider">
+        Or
+      </div>
+      <div  class="ui other-login">
+        <button class="ui basic button">
+        <i class=""> <img class="avatar ui image" src="/images/google.png"></i>
+        <span> Google<span>
+          </button>
+        </div>
+        <div class="ui error message">
+          <%= devise_error_messages1!%>
+        </div>        
+      </div>
+      <%end %>
+      <div class="ui segment">
+        New to us? <a href="/users/sign_up">Register</a>
+      </div>
     </div>
   </div>
-</div>
+  <script type="text/javascript">
+  CampusConnect.Login.Validation.login();
+  </script>

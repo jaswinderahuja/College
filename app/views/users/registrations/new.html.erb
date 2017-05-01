@@ -60,16 +60,19 @@
               <i class=""> <img class="avatar ui image" src="/images/google.png"></i>
               <span> Google<span>            
             </button>
-
         </div>
+        <div class="ui error message"><%= devise_error_messages1!%></div>
       </div>
      <%end %>
 
     <div class="ui segment">
-      Already have an account? <a href="#">Login</a>
+      Already have an account? <a href="/users/sign_in">Login</a>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  CampusConnect.Login.Validation.initial();
+</script>
 
 
 <!-- <div class="wrapper">
@@ -81,7 +84,7 @@
                         <div class="register-card col-md-6">
                             <h3 class="title">Join it’s free</h3>
                             <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                              <%= devise_error_messages! %>
+                              <%= devise_error_messages1! %>
                               <%= f.label :firstname %>
                               <%= f.text_field :firstname, autofocus: true,placeholder: "First Name", class: 'form-control' %>
                             

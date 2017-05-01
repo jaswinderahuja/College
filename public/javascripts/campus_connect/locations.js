@@ -17,7 +17,6 @@ CampusConnect.Locations = function () {
         success: function(response){
 
           var html = stateTemplate(response);
-          console.log(html);
           $("#state_container").html(html);
         }
       });
@@ -27,7 +26,6 @@ CampusConnect.Locations = function () {
       $.ajax({url:"/locations/cities?state_id="+state_id,
         success: function(response){
           var html = cityTemplate(response);
-          console.log(html);
           $("#city_container").html(html);
         }
       })
@@ -39,18 +37,15 @@ CampusConnect.Locations = function () {
           success: function(result){
             // console.log(result);
             var html = countryTemplate(result);
-            console.log("html");
             $("#country_container").html(html);
             }
         });
 
         // empty state template
           var html = stateTemplate;
-          console.log(html);
           $("#state_container").html(html);
         // empty city template
           var html = cityTemplate;
-          console.log(html);
           $("#city_container").html(html);
 
 
