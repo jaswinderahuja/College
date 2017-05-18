@@ -35,8 +35,8 @@ CampusConnect.Login.Validation = function() {
                         prompt: 'Your password must be at least {ruleValue} characters'
                     }]
                 },
-                'user[confir_pass]': {
-                    'identifier': 'user_confirm_pass',
+                'user[password_confirmation]': {
+                    identifier: 'user_password_confirmation',
                     rules: [{
                         type: 'match[user_password]',
                         prompt: 'Passwords do not match'
@@ -70,35 +70,21 @@ CampusConnect.Login.Validation = function() {
         });
     };
 
-    var completeRegistration = function () {
+    var collegeRegistration = function () {
         $('.ui.large.form').form({
             fields: {
-                'company_name': {
-                    identifier: 'company_name',
+                'university': {
+                    identifier: 'university',
                     rules: [{
                         type: 'empty',
-                        prompt: 'Please enter the company name'
+                        prompt: 'Please enter the University name'
                     }]
                 },
-                'no_of_employees': {
-                    identifier: 'no_of_employees',
-                    rules: [{
-                        type: 'integer',
-                        prompt: 'Please enter the # of employees'
-                    }]
-                },
-                'annual_revenue': {
-                    identifier: 'annual_revenue',
-                    rules: [{
-                        type: 'integer',
-                        prompt: 'Please enter the annual revenue'
-                    }]
-                },
-                'head_quaters': {
-                    identifier: 'head_quaters',
+                'college': {
+                    identifier: 'college',
                     rules: [{
                         type: 'empty',
-                        prompt: 'Please enter the head quaters'
+                        prompt: 'Please enter the college name'
                     }]
                 },
                 'address_line_1': {
@@ -119,10 +105,10 @@ CampusConnect.Login.Validation = function() {
                     identifier: 'pincode',
                     rules: [{
                         type: 'integer',
-                        prompt: 'Please enter the number only for pincode'
+                        prompt: 'Please enter the numbers only for pincode'
                     },{
                         type: 'exactLength[6]',
-                        prompt: 'Please enter a correct landline no'
+                        prompt: 'Please enter a correct pincode'
                     }]
                 },
                 'state': {
@@ -132,11 +118,45 @@ CampusConnect.Login.Validation = function() {
                         prompt: 'Please enter the state'
                     }]
                 },
-                'email_id': {
-                    identifier: 'email_id',
+                'country': {
+                    identifier: 'country',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter the country'
+                    }]
+                },
+                'email_id_1': {
+                    identifier: 'email_id_1',
                     rules: [{
                         type: 'email',
                         prompt: 'Please enter a correct email address'
+                    }]
+                },
+                'email_id_2': {
+                    identifier: 'email_id_2',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a correct email address'
+                    }]
+                },
+                'phone_1': {
+                    identifier: 'phone_1',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only for phone #'
+                    },{
+                        type: 'exactLength[10]',
+                        prompt: 'Contact number length should be 10 digits'
+                    }]
+                },
+                'phone_2': {
+                    identifier: 'phone_2',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only'
+                    },{
+                        type: 'exactLength[10]',
+                        prompt: 'Contact number length should be 10 digits'
                     }]
                 },
                 'landline_no': {
@@ -155,6 +175,6 @@ CampusConnect.Login.Validation = function() {
     return {
         initial: initial,
         login: login,
-        completeRegistration :completeRegistration
+        collegeRegistration :collegeRegistration
     };
 }();

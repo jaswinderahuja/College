@@ -6,6 +6,8 @@ class CreateUniversityContactDetails < ActiveRecord::Migration[5.0]
       t.string :email_2
       t.string :phone_number_1
       t.string :phone_number_2
+      t.string :landline_number
+      
       t.timestamps
     end
   end
