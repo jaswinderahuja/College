@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501125231) do
+ActiveRecord::Schema.define(version: 20170516065156) do
 
   create_table "approving_bodies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -116,12 +116,12 @@ ActiveRecord::Schema.define(version: 20170501125231) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "pin_codes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "pin_code",   null: false
+  create_table "pincodes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "pincode",    null: false
     t.integer  "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_pin_codes_on_city_id", using: :btree
+    t.index ["city_id"], name: "index_pincodes_on_city_id", using: :btree
   end
 
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -144,19 +144,12 @@ ActiveRecord::Schema.define(version: 20170501125231) do
   end
 
   create_table "university_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "landline_number"
     t.string   "address1"
     t.string   "address2"
     t.integer  "pin_code"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.integer  "country_id"
     t.integer  "university_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["city_id"], name: "index_university_addresses_on_city_id", using: :btree
-    t.index ["country_id"], name: "index_university_addresses_on_country_id", using: :btree
-    t.index ["state_id"], name: "index_university_addresses_on_state_id", using: :btree
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["university_id"], name: "index_university_addresses_on_university_id", using: :btree
   end
 
@@ -166,8 +159,9 @@ ActiveRecord::Schema.define(version: 20170501125231) do
     t.string   "email_2"
     t.string   "phone_number_1"
     t.string   "phone_number_2"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "landline_number"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["university_id"], name: "index_university_contact_details_on_university_id", using: :btree
   end
 
@@ -222,11 +216,8 @@ ActiveRecord::Schema.define(version: 20170501125231) do
   add_foreign_key "college_users", "colleges"
   add_foreign_key "college_users", "users"
   add_foreign_key "courses", "departments"
-  add_foreign_key "pin_codes", "cities"
+  add_foreign_key "pincodes", "cities"
   add_foreign_key "states", "countries"
-  add_foreign_key "university_addresses", "cities"
-  add_foreign_key "university_addresses", "countries"
-  add_foreign_key "university_addresses", "states"
   add_foreign_key "university_addresses", "universities"
   add_foreign_key "university_contact_details", "universities"
   add_foreign_key "university_courses", "courses"
