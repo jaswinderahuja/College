@@ -1,6 +1,6 @@
 class UniversityContactDetail < ApplicationRecord
   belongs_to :university
-
+  
   def self.create_new_university_contact options
       university_contact = UniversityContactDetail.new
       university_contact.create_university_contact options

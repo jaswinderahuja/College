@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170516065156) do
   end
 
   create_table "campus_drives", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "college_id"
+    t.integer  "college_detail_id"
     t.datetime "date_of_drive"
     t.string   "address"
     t.integer  "no_of_students"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20170516065156) do
     t.boolean  "status"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.index ["college_id"], name: "index_campus_drives_on_college_id", using: :btree
+    t.index ["college_detail_id"], name: "index_campus_drives_on_college_detail_id", using: :btree
     t.index ["department_id"], name: "index_campus_drives_on_department_id", using: :btree
   end
 
@@ -46,20 +46,13 @@ ActiveRecord::Schema.define(version: 20170516065156) do
   end
 
   create_table "college_addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "landline_number"
     t.string   "address1"
     t.string   "address2"
     t.integer  "pin_code"
-    t.integer  "city_id"
-    t.integer  "state_id"
-    t.integer  "country_id"
-    t.integer  "college_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["city_id"], name: "index_college_addresses_on_city_id", using: :btree
-    t.index ["college_id"], name: "index_college_addresses_on_college_id", using: :btree
-    t.index ["country_id"], name: "index_college_addresses_on_country_id", using: :btree
-    t.index ["state_id"], name: "index_college_addresses_on_state_id", using: :btree
+    t.integer  "college_detail_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["college_detail_id"], name: "index_college_addresses_on_college_detail_id", using: :btree
   end
 
   create_table "college_contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -67,32 +60,34 @@ ActiveRecord::Schema.define(version: 20170516065156) do
     t.string   "email_2"
     t.string   "phone_number_1"
     t.string   "phone_number_2"
-    t.integer  "college_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["college_id"], name: "index_college_contact_details_on_college_id", using: :btree
+    t.string   "landline_number"
+    t.integer  "college_detail_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["college_detail_id"], name: "index_college_contact_details_on_college_detail_id", using: :btree
   end
 
-  create_table "college_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "college_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["college_id"], name: "index_college_users_on_college_id", using: :btree
-    t.index ["user_id"], name: "index_college_users_on_user_id", using: :btree
-  end
-
-  create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "college_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",               null: false
     t.integer  "is_affliated_to_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
 
+  create_table "college_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "college_detail_id"
+    t.integer  "user_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["college_detail_id"], name: "index_college_users_on_college_detail_id", using: :btree
+    t.index ["user_id"], name: "index_college_users_on_user_id", using: :btree
+  end
+
   create_table "colleges_courses", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "college_id"
+    t.integer "college_detail_id"
     t.integer "course_id"
-    t.index ["college_id", "course_id"], name: "index_colleges_courses_on_college_id_and_course_id", unique: true, using: :btree
+    t.index ["college_detail_id", "course_id"], name: "index_colleges_courses_on_college_detail_id_and_course_id", unique: true, using: :btree
+    t.index ["college_detail_id"], name: "index_colleges_courses_on_college_detail_id", using: :btree
   end
 
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -205,16 +200,14 @@ ActiveRecord::Schema.define(version: 20170516065156) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "campus_drives", "colleges"
+  add_foreign_key "campus_drives", "college_details"
   add_foreign_key "campus_drives", "departments"
   add_foreign_key "cities", "states"
-  add_foreign_key "college_addresses", "cities"
-  add_foreign_key "college_addresses", "colleges"
-  add_foreign_key "college_addresses", "countries"
-  add_foreign_key "college_addresses", "states"
-  add_foreign_key "college_contact_details", "colleges"
-  add_foreign_key "college_users", "colleges"
+  add_foreign_key "college_addresses", "college_details"
+  add_foreign_key "college_contact_details", "college_details"
+  add_foreign_key "college_users", "college_details"
   add_foreign_key "college_users", "users"
+  add_foreign_key "colleges_courses", "college_details"
   add_foreign_key "courses", "departments"
   add_foreign_key "pincodes", "cities"
   add_foreign_key "states", "countries"

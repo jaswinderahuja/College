@@ -12,7 +12,7 @@ class UniversityAddress < ApplicationRecord
       	self.address1 = options["address_line_1"]
       	self.address2 = options["address_line_2"]
       	self.university_id = options["university_id"]     	
-      	self.pin_code = options["pin_code"]
+      	self.pin_code = options["pincode"]
 	    self.save!      	
 	end
 

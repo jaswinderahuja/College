@@ -1,7 +1,7 @@
 class CreateCampusDrives < ActiveRecord::Migration[5.0]
   def change
     create_table :campus_drives do |t|
-      t.references :college, foreign_key: true
+      t.references :college_detail, foreign_key: true
  	  t.datetime :date_of_drive
  	  t.string :address
  	  t.integer :no_of_students

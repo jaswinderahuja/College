@@ -26,6 +26,25 @@ module CRUD
           UniversityAddress.create_new_univeristy_address options
         end
       end
+
+      def register_college options
+          ApplicationRecord.connection.transaction do
+             university = University.find_by_name(options["university_name"])
+             if !university.present?
+                university = University.create_new_university options
+             end
+             options[:university_id] = university.id
+             p options
+             clg = CollegeDetail.create_new_college options
+             options[:college_detail_id] = clg.id
+             CollegeUser.create_new_college_user options
+             clg_cd = CollegeContactDetail.create_new_college_contact options
+             pin_code = create_address_detail options
+             options[:pincode] = pin_code.pincode
+             CollegeAddress.create_new_college_address options
+          end
+      end
+
     end
   end
 end

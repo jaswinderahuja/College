@@ -4,8 +4,9 @@ class CreateCollegeContactDetails < ActiveRecord::Migration[5.0]
       t.string :email_1
       t.string :email_2
       t.string :phone_number_1
-      t.string :phone_number_2
-      t.references :college, foreign_key: true
+      t.string :phone_number_2      
+      t.string :landline_number      
+      t.references :college_detail, foreign_key: true
 
       t.timestamps
     end
