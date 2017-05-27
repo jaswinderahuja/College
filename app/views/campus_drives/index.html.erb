@@ -1,3 +1,6 @@
+<script type="text/javascript">
+CampusConnect.Utilities.departments();
+</script>
 <div class="ui vertical inverted sidebar menu left overlay">
   <div class="profile_pic">
     <img src="/images/Thapar_Uni_logo.jpg" class="img-circle profile_img">
@@ -49,7 +52,7 @@
         <div class="field">
           <div class="ui left icon input">
             <i class="university icon"></i>
-            <%= text_field_tag "college",nil, placeholder: "Enter College name"%>
+            <%= text_field_tag "college_name",nil, placeholder: "Enter College name"%>
           </div>
         </div>
         <div class="field">
@@ -78,11 +81,10 @@
         <div class="field">
           <!-- <label>Name</label> -->
           <div class="two fields">
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="pin icon"></i>
-                <%= text_field_tag "dept",nil,placeholder: "Enter Department Name" %>
-              </div>
+            <div class="field" id="department-container">
+              <select class="ui search selection dropdown" name="dept" id="search-select">
+                <!-- dynamic generation of departments -->
+              </select>
             </div>
             <div class="field">
               <div class="ui left icon input">
@@ -144,4 +146,5 @@
 </div>
 <script type="text/javascript">
 CampusConnect.College.Validation.campusDrive();
+$('#search-select').dropdown();
 </script>

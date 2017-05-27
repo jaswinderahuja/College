@@ -14,6 +14,10 @@
         <%= javascript_include_tag "campus_connect/college/validation.js" %>
 
         <%= render 'layouts/header' %>
+        <%= render :partial=>"campus_drives/departments_handlebar" %>
+        <script type="text/javascript">
+            CampusConnect.Utilities.init();
+        </script>
         
         <%=yield%>
     </body>

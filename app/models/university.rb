@@ -1,6 +1,8 @@
 class University < ApplicationRecord
 	has_many :university_addresses
 	has_many :university_users
+  has_many :campus_invites, as: :campus_details
+  has_many :colleges  
 
 	def self.create_new_university options
       University.transaction do
