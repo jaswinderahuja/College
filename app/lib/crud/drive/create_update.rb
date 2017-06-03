@@ -3,10 +3,8 @@ module CRUD
     class CreateUpdate
 
     	def get_campus(name)
-            college  = CollegeDetail.where("name"=>name).first
-    		university  = University.where("name"=>name).first
+            college = Campus.where("college_name"=>name).first
             return college if college.present?
-            return university if university.present?
     	end
 
         
@@ -17,7 +15,7 @@ module CRUD
                     raise Exception,"University/College Doesn't exists or spelling wrong"
                 end
                 campus_invite = CampusInvite.new
-                campus_invite.campus_details = campus
+                campus_invite.campus_id = campus.id
                 campus_invite.create_campus_drive options
     		end	
     	end

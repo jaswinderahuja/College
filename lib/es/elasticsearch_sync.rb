@@ -9,30 +9,42 @@ module ES
 			@client = get_client			
 		end
 
-		def create_hash(univ_id)
+		def create_campus_hash(univ_id)
 		    hash = {}
-			row = ActiveRecord::Base.connection.select_rows("select clg.name 'college name',cities.name
-				'city',u.name 'university name',u.created_at 'timestamp' from
-				college_details clg inner join universities u on u.id=clg.is_affliated_to_id inner join
-				college_addresses addr on addr.college_detail_id = clg.id inner join pincodes pin on
-				pin.pincode = addr.pin_code inner join cities on cities.id = pin.city_id where clg.id=#{univ_id};").first
-			hash = {:college=>row[0],:city=>row[1],:university=>row[2],:timestamp=>row[3],:approved_by=>"UGC",:rank=>"111",:description=>" something",:established=>"year",:asia_rank=>"xx"}
+			row = ActiveRecord::Base.connection.select_rows("select c.college_name,c.university_name,cities.name,c.created_at from campus c
+					inner join campus_addresses addr on addr.campus_id =  c.id
+					inner join pincodes pin on pin.pincode = addr.pin_code
+					inner join cities on cities.id = pin.city_id where c.id=#{univ_id};").first
+			hash = {:college=>row[0],:university=>row[1],:city=>row[2],:timestamp=>row[3],:approved_by=>"UGC",:rank=>"111",:description=>" something",:established=>"year",:asia_rank=>"xx"}
 			return hash
 		end
 
-		def self.execute(univ_id)
+		def self.sync_campus(univ_id)
 			begin
-				ElasticsearchSync.new.create_index(univ_id)
+				ElasticsearchSync.new.create_campus_detail_index(univ_id)
 			rescue Exception => e
-				user_id = CollegeDetail.find(univ_id).college_users.first.user_id
+				user_id = Campus.find(univ_id).campus_users.first.user_id
 				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
 			end
 		end
 
-		def create_index(univ_id)
-			data = create_hash(univ_id)
+		def self.sync_campus_drives(drive_id)
+			begin
+				ElasticsearchSync.new.create_campus_drive_index(drive_id)
+			rescue Exception => e
+				user_id = Campus.find(univ_id).campus_users.first.user_id
+				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
+			end
+		end
+
+		def create_campus_drive_index(drive_id)
+			data  = create_drive_hash(drive_id)
+			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DRIVES,:body=>data
+		end
+
+		def create_campus_detail_index(univ_id)
+			data = create_campus_hash(univ_id)
 			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DETAILS,:body=>data
-			
 		end
 
 	end

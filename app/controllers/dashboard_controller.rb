@@ -5,7 +5,7 @@ class DashboardController < AuthenticatedController
 
   def college_registration_exists?
     puts "=========cool==================="
-  	if current_user.university_users.present? or current_user.college_users.present?
+  	if current_user.campus_users.present?
   	else
   	    redirect_to(:controller=>"college_registeration",:action=>"index") 	
   	end

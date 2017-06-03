@@ -16,35 +16,16 @@ module CRUD
       # 2. create UniversityUser in join for University and User
       # 3. create UniversityContacts
       # 4. create UniversityAddress
-      def register_university options
-        ApplicationRecord.connection.transaction do
-          univ = University.create_new_university options
-          options[:university_id] = univ.id
-          UniversityUser.create_new_university_user options
-          univ_cd = UniversityContactDetail.create_new_university_contact options          
-          pin_code = create_address_detail options
-          options[:pincode] = pin_code.pincode
-          UniversityAddress.create_new_univeristy_address options
-          return univ.id
-        end
-      end
-
       def register_college options
           ApplicationRecord.connection.transaction do
-             university = University.find_by_name(options["university_name"])
-             if !university.present?
-                university = University.create_new_university options
-             end
-             options[:university_id] = university.id
-             p options
-             clg = CollegeDetail.create_new_college options
-             options[:college_detail_id] = clg.id
-             CollegeUser.create_new_college_user options
-             clg_cd = CollegeContactDetail.create_new_college_contact options
+             campus = Campus.create_new_campus options
+             options[:campus_id] = campus.id
+             CampusUser.create_new_campus_user options
+             clg_cd = CampusContactDetail.create_new_campus_contact options
              pin_code = create_address_detail options
              options[:pincode] = pin_code.pincode
-             CollegeAddress.create_new_college_address options
-             return clg.id
+             CampusAddress.create_new_campus_address options
+             return campus.id
           end
       end
 
