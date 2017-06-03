@@ -1,7 +1,7 @@
 require 'es/elasticsearch_configuration.rb'
 
 module ES
-	class ElasticsearchSync < ElasticsearchConfiguration
+	class CampusSync < ElasticsearchConfiguration
 		INDEX_NAME = "college"
 		INDEX_TYPES = [CAMPUS_DETAILS = "campus_details",CAMPUS_DRIVES ="campus_drives"]
 		
@@ -19,27 +19,13 @@ module ES
 			return hash
 		end
 
-		def self.sync_campus(univ_id)
+		def self.execute(univ_id)
 			begin
-				ElasticsearchSync.new.create_campus_detail_index(univ_id)
+				CampusSync.new.create_campus_detail_index(univ_id)
 			rescue Exception => e
 				user_id = Campus.find(univ_id).campus_users.first.user_id
 				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
 			end
-		end
-
-		def self.sync_campus_drives(drive_id)
-			begin
-				ElasticsearchSync.new.create_campus_drive_index(drive_id)
-			rescue Exception => e
-				user_id = Campus.find(univ_id).campus_users.first.user_id
-				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
-			end
-		end
-
-		def create_campus_drive_index(drive_id)
-			data  = create_drive_hash(drive_id)
-			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DRIVES,:body=>data
 		end
 
 		def create_campus_detail_index(univ_id)

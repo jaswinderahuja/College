@@ -17,6 +17,7 @@ module CRUD
                 campus_invite = CampusInvite.new
                 campus_invite.campus_id = campus.id
                 campus_invite.create_campus_drive options
+                campus_invite.id
     		end	
     	end
 

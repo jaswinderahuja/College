@@ -1,4 +1,4 @@
-require 'es/elasticsearch_sync'
+require 'es/campus_sync'
 class CollegeRegisterationController < ApplicationController
   layout 'users'
   before_action :user_status
@@ -12,7 +12,7 @@ class CollegeRegisterationController < ApplicationController
     params[:current_user_id] = current_user.id
     if Campus.where(:college_name=>college).blank?
         clg_id = CRUD::College::CreateUpdate.new.register_college params
-        res = ES::ElasticsearchSync.delay.sync_campus(clg_id)
+        res = ES::CampusSync.delay.execute(clg_id)
     end    
     redirect_to(:controller=>"dashboard",:action=>"index")
   end

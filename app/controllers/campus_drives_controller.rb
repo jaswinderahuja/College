@@ -4,7 +4,8 @@ class CampusDrivesController < ApplicationController
   def create
   	p params
     begin
-      CRUD::Drive::CreateUpdate.new.college_drive params
+      drive_id = CRUD::Drive::CreateUpdate.new.college_drive params
+      ES::CampusDriveSync.delay.execute(drive_id)
     rescue Exception => e
       puts e
     end
