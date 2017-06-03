@@ -4,7 +4,8 @@ module CRUD
       #Used to create and update company registration details
 
       def create_address_detail options
-        st = State.find_or_create_by(name: options[:state])
+        country = Country.find_or_create_by(name: options[:country])
+        st = State.find_or_create_by(name: options[:state],country_id: country.id)
         city = City.find_or_create_by(name: options[:town_city],state_id: st.id)
         pincode = Pincode.find_or_create_by(pincode: options[:pincode],city_id: city.id)
         pincode
@@ -24,6 +25,7 @@ module CRUD
           pin_code = create_address_detail options
           options[:pincode] = pin_code.pincode
           UniversityAddress.create_new_univeristy_address options
+          return univ.id
         end
       end
 
@@ -42,6 +44,7 @@ module CRUD
              pin_code = create_address_detail options
              options[:pincode] = pin_code.pincode
              CollegeAddress.create_new_college_address options
+             return clg.id
           end
       end
 

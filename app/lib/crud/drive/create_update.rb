@@ -22,8 +22,6 @@ module CRUD
     		end	
     	end
 
-
-
         def get_departments
             result = Hash.new
             departments = Department.select("id,name")

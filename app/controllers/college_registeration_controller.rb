@@ -1,8 +1,7 @@
+require 'es/elasticsearch_sync'
 class CollegeRegisterationController < ApplicationController
   layout 'users'
   before_action :user_status
-
-  
   def index
   end
   def index_back
@@ -17,12 +16,15 @@ class CollegeRegisterationController < ApplicationController
     puts "==================================================="
     if college == university
         if University.find_by_name(university).blank?          
-          CRUD::College::CreateUpdate.new.register_university params
+          univ_id = CRUD::College::CreateUpdate.new.register_university params
           puts "it's a univeristy"
+          # create delayed job to sync university to elasticsearch
+          
         end
     else
       if CollegeDetail.where(:name=>college).blank?
-          CRUD::College::CreateUpdate.new.register_college params
+          clg_id = CRUD::College::CreateUpdate.new.register_college params
+          res = ES::ElasticsearchSync.delay.execute(clg_id)
       end
     end
     redirect_to(:controller=>"dashboard",:action=>"index")

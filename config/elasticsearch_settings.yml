@@ -1,0 +1,5 @@
+local_infile: true
+
+
+es_auth_username: elasticsearch
+es_auth_password: welcome@elasticsearch

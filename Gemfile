@@ -3,8 +3,10 @@ source 'https://rubygems.org'
 #Ruby 2.3.1
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
-
+gem 'elasticsearch'
 gem 'devise'
+gem 'delayed_job_active_record'
+gem 'daemons', '1.2.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use mysql as the database for Active Record
