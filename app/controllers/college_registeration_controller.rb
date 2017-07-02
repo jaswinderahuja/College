@@ -1,4 +1,3 @@
-require 'es/campus_sync'
 class CollegeRegisterationController < ApplicationController
   layout 'users'
   before_action :user_status

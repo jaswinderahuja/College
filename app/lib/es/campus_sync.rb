@@ -1,7 +1,7 @@
-require 'es/elasticsearch_configuration.rb'
+require "#{Rails.root}/app/lib/es/configuration.rb"
 
 module ES
-	class CampusSync < ElasticsearchConfiguration
+	class CampusSync < Configuration
 		INDEX_NAME = "college"
 		INDEX_TYPES = [CAMPUS_DETAILS = "campus_details",CAMPUS_DRIVES ="campus_drives"]
 		
@@ -14,8 +14,8 @@ module ES
 			row = ActiveRecord::Base.connection.select_rows("select c.college_name,c.university_name,cities.name,c.created_at from campus c
 					inner join campus_addresses addr on addr.campus_id =  c.id
 					inner join pincodes pin on pin.pincode = addr.pin_code
-					inner join cities on cities.id = pin.city_id where c.id=#{univ_id};").first
-			hash = {:college=>row[0],:university=>row[1],:city=>row[2],:timestamp=>row[3],:approved_by=>"UGC",:rank=>"111",:description=>" something",:established=>"year",:asia_rank=>"xx"}
+					inner join cities on cities.id = pin.city_id where c.id=#{univ_id};").first			
+			hash = {:college_name=>row[0],:university_name=>row[1],:city=>row[2],:approved_by=>"UGC",:rank=>111,:description=>" something",:established_year=>1990,:asia_rank=>1}
 			return hash
 		end
 
@@ -30,7 +30,7 @@ module ES
 
 		def create_campus_detail_index(univ_id)
 			data = create_campus_hash(univ_id)
-			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DETAILS,:body=>data
+			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DETAILS,:id=>univ_id,:body=>data
 		end
 
 	end

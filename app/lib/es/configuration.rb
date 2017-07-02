@@ -79,18 +79,6 @@ module ES
                 }
               }
             },
-            hod_email: {
-              type: "keyword"
-            },
-            contact_details:{
-              type: "nested",
-              properties:{
-                email_1: { type: "keyword" },
-                email_2: { type: "keyword" },
-                phone_1: { type: "keyword" },
-                phone_2: { type: "keyword" }  
-              }
-            },
             description: {
               type: "text"
             },
@@ -100,6 +88,16 @@ module ES
             date_of_drive: {
               type: "date",
               format: "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+            },
+            contact_details:{
+              type: "nested",
+              properties:{
+                hod_email: { type: "keyword" },
+                email_1:   { type: "keyword" },
+                email_2:   { type: "keyword" },
+                phone_1:   { type: "keyword" },
+                phone_2:   { type: "keyword" }  
+              }
             }
          }
 
@@ -113,7 +111,7 @@ module ES
               campus_details: {
                 properties: campus_map
               },
-              contracts: {
+              campus_drives: {
                 _parent: { type: "campus_details" },
                 properties: drive_map
               }
