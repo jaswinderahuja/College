@@ -13,4 +13,10 @@ class DashboardController < AuthenticatedController
 
   def index
   end
+
+  def get_companies
+      result = {}
+      
+      render json: result 
+  end
 end

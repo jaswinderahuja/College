@@ -1,3 +1,6 @@
+<script type="text/javascript">
+ // CampusConnect.Utilities.cards();
+</script>
 <div class="ui vertical inverted sidebar menu left overlay">
   <div class="profile_pic">
     <img src="/images/Thapar_Uni_logo.jpg" class="img-circle profile_img">
@@ -25,80 +28,23 @@
   </a>
 </div>
 <div class="main-content container">
-  <div class="ui search" style="margin-bottom:25px;margin-left:65%;">
+  <div class="ui search" style="margin-bottom:25px;margin-left:16%;border:solid;padding:10px;width:900px;background-color:grey">
     <div class="ui icon input">
-      <input class="prompt" type="text" placeholder="Search here..." style="width:265px">
+      <input class="prompt" type="text" placeholder="Search here..." style="width:865px">
       <i class="search icon"></i>
     </div>
     <div class="results"></div>
   </div>
   <div class="pusher">
-    <div class="ui cards">
-      <div class="card">
-        <div class="middle aligned content">
-          <img class="left floated small ui image" src="/images/pramata.png" style="margin-bottom:0px;border: 1px solid rgba(52,73,94,.44);padding: 4px;max-height:120px">
-          <div class="header">
-            Pramata knowledge solution pvt ltd.
-          </div>
-          <div class="meta">
-            Bangalore
-          </div>
-          <div class="other details">
-            <p>It's B2B product based company, Headquarter in US California</p>
-            <p>It is in action/started in 1999 and has well funded by silicon valley partners</p>
-            <p>It has offices in Bangalore and Mumbai </p>
-          </div>
-        </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>
-            200+ Members
-          </a>
-          <div class="ui right floated button">
-            Action
-          </div>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="middle aligned content">
-          <img class="left floated small ui image" src="/images/logo.png">
-          <div class="header">
-            Pramata knowledge solution pvt ltd.
-          </div>
-          <div class="meta">
-            Bangalore
-          </div>
-          <div class="other details">
-            <p>It's B2B product based company, Headquarter in US California</p>
-            <p>It is in action/started in 1999 and has well funded by silicon valley partners</p>
-            <p>It has offices in Bangalore and Mumbai </p>
-          </div>
-          <!-- <div class="description">
-            description about the company goes here, and other necessary detail can also be added here
-          </div> -->
-        </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>
-            2 Members
-          </a>
-          <div class="ui right floated button">
-            Action
-          </div>
-          <!-- <div class="ui two buttons">
-            <div class="ui basic green button">Approve</div>
-            <div class="ui basic red button">Decline</div>
-          </div> -->
-        </div>
-      </div>
-      
-    </div>
+     <div id="cards-container">
+     </div>
   </div>
 </div>
 
 <script>
 // $('.ui.dropdown').dropdown();
+
+CampusConnect.Dashboard.cards();
 
 var content = [
 {
