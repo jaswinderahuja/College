@@ -1,3 +1,4 @@
+require "#{Rails.root}/app/lib/es/search_engine"
 class DashboardController < AuthenticatedController
   layout 'dashboard'
   before_filter :college_registration_exists?
@@ -15,8 +16,21 @@ class DashboardController < AuthenticatedController
   end
 
   def get_companies
-      result = {}
-      
-      render json: result 
+        result = {}
+        status = 200
+        message = "success"
+        error = ""
+      begin
+        from = 0
+        size = 10
+        data = ES::SearchEngine.new.initial_load(from,size) 
+      rescue Exception => e
+        status = 500
+        error = e.message
+        message = "OOPS, something went wrong!"
+      ensure
+        result = { "companies"=>data,"message"=>message,"error"=>error}.to_json    
+        render json: result,code: status
+      end
   end
 end
