@@ -38,5 +38,31 @@ module ES
 			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DRIVES,:id=>drive_id,:parent=>campus_id,:body=>data
 		end
 
+		#  bulk api to sync all the active campus drives pending
+
+
+		def self.complete_index
+			begin
+				campus_drive_sync = CampusDriveSync.new
+				drives = CampusInvite.where(:status=>true).collect(&:id)
+				master_hash = []
+				drives.each do |drive|
+					index_hash = {"index":{"_index": INDEX_NAME, "_type": CAMPUS_DRIVES, "_id": drive.id }}
+					data_hash = create_campus_drive_hash(drive.id)
+					master_hash << index_hash 
+					master_hash << data_hash
+				end				
+				bulk(master_hash)
+			rescue Exception => e
+				user_id = 1 # CampusInvite.find(drive_id).campus.campus_users.first.user_id
+				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
+			end
+				
+		end
+
+		def self.bulk(data =[])
+			@client.bulk :body=>data
+		end
+
 	end
 end

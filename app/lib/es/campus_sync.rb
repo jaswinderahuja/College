@@ -33,5 +33,28 @@ module ES
 			@client.index :index=>INDEX_NAME,:type=>CAMPUS_DETAILS,:id=>univ_id,:body=>data
 		end
 
+		
+		def self.complete_index
+			begin
+				campus_drive_sync = CampusSync.new
+				campus = Campus.all.collect(&:id)
+				master_hash = []
+				campus.each do |univ|
+					index_hash = {"index":{"_index": INDEX_NAME, "_type": CAMPUS_DETAILS, "_id": univ.id }}
+					data_hash = create_campus_hash(univ.id)
+					master_hash << index_hash 
+					master_hash << data_hash
+				end				
+				bulk(master_hash)
+			rescue Exception => e
+				user_id = 1 # CampusInvite.find(drive_id).campus.campus_users.first.user_id
+				AppException.create!(:message=>e.message,:stacktrace=>e.backtrace,:created_by=>user_id)
+			end
+				
+		end
+
+		def self.bulk(data =[])
+			@client.bulk :body=>data
+		end
 	end
 end

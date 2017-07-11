@@ -12,7 +12,7 @@ CampusConnect.Dashboard = function () {
 	// }
 
 
-	 var copmileTemplate = function(){
+	var copmileTemplate = function(){
         var source   = $("#cards-template").html();
         cardsTemplate = Handlebars.compile(source);
     }
@@ -21,7 +21,6 @@ CampusConnect.Dashboard = function () {
         $.ajax({url:"/dashboard/get_companies",
             success: function(response){
                 var html = cardsTemplate(response);
-                console.log(html);
                 $("#cards-container").html(html);
             }
         });

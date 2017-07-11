@@ -17,4 +17,6 @@ class CampusInvite < ApplicationRecord
   		self.status = true
   		self.save!
   end
+
+
 end
