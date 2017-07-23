@@ -1,5 +1,5 @@
 <script type="text/javascript">
- // CampusConnect.Utilities.cards();
+// CampusConnect.Utilities.cards();
 </script>
 <div class="ui vertical inverted sidebar menu left overlay">
   <div class="profile_pic">
@@ -27,25 +27,65 @@
     History
   </a>
 </div>
-<div class="main-content container">
-  <div class="ui search" style="margin-bottom:25px;margin-left:16%;border:solid;padding:10px;width:900px;background-color:grey">
+<div class="main-content container" style="background-color:;padding-top:5%">
+  
+  <!--   <div class="ui search" style="">
     <div class="ui icon input">
       <input class="prompt" type="text" placeholder="Search here..." style="width:865px">
       <i class="search icon"></i>
     </div>
     <div class="results"></div>
-  </div>
-  <div class="pusher">
-     <div id="cards-container">
-     </div>
+  </div> -->
+  <!--   <div  class="sort-options" style="padding: 0% 0% 3% 70.5%;">
+    <select class="ui dropdown">
+      <option value="">Sort by</option>
+      <option value="1">Popularity</option>
+      <option value="0">Rating</option>
+      <option value="0">Package</option>
+    </select>
+  </div> -->
+  <div class="pusher" style="">
+    <!-- <div class="left-block filter">
+    </div>
+    <div id="cards-container" class="middle-block">
+    </div>
+    <div class="right-block">
+      
+    </div> -->
+    <div class="ui grid">
+      <div class="four wide column verticalLine">
+        <%= render partial: "filters"%>
+      </div>
+      <div class="nine wide column">
+      <!--  grid to sort start here -->
+        <div class="ui grid">
+          <div class="three column row">
+            <div class="right floated column">
+              <div  class="sort-options " style="padding-left: 12%;">
+                <select class="ui dropdown">
+                  <option value="">Sort by</option>
+                  <option value="1">No of openings</option>
+                  <option value="0">Rating</option>
+                  <option value="0">Package</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--  grid to sort ends here -->
+      <div class="ui  divider"></div>
+        <div id="cards-container">
+        </div>
+      </div>
+      <div class="three wide column">
+        
+      </div>
+    </div>
   </div>
 </div>
-
 <script>
-// $('.ui.dropdown').dropdown();
-
+$('.ui.dropdown').dropdown();
 CampusConnect.Dashboard.cards();
-
 var content = [
 {
 title: 'Horse',

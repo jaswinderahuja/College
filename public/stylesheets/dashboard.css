@@ -21,10 +21,8 @@ html, body {
  }
 
  .main-content .ui.cards > .card {
-  margin:auto;
   margin-bottom: 20px;
-  margin-left: 200px;
-  width: 70%;
+  width: 100%;
 }
 
 .img-circle {
