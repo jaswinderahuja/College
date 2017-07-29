@@ -21,12 +21,20 @@ CampusConnect.Dashboard = function () {
         $.ajax({url:"/dashboard/get_companies",
             success: function(response){
                 var html = cardsTemplate(response);
-                console.log(html);
                 $("#cards-container").html(html);
             }
         });
     }
 
+    var sorted_cards =function(sort_option){
+        console.log(sort_option);
+        $.ajax({url:"/dashboard/get_companies?sort_option="+sort_option,
+            success: function(response){
+                var html = cardsTemplate(response);
+                $("#cards-container").html(html);
+            }
+        });
+    }
 
     var init =function(){
         copmileTemplate();        
@@ -35,7 +43,8 @@ CampusConnect.Dashboard = function () {
 
     return {
     	init:init,
-    	cards:cards    
+    	cards:cards,
+        sorted_cards:sorted_cards    
     }
 }();
 

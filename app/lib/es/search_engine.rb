@@ -27,7 +27,7 @@ module ES
 			return company_hash
 		end
 
-		def initial_load(from,size)
+		def initial_load(from,size,sort_by="package_upper")
 			company_ids = []
 			result = []
 			openings_hash = @client.search :index=>INDEX_NAME,:type=>OPENINGS,
@@ -39,15 +39,16 @@ module ES
 				},
 				:sort=>[
 					    {
-					      :package_upper=> {
+					      :"#{sort_by}"=> {
 					        :order=> "desc"
 					      }
-					    },
-					    {
-					      :no_of_openings=> {
-					        :order=>"desc"
-					      }
 					    }
+					    # ,
+					    # {
+					    #   :no_of_openings=> {
+					    #     :order=>"desc"
+					    #   }
+					    # }
 				]
 			}
 			

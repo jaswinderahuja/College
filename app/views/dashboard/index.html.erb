@@ -40,11 +40,11 @@
           <div class="three column row">
             <div class="right floated column">
               <div  class="sort-options " style="padding-left: 12%;">
-                <select class="ui dropdown">
+                <select class="ui dropdown" >
                   <option value="">Sort by</option>
-                  <option value="1">No of openings</option>
-                  <option value="0">Rating</option>
-                  <option value="0">Package</option>
+                  <option value="no_of_openings">No of openings</option>
+                  <option value="rating">Rating</option>
+                  <option value="package_upper">Package</option>
                 </select>
               </div>
             </div>
@@ -62,7 +62,11 @@
   </div>
 </div>
 <script>
-$('.ui.dropdown').dropdown();
+$('.ui.dropdown').dropdown({
+    onChange: function(value, text, $selectedItem) {
+      CampusConnect.Dashboard.sorted_cards(value);
+    }
+});
 CampusConnect.Dashboard.cards();
 var content = [
 {
