@@ -1,63 +1,41 @@
+<style>
+.other-details > p {
+  /*line-height: 16px;*/
+  /*font-family: sans-serif;*/
+}
+</style>
 <script id="cards-template" type="text/x-handlebars-template">
-  <div class="ui cards">
-      <div class="card">
-        <div class="middle aligned content">
-          <img class="left floated small ui image" src="/images/pramata.png" style="margin-bottom:0px;border: 1px solid rgba(52,73,94,.44);padding: 4px;max-height:120px">
-          <div class="header">
-            Pramata knowledge solution pvt ltd.
-          </div>
-          <div class="meta">
-            Bangalore
-          </div>
-          <div class="other details">
-            <p>It's B2B product based company, Headquarter in US California</p>
-            <p>It is in action/started in 1999 and has well funded by silicon valley partners</p>
-            <p>It has offices in Bangalore and Mumbai </p>
-          </div>
-        </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>
-            200+ Members
-          </a>
-          <div class="ui right floated button">
-            Action
-          </div>
-        </div>
+<div class="ui cards">
+  {{#each companies}}
+
+  <div class="card">
+    <div class="middle aligned content">
+      <img class="left floated small ui image" src="/images/pramata.png" style="margin-bottom:0px;border: 1px solid rgba(52,73,94,.44);padding: 4px;max-height:120px">
+      <div class="right floated">
+        hello world
       </div>
-      
-      <div class="card">
-        <div class="middle aligned content">
-          <img class="left floated small ui image" src="/images/logo.png">
-          <div class="header">
-            Pramata knowledge solution pvt ltd.
-          </div>
-          <div class="meta">
-            Bangalore
-          </div>
-          <div class="other details">
-            <p>It's B2B product based company, Headquarter in US California</p>
-            <p>It is in action/started in 1999 and has well funded by silicon valley partners</p>
-            <p>It has offices in Bangalore and Mumbai </p>
-          </div>
-          <!-- <div class="description">
-            description about the company goes here, and other necessary detail can also be added here
-          </div> -->
-        </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>
-            2 Members
-          </a>
-          <div class="ui right floated button">
-            Action
-          </div>
-          <!-- <div class="ui two buttons">
-            <div class="ui basic green button">Approve</div>
-            <div class="ui basic red button">Decline</div>
-          </div> -->
-        </div>
+      <div class="header">
+        {{company.name}}        
       </div>
-      
+      <div class="meta">
+        Bangalore
+      </div>
+      <div class="other-details">
+        <p><strong>Job Role:</strong>  &nbsp;{{opening.position}}</p>
+        <p><strong>Opening Type:</strong>  &nbsp;{{opening.opening_type}}</p>
+        <p><strong>Openings:</strong>  &nbsp;{{opening.no_of_openings}}</p>
+        <p><strong>Head Office:</strong>  &nbsp;{{company.headquarter}}</p>
+      </div>
     </div>
+    <div class="extra content">
+      <a><i class="users icon"></i>{{company.no_of_employees}} + Members</a>
+      <div class="ui right floated button">
+        Action
+      </div>
+    </div>
+  </div>
+
+  {{/each}}
+  
+</div>
 </script>
