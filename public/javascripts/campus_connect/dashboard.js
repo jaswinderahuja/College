@@ -1,7 +1,7 @@
 var CampusConnect = CampusConnect || {};
 CampusConnect.Dashboard = function () {
     
-	var cardsTemplate;
+	var cardsTemplate,locationFilterTemplate;
 
 	// var init = function(){
 	// 	/* off-canvas sidebar toggle */
@@ -15,6 +15,9 @@ CampusConnect.Dashboard = function () {
 	var copmileTemplate = function(){
         var source   = $("#cards-template").html();
         cardsTemplate = Handlebars.compile(source);
+        var source = $("#location-filter-template").html();
+        locationFilterTemplate = Handlebars.compile(source);
+
     }
 
     var cards = function(){
@@ -24,6 +27,12 @@ CampusConnect.Dashboard = function () {
                 $("#cards-container").html(html);
             }
         });
+    }
+
+    var getFilterList = function(options){
+        console.log(options);
+        var html = locationFilterTemplate;
+        $("#location-filter-container").html(html);        
     }
 
     var sorted_cards =function(sort_option){
@@ -36,15 +45,18 @@ CampusConnect.Dashboard = function () {
         });
     }
 
+
     var init =function(){
-        copmileTemplate();        
+        copmileTemplate();
+        
     }
 
 
     return {
     	init:init,
     	cards:cards,
-        sorted_cards:sorted_cards    
+        sorted_cards:sorted_cards,
+        getFilterList:getFilterList
     }
 }();
 

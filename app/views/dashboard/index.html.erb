@@ -67,7 +67,14 @@ $('.ui.dropdown').dropdown({
       CampusConnect.Dashboard.sorted_cards(value);
     }
 });
+
 CampusConnect.Dashboard.cards();
+$('.more-location').click(function(){
+  console.log("clicked once");
+  CampusConnect.Dashboard.getFilterList("location");
+  $('.ui.modal').modal('show');  
+})
+
 var content = [
 {
 title: 'Horse',
