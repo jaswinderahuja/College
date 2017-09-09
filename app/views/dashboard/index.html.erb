@@ -69,11 +69,12 @@ $('.ui.dropdown').dropdown({
 });
 
 CampusConnect.Dashboard.cards();
+
 $('.more-location').click(function(){
-  console.log("clicked once");
   CampusConnect.Dashboard.getFilterList("location");
   $('.ui.modal').modal('show');  
 })
+
 
 var content = [
 {

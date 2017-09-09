@@ -15,6 +15,10 @@ class DashboardController < AuthenticatedController
   def index
   end
 
+  def company_details
+    
+  end
+
   def get_companies
         sort_option = params["sort_option"] || "package_upper"
         result = {}
@@ -25,6 +29,7 @@ class DashboardController < AuthenticatedController
         from = 0
         size = 10
         data = ES::SearchEngine.new.initial_load(from,size,sort_option) 
+        puts data
       rescue Exception => e
         status = 500
         error = e.message

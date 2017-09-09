@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   post 'campus_drives/create'
 
+  get 'dashboard/company_details'
   get 'campus_drives/index'
   get 'campus_drives/get_departments'
   get 'dashboard/get_companies'

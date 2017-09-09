@@ -1,7 +1,7 @@
 <script id="cards-template" type="text/x-handlebars-template">
 <div class="ui cards">
   {{#each companies}}
-
+    
   <div class="card">
     <div class="middle aligned content">
       <img class="left floated small ui image" src="/images/pramata.png" style="margin-bottom:0px;border: 1px solid rgba(52,73,94,.44);padding: 4px;max-height:120px">
@@ -25,9 +25,9 @@
     </div>
     <div class="extra content">
       <a><i class="users icon"></i>{{company.no_of_employees}} + Members</a>
-      <div class="ui right floated button">
-        Action
-      </div>
+      <a class="ui right floated primary button" id="view-details" href="dashboard/company_details?op_id={{opening_id}}">
+        View Details
+      </a>
     </div>
   </div>
 

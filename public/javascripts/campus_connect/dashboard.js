@@ -31,8 +31,27 @@ CampusConnect.Dashboard = function () {
 
     var getFilterList = function(options){
         console.log(options);
-        var html = locationFilterTemplate;
+        alphabets = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        cities = ["BBangalore", "BBangalore", "BBangalore", "BBangalore", "BBangalore", "CBangalore", "CBangalore", "CBangalore", "DBangalore", "DBangalore", "DBangalore", "EBangalore", "EBangalore", "EBangalore", "EBangalore", "EBangalore", "GBangalore", "GBangalore", "GBangalore", "HBangalore", "HBangalore", "HBangalore", "IBangalore", "IBangalore", "IBangalore", "JBangalore", "JBangalore"];
+        city_hash = {};
+        temp = [];
+        prev = cities[0][0];
+        for(var index in cities){
+            city = cities[index];
+            if(city[0]==prev){
+                temp.push(city);
+            }else{
+                city_hash[prev] = temp;
+                temp = [];
+                temp.push(city);
+                prev = city[0];
+            }
+        }
+        console.log(city_hash);
+        var html = locationFilterTemplate({"alphabets":alphabets,"cities":city_hash});
+        // var elementPresent  = $("#location-filter-container")
         $("#location-filter-container").html(html);        
+        
     }
 
     var sorted_cards =function(sort_option){
@@ -51,8 +70,14 @@ CampusConnect.Dashboard = function () {
         
     }
 
+    var showCompanyDetails =  function(element_clicked){
+        // var  opening_id = $(element_clicked).find('input[class="openings"]').val();
+        // window.location.href="dashboard/company_details"    
+    }
+
 
     return {
+        showCompanyDetails:showCompanyDetails,
     	init:init,
     	cards:cards,
         sorted_cards:sorted_cards,
