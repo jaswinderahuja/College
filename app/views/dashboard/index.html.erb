@@ -28,7 +28,7 @@
   </a>
 </div>
 <div class="main-content container" style="background-color:;padding-top:5%">
-  
+
   <div class="pusher" style="">
     <div class="ui grid">
       <div class="four wide column verticalLine">
@@ -38,6 +38,70 @@
         <!--  grid to sort start here -->
         <div class="ui grid">
           <div class="three column row">
+            <div class="left floated column">
+              <div class="ui multiple dropdown">
+                <input type="hidden" name="filters">
+                <i class="filter icon"></i>
+                <span class="text">Location</span>
+                <div class="menu">
+                  <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="Search tags...">
+                  </div>
+                  <div class="divider"></div>
+                  <div class="header">
+                    <i class="tags icon"></i>
+                    Tag Label
+                  </div>
+                  <div class="scrolling menu">
+                    <div class="item" data-value="important">
+                      Bangalore
+                    </div>
+                    <div class="item" data-value="announcement">
+                      Hyderabad
+                    </div>
+                    <div class="item" data-value="cannotfix">
+                      Mumbai
+                    </div>
+                    <div class="item" data-value="news">
+                      Chennai
+                    </div>
+                    <div class="item" data-value="enhancement">
+                      Delhi
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="left floated column">
+              <div class="ui multiple dropdown">
+                <input type="hidden" name="filters">
+                <i class="filter icon"></i>
+                <span class="text">Department</span>
+                <div class="menu">
+                  <div class="ui icon search input">
+                    <i class="search icon"></i>
+                    <input type="text" placeholder="Search tags...">
+                  </div>
+                  <div class="divider"></div>
+                  <div class="header">
+                    <i class="tags icon"></i>
+                    Tag Label
+                  </div>
+                  <div class="scrolling menu">
+                    <div class="item" data-value="important">
+                      Software Engineer
+                    </div>
+                    <div class="item" data-value="announcement">
+                      Mechanical Engineer
+                    </div>
+                    <div class="item" data-value="cannotfix">
+                      HR
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div class="right floated column">
               <div  class="sort-options " style="padding-left: 12%;">
                 <select class="ui dropdown" >
@@ -72,7 +136,7 @@ CampusConnect.Dashboard.cards();
 
 $('.more-location').click(function(){
   CampusConnect.Dashboard.getFilterList("location");
-  $('.ui.modal').modal('show');  
+  $('.ui.modal').modal('show');
 })
 
 
