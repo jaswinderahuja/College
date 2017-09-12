@@ -15,8 +15,10 @@ class DashboardController < AuthenticatedController
   def index
   end
 
-  def company_details
-    
+  def company_info
+    # data = {"CompanyName"=>"Delhivery","CompanyLogo"=>"/images/companies/delhivery_logo.png","StartedIn"=>"2012","NoOfEmployees"=>"30000","HeadQuarter",}
+      data = {"CompanyName"=>"Delhivery", "CompanyLogo"=>"/images/companies/delhivery_logo.png", "StartedIn"=>"2011", "NoOfEmployees"=>"32000", "HeadQuarter"=>"Bangalore", "IndustrySector"=>"Travel Agency", "TechStack"=>"Python,Android,Javascript,Node.js, AngulaJS,ROR,SQL,AWS", "Revenue(M$)"=>"20", "Funding(M$)"=>"130", "WebsiteUrl"=>"delhivery.com", "CEOName"=>"Sahil Barua", "CEO_imageLink"=>nil, "FundingDetail"=>["$85.0 Mn in Series D by Tiger Global Management,$35.0 Mn in Series C by Multiples Alternate Asset Management,$6.0 Mn in Series B by Nexus Venture Partners,$1.5 Mn in Series A by Times Internet"]}
+    render :json=>data.to_json
   end
 
   def get_companies
