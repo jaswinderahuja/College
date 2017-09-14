@@ -2,13 +2,26 @@
 ul.ui.horizontal.bulleted.list li::before, .ui.horizontal.bulleted.list > .item::before{
 color: white !important;
 }
+
+.ui.steps .step:after{
+border-style:hidden;
+position: relative;
+}
+.description{
+font-size: 1.5em;
+}
+.ui.steps{
+    border: 0px;
+}
+.ui.steps .step{
+border-right: 0px;
+}
 </style>
 <div class="ui grid" style="position:relative;background:cadetblue">
-    <div class="sixteen wide column" style="height:60px"></div>
-    
+    <div class="sixteen wide column" style="height:60px"></div>    
     <div class="one wide column"></div>
     <div class="two wide column">
-        <img src="/images/companies/delhivery_logo.png" style="padding: 4px;max-height:120px">
+        <img src="/images/companies/delhivery_logo.png" style="padding:4px;max-height:120px">
     </div>
     <div class="thirteen wide column">
         <h1 style="color:white">Delhivery Corp pvt ltd</h1>
@@ -25,19 +38,36 @@ color: white !important;
             </p>
         </div>
     </div>
-    <!-- new row -->
 </div>
-<div class="ui grid">
-    <div class="row" style="background:orange">        
-        <div class="one wide column">
-            <div class="ui vertical divider" style="position:relative"> or
+    <!-- new row -->
+<div class="ui grid segment" style="margin:0px;padding:0px">
+    <div class="one wide column">
+    </div>
+    <div class="nine wide column" style="padding:0px">
+        <div class="ui steps">
+            <div class="step">
+                <i class="marker arrow icon"></i>
+                <div class="content">
+                    <div class="title">Location</div>
+                    <div class="description">Bangalore</div>
+                </div>
             </div>
-        </div>
-        <div class="three wide column">
-            Location: Delhi
-            <div class="ui vertical divider" style="position:relative">
-                Or
+            <div class="step">
+                <i class="users icon"></i>
+                <div class="content">
+                    <div class="title">Position</div>
+                    <div class="description">Machine Learning Engineer</div>
+                </div>
+            </div>
+            <div class="step">
+                <i class="rupee icon"></i>
+                <div class="content">
+                    <div class="title">CTC per annum:</div>
+                    <div class="description">15 - 30 LPA</div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- right company pannel -->
