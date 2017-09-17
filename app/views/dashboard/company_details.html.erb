@@ -15,6 +15,15 @@ border: 0px;
 .ui.steps .step{
 border-right: 0px;
 }
+.ui.label{
+margin-bottom: 10px;
+}
+.ui.bulleted.list .item,p{
+font-size:initial;
+line-height: 1.5;
+word-spacing: 2px;
+}
+
 </style>
 <div class="ui grid" style="position:relative;background:cadetblue">
     <div class="sixteen wide column" style="height:60px"></div>
@@ -54,6 +63,13 @@ border-right: 0px;
             <div class="step">
                 <i class="users icon"></i>
                 <div class="content">
+                    <div class="title">No of openings</div>
+                    <div class="description">20</div>
+                </div>
+            </div>
+            <div class="step">
+                <i class="user outline icon"></i>
+                <div class="content">
                     <div class="title">Position</div>
                     <div class="description">Machine Learning Engineer</div>
                 </div>
@@ -69,32 +85,104 @@ border-right: 0px;
     </div>
 </div>
 <!-- right company pannel -->
-<div class="container" style="position:absolute;z-index:10;top:30%;left:65%">
+<div class="container" style="position:fixed;z-index:10;top:22%;left:72%;bottom:10%">
     <div class="ui card">
         <div class="content">
             <div class="ui grid">
                 <div class="row">
-                    <div class="two wide"></div>
-                    <div class="fourteen wide column">
-                        <h3>
+                    <div class="sixteen wide column">
+                        <center><h3>
                         Interested in this company?
                         </h3>
+                        </center>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="three wide column"></div>
-                    <div class="ten wide column">
-                        <button class="ui button green">I'm interested</button>
+                    <div class="sixteen wide column">
+                        <center><button class="ui button green">I'm interested</button></center>
                     </div>
                 </div>
             </div>
         </div>
         <div class="content">
+            <h3>Company Links</h3>
+            <div class="ui grid">
+                <div class="two column row">
+                    <div class="column">
+                        <i class="external icon"></i>
+                        <a href="#">Website</a>
+                    </div>
+                    <div class="column">
+                        <i class="linkedin square icon"></i>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
             
         </div>
         <div class="content">
-            
+            <h3>Funding information</h3>
+            <div class="ui bulleted list">
+                <div class="item">$85.0 Mn in Series D by Tiger Global Management</div>
+                <div class="item">$35.0 Mn in Series C by Multiples Alternate Asset Management</div>
+                <div class="item">$6.0 Mn in Series B by Nexus Venture Partners</div>
+                <div class="item">$1.5 Mn in Series A by Times Internet</div>
+            </div>
         </div>
+<!--         <div class="content">
+            <h3>Our tech stack</h3>
+            <div class="ui label">java</div>
+            <div class="ui label">javascript</div>
+            <div class="ui label">python</div>
+            <div class="ui label">css3</div>
+            <div class="ui label">AngularJS</div>
+            <div class="ui label">Rapid Miner</div>
+            
+        </div> -->
     </div>
 </div>
 <!--  -->
+<div class="ui container" id="center-pannel" style="positoin:relative">
+    <div class="ui grid">
+        <div class="ten wide column" style="height:30px;"></div>
+        <div class="twelve wide column">
+            <div class="ui grid">
+                <div class="one column row">
+                    <div class="column">
+                        <h3>Job Description</h3>
+                    </div>
+                    <div class="column">
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="column">
+                        <div class="ui list">
+                            <div class="item" style="font-size:initial">Job Title: <strong>Backened Developer</strong></div>
+                            <div class="item" style="font-size:initial">Job Location:<strong> Bangalore</strong></div>
+                            <div class="item" style="font-size:initial">Openings: <strong>20</strong> </div>
+                        </div>
+                    </div>
+                    <div class="column extra content">
+                        <br/>
+                        <p style="">
+                            We are seeking a candidate who will participate in all aspects of architecting and developing new and innovative applications. You will have the opportunity to work on cutting edge technology and new product development in an established company that is rapidly growing.
+                        </p>
+                    </div>
+                    <div class="column">
+                        <br/>
+                        <h3>About Delhivery</h3>                         
+                    </div>
+                    <div class="column">
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="column">
+                        <br/>
+                        <p>
+                            Delhivery is India's leading ecommerce fulfillment company, where we use technology to drive supply chain solutions. Delhivery provides an array of products and services for online businesses including online channel integration services, sourcing, catalogue management, inventory management, multicity fulfillment, express shipping, same day delivery services, reverse logistics, offline payment collection and processing, customer support,social media engagement and channel analytics.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
