@@ -15,8 +15,8 @@ CampusConnect.Dashboard = function () {
 	var copmileTemplate = function(){
         var source   = $("#cards-template").html();
         cardsTemplate = Handlebars.compile(source);
-        var source = $("#location-filter-template").html();
-        locationFilterTemplate = Handlebars.compile(source);
+        // var source = $("#location-filter-template").html();
+        // locationFilterTemplate = Handlebars.compile(source);
 
     }
 
@@ -48,9 +48,9 @@ CampusConnect.Dashboard = function () {
             }
         }
         console.log(city_hash);
-        var html = locationFilterTemplate({"alphabets":alphabets,"cities":city_hash});
+        // var html = locationFilterTemplate({"alphabets":alphabets,"cities":city_hash});
         // var elementPresent  = $("#location-filter-container")
-        $("#location-filter-container").html(html);        
+        // $("#location-filter-container").html(html);        
         
     }
 
