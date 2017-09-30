@@ -73,12 +73,20 @@
                 </div>
                 <div class="row">
                     <div class="sixteen wide column">
-                        <center><button class="ui button green" id="SendRequestbtn" onclick="CampusConnect.Dashboard.SendRequest()">I am interested</button></center>
+                    {{#if <%=@knocked%>}}
+                        <center>
+                            <button class="ui disabled button" id="" onclick="">Interest Sent</button>
+                        </center>
+                    {{else}}
+                        <center>
+                            <button class="ui button green" id="SendRequestbtn" onclick="CampusConnect.Dashboard.SendRequest()">I am interested</button>
+                        </center>
                         <form id="InterestSendForm">
                             <input type="hidden" name="campus_id" value="<%=@campus_id%>">
                             <input type="hidden" name="opening_id" value="<%=@op_id%>">
-                            <input type="hidden" name="company_id" value="{{company_id}}">                            
+                            <input type="hidden" name="company_id" value="{{company_id}}">
                         </form>
+                    {{/if}}
                     </div>
                 </div>
             </div>
@@ -103,11 +111,11 @@
             <h3>Funding information</h3>
             <div class="ui bulleted list">
                 {{#each FundingDetail}}
-                    <div class="item">{{this}}</div>                
+                <div class="item">{{this}}</div>
                 {{/each}}
             </div>
         </div>
-<!--         <div class="content">
+        <!--         <div class="content">
             <h3>Our tech stack</h3>
             <div class="ui label">java</div>
             <div class="ui label">javascript</div>
@@ -147,10 +155,54 @@
                     </div>
                     <div class="column">
                         <br/>
-                        <h3>About Delhivery</h3>                         
+                        <h3>About : <i>{{CompanyName}}</i></h3>
                     </div>
                     <div class="column">
                         <div class="ui divider"></div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="column" id="company-internal-details">
+                        <div class="ui cards " style="">                            
+                            <div class="card">                     
+                                <div class="content">
+                                    <div class="ui grid two column row">
+                                        <div class="column">
+                                            <div class="image">
+                                                <img src="/images/img.jpg"/>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <div class="header">
+                                                {{CEOName}}
+                                            </div>                                            
+                                            <div class="meta">
+                                                CEO
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {{#if Revenue}}
+                            <div class="card">
+                                <div class="content">
+                                    <div class="header">
+                                        <center>REVENUE</center>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <center>
+                                    <h2 class="ui header">
+                                      <div class="content">
+                                        {{Revenue}}
+                                        <i class="dollar icon"></i>
+                                      </div>
+                                    </h2>
+                                    </center>
+                                </div>
+                            </div>
+                        {{/if}} 
+                        </div>
                     </div>
                     <div class="column">
                         <br/>
