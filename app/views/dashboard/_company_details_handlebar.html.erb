@@ -1,0 +1,171 @@
+<script id="company-details-template" type="text/x-handlebars-template">
+<div class="ui grid" style="position:relative;background:cadetblue">
+    <div class="sixteen wide column" style="height:60px"></div>
+    <div class="one wide column"></div>
+    <div class="two wide column">
+        <img src="{{CompanyLogo}}" style="padding:4px;max-height:120px">
+    </div>
+    <div class="thirteen wide column">
+        <h1 style="color:white">{{CompanyName}}</h1>
+        <h2 style="color:white;line-height:0px;font-size:17px;">{{tag_line}}</h2>
+        <div class="ui horizontal bulleted list" style="color:white;margin-top:10px;">
+            <p class="item">
+                Founded in: {{StartedIn}}
+            </p>
+            <p class="item">
+                Employees: {{NoOfEmployees}}
+            </p>
+            <p class="item">
+                HeadQuater: {{HeadQuarter}}
+            </p>
+        </div>
+    </div>
+</div>
+<!-- new row -->
+<div class="ui grid segment" style="margin:0px;padding:0px">
+    <div class="one wide column">
+    </div>
+    <div class="nine wide column" style="padding:0px">
+        <div class="ui steps">
+            <div class="step">
+                <i class="marker arrow icon"></i>
+                <div class="content">
+                    <div class="title">Location</div>
+                    <div class="description">{{opening_details.location}}</div>
+                </div>
+            </div>
+            <div class="step">
+                <i class="users icon"></i>
+                <div class="content">
+                    <div class="title">No of openings</div>
+                    <div class="description">{{opening_details.no_of_openings}}</div>
+                </div>
+            </div>
+            <div class="step">
+                <i class="user outline icon"></i>
+                <div class="content">
+                    <div class="title">Position</div>
+                    <div class="description">{{opening_details.position}}</div>
+                </div>
+            </div>
+            <div class="step">
+                <i class="rupee icon"></i>
+                <div class="content">
+                    <div class="title">CTC</div>
+                    <div class="description">{{opening_details.CTC}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- right company pannel -->
+<div class="container" style="position:fixed;z-index:10;top:22%;left:72%;bottom:10%">
+    <div class="ui card">
+        <div class="content">
+            <div class="ui grid">
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <center><h3>
+                        Interested in this company?
+                        </h3>
+                        </center>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <center><button class="ui button green" id="SendRequestbtn" onclick="CampusConnect.Dashboard.SendRequest()">I am interested</button></center>
+                        <form id="InterestSendForm">
+                            <input type="hidden" name="campus_id" value="<%=@campus_id%>">
+                            <input type="hidden" name="opening_id" value="<%=@op_id%>">
+                            <input type="hidden" name="company_id" value="{{company_id}}">                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h3>Company Links</h3>
+            <div class="ui grid">
+                <div class="two column row">
+                    <div class="column">
+                        <i class="external icon"></i>
+                        <a href="{{WebsiteUrl}}" target="_blank">Website</a>
+                    </div>
+                    <div class="column">
+                        <i class="linkedin square icon"></i>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="content">
+            <h3>Funding information</h3>
+            <div class="ui bulleted list">
+                {{#each FundingDetail}}
+                    <div class="item">{{this}}</div>                
+                {{/each}}
+            </div>
+        </div>
+<!--         <div class="content">
+            <h3>Our tech stack</h3>
+            <div class="ui label">java</div>
+            <div class="ui label">javascript</div>
+            <div class="ui label">python</div>
+            <div class="ui label">css3</div>
+            <div class="ui label">AngularJS</div>
+            <div class="ui label">Rapid Miner</div>
+            
+        </div> -->
+    </div>
+</div>
+<!--  -->
+<div class="ui container" id="center-pannel" style="positoin:relative">
+    <div class="ui grid">
+        <div class="ten wide column" style="height:30px;"></div>
+        <div class="twelve wide column">
+            <div class="ui grid">
+                <div class="one column row">
+                    <div class="column">
+                        <h3>Job Description</h3>
+                    </div>
+                    <div class="column">
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="column">
+                        <div class="ui list">
+                            <div class="item" style="font-size:initial">Job Title: <strong>{{opening_details.position}}</strong></div>
+                            <div class="item" style="font-size:initial">Job Location:<strong> {{opening_details.location}}</strong></div>
+                            <div class="item" style="font-size:initial">Openings: <strong>{{opening_details.no_of_openings}}</strong> </div>
+                        </div>
+                    </div>
+                    <div class="column extra content">
+                        <br/>
+                        <p style="">
+                            {{opening_details.description}}
+                        </p>
+                    </div>
+                    <div class="column">
+                        <br/>
+                        <h3>About Delhivery</h3>                         
+                    </div>
+                    <div class="column">
+                        <div class="ui divider"></div>
+                    </div>
+                    <div class="column">
+                        <br/>
+                        <p>
+                            Delhivery is India's leading ecommerce fulfillment company, where we use technology to drive supply chain solutions. Delhivery provides an array of products and services for online businesses including online channel integration services, sourcing, catalogue management, inventory management, multicity fulfillment, express shipping, same day delivery services, reverse logistics, offline payment collection and processing, customer support,social media engagement and channel analytics.
+                        </p>
+                        <p>
+                            <br/>
+                            5 years into the industry, Delhivery handles over 250,000 shipments per day for over 100,000+ merchants, 25000 clients and 1800+ retailers across 350+ cities. We provide a modular set of ecommerce technologies and logistics solutions to over 6000+pincodes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</script>
