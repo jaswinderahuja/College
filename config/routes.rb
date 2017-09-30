@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get  'college_registeration/index'
   get  'college_registeration/index_back'
   post 'college_registeration/create'
+  post 'dashboard/create_interest'
 
   get '/', to: 'landing#index'
   get '/dashboard', to: 'dashboard#index'

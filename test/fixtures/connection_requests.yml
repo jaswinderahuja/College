@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  campus: one
+  opening_id: 1
+  user: one
+
+two:
+  campus: two
+  opening_id: 1
+  user: two
