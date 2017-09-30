@@ -1,4 +1,5 @@
 <script id="company-details-template" type="text/x-handlebars-template">
+{{#if CompanyName}}
 <div class="ui grid" style="position:relative;background:cadetblue">
     <div class="sixteen wide column" style="height:60px"></div>
     <div class="one wide column"></div>
@@ -220,4 +221,16 @@
     </div>
     
 </div>
+{{else}}
+<div class="ui container">
+    <br/>
+    <br/>
+    <div class="ui negative message center aligned segment">
+        <div class="header ">
+            We're sorry, we are experiencing some malicious parameters in this request
+      </div>
+      <p>We are logging this  incident for better quality in future</p>
+    </div>
+</div>
+{{/if}}
 </script>

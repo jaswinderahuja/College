@@ -43,11 +43,7 @@ class DashboardController < AuthenticatedController
   def company_details
       @op_id = params["op_id"].to_i
       @campus_id = current_user.campus_users.first.campus_id
-      @knocked = ConnectionRequest.where(:campus_id=>@campus_id,:opening_id=>@op_id).present?
-      puts "-------------------------"
-      puts "-------------------------"
-      puts "-------------------------"
-      p @knocked
+      @knocked = ConnectionRequest.where(:campus_id=>@campus_id,:opening_id=>@op_id).present?      
   end
 
   def get_companies
