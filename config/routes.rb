@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'campus_drives/index'
   get 'campus_drives/get_departments'
   get 'dashboard/get_companies'
+  get 'dashboard/search_openings'
 
   get  'college_registeration/index'
   get  'college_registeration/index_back'

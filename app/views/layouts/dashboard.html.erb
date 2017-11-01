@@ -19,8 +19,10 @@
         <%= render :partial=>"dashboard/cards_handlebar" %>
         <%= render :partial=>"dashboard/company_details_handlebar" %>
         <script type="text/javascript">
-            CampusConnect.Utilities.init();
-            CampusConnect.Dashboard.init();
+            $(document).ready(function(){                
+                CampusConnect.Utilities.init();
+                CampusConnect.Dashboard.init();                
+            })
         </script>
         
         <%=yield%>

@@ -109,5 +109,11 @@ CampusConnect.Dashboard.cards();
 //   $('.ui.modal').modal('show');
 // })
 
+$(".prompt.search-bar").keydown(function(event){
+    if (event.keyCode == 13) {            
+        var query = $(this).val();
+        CampusConnect.Dashboard.search_openings(query);
+    }
+})
 
 </script>

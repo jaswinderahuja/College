@@ -27,7 +27,7 @@ CampusConnect.Dashboard = function () {
             }
         });
     }
-
+ 
     var SendRequest = function(){
         $.ajax({
                     type: 'POST',
@@ -74,6 +74,21 @@ CampusConnect.Dashboard = function () {
         });
     }
 
+    var search_openings = function(query){
+        $.ajax({
+            url:"/dashboard/search_openings?q="+query,
+            type: "GET",
+            async: false,
+            success: function (response) {       
+                console.log(response);   
+                var html = cardsTemplate(response);
+                $("#cards-container").html(html);
+            },
+            error: function(xhr,status,error){
+                console.log(error);
+            }
+        })
+    }
 
     var init =function(){
         copmileTemplate();
@@ -98,7 +113,8 @@ CampusConnect.Dashboard = function () {
     	cards:cards,
         sorted_cards:sorted_cards,
         getFilterList:getFilterList,
-        SendRequest:SendRequest
+        SendRequest:SendRequest,
+        search_openings:search_openings
     }
 }();
 

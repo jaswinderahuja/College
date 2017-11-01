@@ -66,4 +66,12 @@ class DashboardController < AuthenticatedController
           render json: result,code: status
         end
   end
+
+  def search_openings
+      query = params["q"]
+      sb = Search::SearchBase.new(query)
+      data = sb.search
+      render :json=>{"companies"=>data,"message"=>"","error"=>""},:code=>200
+  end
+
 end
