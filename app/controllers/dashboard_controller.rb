@@ -62,16 +62,19 @@ class DashboardController < AuthenticatedController
           error = e.message
           message = "OOPS, something went wrong!"
         ensure
-          result = { "companies"=>data,"message"=>message,"error"=>error}.to_json    
+          result = { "openings"=>data,"message"=>message,"error"=>error}.to_json    
           render json: result,code: status
         end
   end
 
   def search_openings
       query = params["q"]
-      sb = Search::SearchBase.new(query)
-      data = sb.search
-      render :json=>{"companies"=>data,"message"=>"","error"=>""},:code=>200
+      data = []
+      if query.present?
+        sb = Search::SearchBase.new(query)
+        data = sb.search
+      end
+      render :json=>{"openings"=>data,"message"=>"","error"=>""},:code=>200
   end
 
 end
