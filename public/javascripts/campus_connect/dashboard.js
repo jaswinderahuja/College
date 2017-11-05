@@ -13,7 +13,6 @@ CampusConnect.Dashboard = function () {
 	// }
     //
     var compileHandlebarTemplate = function(templateId) {
-        console.log(templateId);
         var source   = $('#' + templateId).html();
         return Handlebars.compile(source);
     };
@@ -21,13 +20,11 @@ CampusConnect.Dashboard = function () {
 	var copmileTemplate = function(){
         cardsTemplate = compileHandlebarTemplate("cards-template");
         companyDetailsTemplate = compileHandlebarTemplate("company-details-template");
-        locationFilterTemplate = compileHandlebarTemplate("location-filter-template");
         citiesAndDepartmentTemplate = compileHandlebarTemplate('cities-department-filter-template');
     };
 
     var handlebarUpdateDom = function(domId,template,json) {
         var html = template(json);
-        console.log(html);
         $('#' + domId).html(html);
     };
 
