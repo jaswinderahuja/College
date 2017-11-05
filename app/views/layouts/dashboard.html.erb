@@ -16,15 +16,16 @@
 
         <%= render 'layouts/header' %>
         <%= render :partial=>"campus_drives/departments_handlebar" %>
+        <%= render :partial=>"dashboard/cities_department_handlebar" %>
         <%= render :partial=>"dashboard/cards_handlebar" %>
         <%= render :partial=>"dashboard/company_details_handlebar" %>
         <script type="text/javascript">
-            $(document).ready(function(){                
+            $(document).ready(function() {
                 CampusConnect.Utilities.init();
-                CampusConnect.Dashboard.init();                
-            })
+                CampusConnect.Dashboard.init();
+            });
         </script>
-        
+
         <%=yield%>
     </body>
 </html>

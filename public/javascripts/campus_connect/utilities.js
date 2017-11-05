@@ -3,7 +3,7 @@ CampusConnect.Utilities = function () {
     var departmentTemplate;
     var signOut = function (token) {
         console.log('signout');
-        $.ajax({url: "/users/sign_out", 
+        $.ajax({url: "/users/sign_out",
                 success: function (result) {
                     window.location.replace('/');
                     },
@@ -15,7 +15,7 @@ CampusConnect.Utilities = function () {
     var copmileTemplate = function(){
         var source   = $("#departments-template").html();
         departmentTemplate = Handlebars.compile(source);
-    }
+    };
 
     var departments = function(){
         $.ajax({url:"/campus_drives/get_departments",
@@ -25,16 +25,16 @@ CampusConnect.Utilities = function () {
                 $("#search-select").html(html);
             }
         });
-    }
+    };
 
 
     var init =function(){
-        copmileTemplate();        
-    }
+        copmileTemplate();
+    };
 
     return {
         init: init,
         departments: departments,
         signOut: signOut
-    }
+    };
 }();

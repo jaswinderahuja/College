@@ -1,6 +1,35 @@
-<div class="main-content container" style="background-color:;padding-top:5%">
-  <div class="pusher" style="">
-    <div class="ui grid">
+<div class="main-content container" style="padding-top:5%;height: 87%">
+  <div class="pusher" style="height: 100%">
+    <div class="ui grid" style="height: 100%">
+      <script type="text/javascript">
+      // CampusConnect.Utilities.cards();
+      </script>
+      <div class="ui vertical inverted sidebar menu left overlay">
+        <div class="profile_pic">
+          <img src="/images/Thapar_Uni_logo.jpg" class="img-circle profile_img">
+          <span style="color:#fff">Thapar University</span>
+        </div>
+        <h4 class="ui horizontal divider header inverted">
+        <i class="tag icon left"></i>
+        Navigation
+        </h4>
+        <a class="item">
+          <i class="home icon"></i>
+          Home
+        </a>
+        <a class="item">
+          <i class="block layout icon"></i>
+          Topics
+        </a>
+        <a class="item">
+          <i class="smile icon"></i>
+          Friends
+        </a>
+        <a class="item">
+          <i class="calendar icon"></i>
+          History
+        </a>
+      </div>
       <div class="four wide column verticalLine">
         <%= render partial: "filters"%>
       </div>
@@ -8,70 +37,6 @@
         <!--  grid to sort start here -->
         <div class="ui grid">
           <div class="three column row">
-            <div class="left floated column">
-              <div class="ui multiple dropdown">
-                <input type="hidden" name="filters">
-                <i class="filter icon"></i>
-                <span class="text">Location</span>
-                <div class="menu">
-                  <div class="ui icon search input">
-                    <i class="search icon"></i>
-                    <input type="text" placeholder="Search tags...">
-                  </div>
-                  <div class="divider"></div>
-                  <div class="header">
-                    <i class="tags icon"></i>
-                    Tag Label
-                  </div>
-                  <div class="scrolling menu">
-                    <div class="item" data-value="important">
-                      Bangalore
-                    </div>
-                    <div class="item" data-value="announcement">
-                      Hyderabad
-                    </div>
-                    <div class="item" data-value="cannotfix">
-                      Mumbai
-                    </div>
-                    <div class="item" data-value="news">
-                      Chennai
-                    </div>
-                    <div class="item" data-value="enhancement">
-                      Delhi
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="left floated column">
-              <div class="ui multiple dropdown">
-                <input type="hidden" name="filters">
-                <i class="filter icon"></i>
-                <span class="text">Department</span>
-                <div class="menu">
-                  <div class="ui icon search input">
-                    <i class="search icon"></i>
-                    <input type="text" placeholder="Search tags...">
-                  </div>
-                  <div class="divider"></div>
-                  <div class="header">
-                    <i class="tags icon"></i>
-                    Tag Label
-                  </div>
-                  <div class="scrolling menu">
-                    <div class="item" data-value="important">
-                      Software Engineer
-                    </div>
-                    <div class="item" data-value="announcement">
-                      Mechanical Engineer
-                    </div>
-                    <div class="item" data-value="cannotfix">
-                      HR
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
             <div class="right floated column">
               <div  class="sort-options " style="padding-left: 12%;">
                 <select class="sort ui dropdown" >
@@ -110,7 +75,7 @@ CampusConnect.Dashboard.cards();
 // })
 
 $(".prompt.search-bar").keydown(function(event){
-    if (event.keyCode == 13) {            
+    if (event.keyCode == 13) {
         var query = $(this).val();
         CampusConnect.Dashboard.search_openings(query);
     }
