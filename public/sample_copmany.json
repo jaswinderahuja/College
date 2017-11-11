@@ -1,0 +1,4 @@
+{ "index" : { "_index" : "company", "_type" : "companies", "_id" : "1" } }
+{"name":"GE groups", "established":2005, "no_of_employees":1240, "headquarter":{"name":"Germany","geo_location":"41.12,-71.34"}, "description":"WE solve the problem in health care and Electronics", "business_nature":"Electronic and Health Care", "contact_details":{"email_1":"hr@ge.com", "email_2":"poonam@ge.com", "phone_1":"1234567890", "phone_2":"98765222220"}}
+{ "index" : { "_index" : "company", "_type" : "companies", "_id" : "2" } }
+{"name": "Pramata knowledge solution", "established": 2005,"no_of_employees": 240,"headquarter":{"name":"USA","geo_location":"41.12,-71.34"} ,"description": "WE UNLOCK THE UNTOLD VALUE WITHIN YOUR COMPLEX CONTRACT","business_nature": "Product Based on contracts management","contact_details": {"email_1": "hr@pramata.com","email_2": "bharathig@pramata.com","phone_1": "1234567890","phone_2": "9876543210"}}

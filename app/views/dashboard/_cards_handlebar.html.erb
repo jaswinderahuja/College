@@ -1,6 +1,6 @@
 <script id="cards-template" type="text/x-handlebars-template">
 <div class="ui cards">
-  {{#each companies}}
+  {{#each openings}}
     
   <div class="card">
     <div class="middle aligned content">
@@ -14,13 +14,13 @@
         {{company.name}}        
       </div>
       <div class="meta">
-        Bangalore
+        {{opening.location.name}}
       </div>
       <div class="other-details">
         <p><strong>Job Role:</strong>  &nbsp;{{opening.position}}</p>
         <p><strong>Opening Type:</strong>  &nbsp;{{opening.opening_type}}</p>
         <p><strong>Openings:</strong>  &nbsp;{{opening.no_of_openings}}</p>
-        <p><strong>Head Office:</strong>  &nbsp;{{company.headquarter}}</p>
+        <p><strong>Head Office:</strong>  &nbsp;{{company.headquarter.name}}</p>
       </div>
     </div>
     <div class="extra content">

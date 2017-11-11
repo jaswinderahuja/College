@@ -4,6 +4,7 @@ module ES
   class Configuration
     ELASTICSEARCH_SETTING = YAML::load(File.open("#{Rails.root}/config/elasticsearch_settings.yml"))
     INDEX_NAME = "college"
+    COMPANY_INDEX = "company"
     INDEX_TYPES = [CAMPUS_DETAILS = "campus_details",CAMPUS_DRIVES ="campus_drives"]
         
     def initialize
@@ -83,7 +84,11 @@ module ES
               type: "text"
             },
             location: {
-              type: "geo_point"
+              :type=> "nested",
+              :Properties=>{
+                :name=>{:type=>"text"},
+                :geo_location=>{:type=>"geo_point"}
+              }
             },
             date_of_drive: {
               type: "date",
@@ -117,6 +122,78 @@ module ES
               }
             }
           }
+    end
+
+
+    def create_mapping_company
+
+        companies_map = {
+                :name=> { :type=> "text" },
+                :established=> { :type=> "integer"},
+                :no_of_employess=> { :type=> "integer"},
+                :headquarter=> {
+                  :type=> "nested",
+                  :properties=>{
+                    :name=>{ :type=> "text"},
+                    :geo_location=>{ :type=>"geo_point"}
+                  }
+                },
+                :description=> { :type=> "text"},
+                :business_nature=> { :type=> "text"},
+                :contact_details=>{
+                   :type=> "nested",
+                    :properties=>{
+                      :email_1=> { :type=> "keyword" },
+                      :email_2=> { :type=> "keyword" },
+                      :phone_1=> { :type=> "keyword" },
+                      :phone_2=> { :type=> "keyword" }  
+                    }
+                }
+        }
+
+
+       openings_map =  {
+              :position=> {:type=> "text"},
+              :department=> {:type=> "text"},
+              :no_of_openings=> {:type=> "integer"},
+              :opening_type=> {:type=> "text"},
+              :package_upper=> {:type=> "integer"},
+              :package_lower=> {:type=> "integer"},
+              :location=> {
+                :type=> "nested",
+                :properties=>{
+                  :name=>{:type=> "text"},
+                  :geo_location=>{:type=>"geo_point"}
+                }
+              },
+              :contact_details=>{
+               :type=> "nested",
+                 :properties=>{
+                   :email_1=> { :type=> "keyword" },
+                   :email_2=> { :type=> "keyword" },
+                   :phone_1=> { :type=> "keyword" },
+                   :phone_2=> { :type=> "keyword" }  
+                 }
+             }            
+          }
+
+
+        @client_obj.indices.create index: COMPANY_INDEX,
+          body: {
+            settings:{
+              "number_of_shards": 2,
+              "number_of_replicas": 0
+            },
+            mappings: {
+              companies: {
+                properties: companies_map
+              },
+              openings: {
+                _parent: { type: "companies" },
+                properties: openings_map
+              }
+            }
+          } 
     end
 
   end

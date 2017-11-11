@@ -17,7 +17,7 @@
                 Employees: {{NoOfEmployees}}
             </p>
             <p class="item">
-                HeadQuater: {{HeadQuarter}}
+                HeadQuater: {{HeadQuarter.name}}
             </p>
         </div>
     </div>
@@ -32,7 +32,7 @@
                 <i class="marker arrow icon"></i>
                 <div class="content">
                     <div class="title">Location</div>
-                    <div class="description">{{opening_details.location}}</div>
+                    <div class="description">{{opening_details.location.name}}</div>
                 </div>
             </div>
             <div class="step">
@@ -144,7 +144,7 @@
                     <div class="column">
                         <div class="ui list">
                             <div class="item" style="font-size:initial">Job Title: <strong>{{opening_details.position}}</strong></div>
-                            <div class="item" style="font-size:initial">Job Location:<strong> {{opening_details.location}}</strong></div>
+                            <div class="item" style="font-size:initial">Job Location:<strong> {{opening_details.location.name}}</strong></div>
                             <div class="item" style="font-size:initial">Openings: <strong>{{opening_details.no_of_openings}}</strong> </div>
                         </div>
                     </div>
