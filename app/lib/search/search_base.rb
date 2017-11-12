@@ -11,6 +11,9 @@ module Search
 
 		def search
 			body = @query_constructor.openings_by_keywords(@keyword,@openings_search_fields,@companies_search_fields)			
+			puts "==================="
+			puts body
+			puts "==================="
 			openings = @query_executor.execute_opening(body)
 			response = construct_response(openings)
 			return response

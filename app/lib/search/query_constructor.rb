@@ -1,8 +1,8 @@
 module Search
 	class QueryConstructor
 		def initialize
-			@openings_search_fields = ["department","opening_type","position"]
-			@companies_search_fields = ["business_nature","description","headquarter","name"]
+			@openings_search_fields = ["department","opening_type","position","location.name"]
+			@companies_search_fields = ["business_nature","description","headquarter.name","name"]
 		end
 
 		def openings_by_keywords(keyword,openings_search_fields=nil,companies_search_fields=nil)

@@ -132,7 +132,7 @@ module ES
                 :established=> { :type=> "integer"},
                 :no_of_employess=> { :type=> "integer"},
                 :headquarter=> {
-                  :type=> "nested",
+                  :type=> "object",
                   :properties=>{
                     :name=>{ :type=> "text"},
                     :geo_location=>{ :type=>"geo_point"}
@@ -160,7 +160,7 @@ module ES
               :package_upper=> {:type=> "integer"},
               :package_lower=> {:type=> "integer"},
               :location=> {
-                :type=> "nested",
+                :type=> "object",
                 :properties=>{
                   :name=>{:type=> "text"},
                   :geo_location=>{:type=>"geo_point"}
