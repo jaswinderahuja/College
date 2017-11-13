@@ -5,14 +5,13 @@ class DashboardController < AuthenticatedController
   
 
   def college_registration_exists?
-    puts "=========cool==================="
   	if current_user.campus_users.present?
   	else
   	    redirect_to(:controller=>"college_registeration",:action=>"index") 	
   	end
   end
 
-  def index
+  def index    
   end
 
 
@@ -46,35 +45,35 @@ class DashboardController < AuthenticatedController
       @knocked = ConnectionRequest.where(:campus_id=>@campus_id,:opening_id=>@op_id).present?      
   end
 
-  def get_companies
-        sort_option = params["sort_option"] || "package_upper"
-        result = {}
-        status = 200
-        message = "success"
-        error = ""
-        begin
-          from = 0
-          size = 10
-          data = ES::SearchEngine.new.initial_load(from,size,sort_option) 
-          puts data
-        rescue Exception => e
-          status = 500
-          error = e.message
-          message = "OOPS, something went wrong!"
-        ensure
-          result = { "openings"=>data,"message"=>message,"error"=>error}.to_json    
-          render json: result,code: status
-        end
-  end
+  # def get_companies
+  #       sort_option = params["sort_option"] || "package_upper"
+  #       result = {}                      
+  #       from = 0
+  #       size = 10
+  #       if @query.present?
+  #           sb = Search::SearchBase.new(query,sort_option)
+  #           data = sb.search
+  #       else
+  #         data = ES::SearchEngine.new.initial_load(from,size,sort_option)                   
+  #       end
+  #       result = { "openings"=>data}.to_json    
+  #       render json: result        
+  # end
 
-  def search_openings
-      query = params["q"]
+  def search_openings      
+      sort_option = params["sort_option"] || "package_upper"
+      result = {}                      
+      from = 0
+      size = 10
+      query = params["q"]      
       data = []
       if query.present?
-        sb = Search::SearchBase.new(query)
+        sb = Search::SearchBase.new(query,sort_option)
         data = sb.search
+      else
+        data = ES::SearchEngine.new.initial_load(from,size,sort_option)
       end
-      render :json=>{"openings"=>data,"message"=>"","error"=>""},:code=>200
+      render :json=>{"openings"=>data,"message"=>"","error"=>""}
   end
 
 end

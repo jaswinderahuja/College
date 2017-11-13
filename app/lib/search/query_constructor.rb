@@ -3,11 +3,13 @@ module Search
 		def initialize
 			@openings_search_fields = ["department","opening_type","position","location.name"]
 			@companies_search_fields = ["business_nature","description","headquarter.name","name"]
+			@sort_by = "package_upper"
 		end
 
-		def openings_by_keywords(keyword,openings_search_fields=nil,companies_search_fields=nil)
+		def openings_by_keywords(keyword,sort_by=nil,openings_search_fields=nil,companies_search_fields=nil)
 			@openings_search_fields = openings_search_fields if openings_search_fields.present?
 			@companies_search_fields = companies_search_fields if companies_search_fields.present?			
+			@sort_by = sort_by if sort_by.present?
 			body= {
 			  :query=> {
 			       :bool=> {
@@ -31,7 +33,14 @@ module Search
 			            }
 			        ]
 			    } 
-			  }
+			  },
+			  :sort=> [
+			    {
+			      :"#{@sort_by}"=> {
+			        :order=> "desc"
+			      }
+			    }
+			  ]
 			}
 			return body
 		end

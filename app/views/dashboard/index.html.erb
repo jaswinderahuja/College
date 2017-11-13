@@ -76,8 +76,7 @@ CampusConnect.Dashboard.cards();
 
 $(".prompt.search-bar").keydown(function(event){
     if (event.keyCode == 13) {
-        var query = $(this).val();
-        window.history.pushState("object or string", "Title", "?q="+query);
+        var query = $(this).val();        
         CampusConnect.Dashboard.search_openings(query);
     }
 })

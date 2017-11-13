@@ -40,13 +40,64 @@ CampusConnect.Dashboard = function () {
         handlebarUpdateDom(id,citiesAndDepartmentTemplate,data);
     };
 
+    var constructParams = function(){
+        var params = ""
+        var q = getUrlParameter("q");
+        var filter = getUrlParameter("filter");
+        var sort_option = getUrlParameter("sort_option");
+        if(q != undefined && q.length>0){
+            params = params+"q="+q;
+        }
+        if(filter != undefined && filter.length > 0){
+            if(paramsExists == true){
+                params = params + "&";
+            }
+            params = params +"filter="+filter
+        }
+        if(sort_option !=undefined && sort_option.length > 0 ){
+            if(paramsExists == true){
+                params = params + "&";
+            }
+            params = params + "sort="+sort_option;
+        }
+        return params
+    }
+
+    var paramsExists = function() {
+        var params = window.location.search.substring(1);
+        if(params === "" ){
+            return false;
+        }
+        return true;
+    }
+
     var cards = function(){
-        $.ajax({url:"/dashboard/get_companies",
+        // var uri = "/dashboard/get_companies"
+        var params = window.location.search.substring(0);
+        console.log(params);
+        var uri = "/dashboard/search_openings"+params;
+        $.ajax({url:uri,
             success: function(response){
                 var html = cardsTemplate(response);
                 $("#cards-container").html(html);
+            },
+            error: function(xhr,status,error){
+                console.log(error);
             }
         });
+    };
+
+    var getUrlParameter = function(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'), sParameterName, i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
     };
 
     var SendRequest = function(){
@@ -65,17 +116,17 @@ CampusConnect.Dashboard = function () {
                 });
     };
 
-    var sorted_cards =function(sort_option){
-        console.log(sort_option);
-        $.ajax({url:"/dashboard/get_companies?sort_option="+sort_option,
-            success: function(response){
-                var html = cardsTemplate(response);
-                $("#cards-container").html(html);
-            }
-        });
+    var sorted_cards =function(sort_option){        
+        if(paramsExists() == true){
+            var params = window.location.search.substring(0);
+            params = params + "&sort_option="+sort_option;
+            window.history.pushState("object or string", "Title", params);            
+        }
+        CampusConnect.Dashboard.cards();
     };
 
-    var search_openings = function(query){
+    var search_openings = function(query){        
+        window.history.pushState("object or string", "Title", "?q="+query);                    
         $.ajax({
             url:"/dashboard/search_openings?q="+query,
             type: "GET",
