@@ -43,23 +43,17 @@ CampusConnect.Dashboard = function () {
     var constructParams = function(){
         var params = ""
         var q = getUrlParameter("q");
-        var filter = getUrlParameter("filter");
-        var sort_option = getUrlParameter("sort_option");
+        var filter = getUrlParameter("filter");        
         if(q != undefined && q.length>0){
-            params = params+"q="+q;
+            params = params+"?q="+q;
         }
         if(filter != undefined && filter.length > 0){
-            if(paramsExists == true){
-                params = params + "&";
+            if(params ===""){
+                params = params +"?filter="+filter
+            }else{
+                params = params + "&filter="+filter;
             }
-            params = params +"filter="+filter
-        }
-        if(sort_option !=undefined && sort_option.length > 0 ){
-            if(paramsExists == true){
-                params = params + "&";
-            }
-            params = params + "sort="+sort_option;
-        }
+        }        
         return params
     }
 
@@ -71,9 +65,19 @@ CampusConnect.Dashboard = function () {
         return true;
     }
 
-    var cards = function(){
+    var cards = function(sort_option){
         // var uri = "/dashboard/get_companies"
-        var params = window.location.search.substring(0);
+        // if we want to reset the sorting during refresh then this code is needed but if we want to keep the sorting on search the below code has to remove and read params from url
+        // var params = constructParams();
+        // if(sort_option !=undefined && sort_option != ""){
+        //     if(params === undefined || params === "" ){            
+        //         params = params + "?sort_option="+sort_option
+        //     }else{
+        //         params = params + "&sort_option="+sort_option
+        //     }            
+        // }
+        //  or
+        var params = window.location.search.substring(0)
         console.log(params);
         var uri = "/dashboard/search_openings"+params;
         $.ajax({url:uri,
@@ -117,12 +121,16 @@ CampusConnect.Dashboard = function () {
     };
 
     var sorted_cards =function(sort_option){        
-        if(paramsExists() == true){
-            var params = window.location.search.substring(0);
-            params = params + "&sort_option="+sort_option;
-            window.history.pushState("object or string", "Title", params);            
+        var params = constructParams();
+        if(sort_option !=undefined && sort_option != ""){
+            if(params === undefined || params === "" ){            
+                params = params + "?sort_option="+sort_option
+            }else{
+                params = params + "&sort_option="+sort_option
+            }            
         }
-        CampusConnect.Dashboard.cards();
+        window.history.pushState("object or string", "Title", params);
+        CampusConnect.Dashboard.cards(sort_option);
     };
 
     var search_openings = function(query){        
