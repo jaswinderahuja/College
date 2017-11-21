@@ -2,14 +2,12 @@ module Search
 	class QueryConstructor
 		def initialize
 			@openings_search_fields = ["department","opening_type","position","location.name"]
-			@companies_search_fields = ["business_nature","description","headquarter.name","name"]
-			@sort_by = "package_upper"
+			@companies_search_fields = ["business_nature","description","headquarter.name","name"]			
 		end
 
 		def openings_by_keywords(keyword,sort_by=nil,openings_search_fields=nil,companies_search_fields=nil)
 			@openings_search_fields = openings_search_fields if openings_search_fields.present?
-			@companies_search_fields = companies_search_fields if companies_search_fields.present?			
-			@sort_by = sort_by if sort_by.present?
+			@companies_search_fields = companies_search_fields if companies_search_fields.present?						
 			body= {
 			  :query=> {
 			       :bool=> {
@@ -33,15 +31,17 @@ module Search
 			            }
 			        ]
 			    } 
-			  },
-			  :sort=> [
-			    {
-			      :"#{@sort_by}"=> {
-			        :order=> "desc"
-			      }
-			    }
-			  ]
+			  }
 			}
+			if sort_by.present?
+				body[:sort] = [
+			    		{
+			      			:"#{sort_by}"=> {
+			        		:order=> "desc"
+			    	  		}
+			    		}
+			  		]
+			end
 			return body
 		end
 

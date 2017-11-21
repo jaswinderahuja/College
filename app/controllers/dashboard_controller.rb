@@ -61,7 +61,7 @@ class DashboardController < AuthenticatedController
   # end
 
   def search_openings      
-      sort_option = params["sort_option"] || "package_upper"
+      sort_option = params["sort_option"]
       result = {}                      
       from = 0
       size = 10

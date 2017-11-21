@@ -27,31 +27,29 @@ module ES
 			return company_hash
 		end
 
-		def initial_load(from,size,sort_by="package_upper")
-			company_ids = []
-			result = []
-			openings_hash = @client.search :index=>INDEX_NAME,:type=>OPENINGS,
-			:body=>{
+		def construct_body(from,size,sort_by)
+			body  = {
 				:from=>from,
 				:size=>size ,
 				:query=>{
 					:match_all=>{}
-				},
-				:sort=>[
-					    {
-					      :"#{sort_by}"=> {
-					        :order=> "desc"
-					      }
-					    }
-					    # ,
-					    # {
-					    #   :no_of_openings=> {
-					    #     :order=>"desc"
-					    #   }
-					    # }
-				]
+				}
 			}
-			
+			if sort_by.present?
+				body[:sort] = [ {
+					      		:"#{sort_by}"=> {
+					        		:order=> "desc"
+					      		}
+					    	}
+					    ]
+			end
+			return body
+		end
+		def initial_load(from,size,sort_by)
+			company_ids = []
+			result = []
+			body  = construct_body(from,size,sort_by)			
+			openings_hash = @client.search :index=>INDEX_NAME,:type=>OPENINGS,:body=>body			
 			openings_hash["hits"]["hits"].each do |row|
 				company_ids << row["_parent"].to_i
 			end
