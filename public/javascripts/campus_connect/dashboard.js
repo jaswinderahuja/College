@@ -42,17 +42,9 @@ CampusConnect.Dashboard = function () {
 
     var constructParams = function(){
         var params = ""
-        var q = getUrlParameter("q");
-        var filter = getUrlParameter("filter");        
+        var q = getUrlParameter("q");        
         if(q != undefined && q.length>0){
             params = params+"?q="+q;
-        }
-        if(filter != undefined && filter.length > 0){
-            if(params ===""){
-                params = params +"?filter="+filter
-            }else{
-                params = params + "&filter="+filter;
-            }
         }        
         return params
     }
@@ -77,8 +69,7 @@ CampusConnect.Dashboard = function () {
         //     }            
         // }
         //  or
-        var params = window.location.search.substring(0)
-        console.log(params);
+        var params = window.location.search.substring(0)        
         var uri = "/dashboard/search_openings"+params;
         $.ajax({url:uri,
             success: function(response){
@@ -120,8 +111,28 @@ CampusConnect.Dashboard = function () {
                 });
     };
 
+    var removeSortOption = function(params,item){
+        params = decodeURI(params);
+        var p = params.split("&");
+        for(i = 0; i< p.length;i++){
+            if(p[i].includes(item)){                
+                p.splice(i,1);
+            }
+        }
+
+        return encodeURI(p.join("&"));
+    };
+
     var sorted_cards =function(sort_option){        
-        var params = constructParams();
+        var loc_filter = getUrlParameter("l[]");
+        var params = "";
+        if(loc_filter === undefined || loc_filter ===""){
+            params = constructParams();            
+        }else{
+            params = window.location.search.substring(0);
+            params = removeSortOption(params,"sort_option");
+        }
+
         if(sort_option !=undefined && sort_option != ""){
             if(params === undefined || params === "" ){            
                 params = params + "?sort_option="+sort_option
@@ -129,9 +140,39 @@ CampusConnect.Dashboard = function () {
                 params = params + "&sort_option="+sort_option
             }            
         }
-        window.history.pushState("object or string", "Title", params);
+        window.history.pushState("object or string", "Title", params);        
         CampusConnect.Dashboard.cards(sort_option);
     };
+
+
+    var filterList = function(domId){
+        var selected = []
+        $("#"+domId+' .ui.checkbox input:checked').each(function() {
+            selected.push($(this).attr('name'));
+        });
+        return jQuery.unique(selected);
+    }
+
+    var addCityFilter = function(){
+        var params = constructParams();
+        var filter_values = "";
+        var cities_filter_list = filterList("filter_cities");
+        if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list === []){
+            return null;
+        }
+        console.log("not returning..");
+        for(i =0;i< cities_filter_list.length;i++){
+            if((params === undefined || params === "") && filter_values === "" ){
+                filter_values = filter_values + "?l[]="+cities_filter_list[i];
+            }else{
+                filter_values = filter_values + "&l[]="+cities_filter_list[i];
+            }
+        }
+        params = params + encodeURI(filter_values);      
+        console.log(params);
+        window.history.pushState("object or string", "Title", params);
+        CampusConnect.Dashboard.cards();  
+    }
 
     var search_openings = function(query){        
         window.history.pushState("object or string", "Title", "?q="+query);                    
@@ -173,7 +214,8 @@ CampusConnect.Dashboard = function () {
     	cards:cards,
         sorted_cards:sorted_cards,
         SendRequest:SendRequest,
-        search_openings:search_openings
+        search_openings:search_openings,
+        addCityFilter:addCityFilter
     };
 }();
 

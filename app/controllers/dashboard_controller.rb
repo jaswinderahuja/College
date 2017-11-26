@@ -61,18 +61,16 @@ class DashboardController < AuthenticatedController
   # end
 
   def search_openings      
+      puts "======================="
+      puts "#{params.inspect}"
+      puts "======================="
       sort_option = params["sort_option"]
-      result = {}                      
-      from = 0
-      size = 10
+      location_filter = params["l"].collect(&:downcase) if params["l"].present?
+      result = {}                            
       query = params["q"]      
       data = []
-      if query.present?
-        sb = Search::SearchBase.new(query,sort_option)
-        data = sb.search
-      else
-        data = ES::SearchEngine.new.initial_load(from,size,sort_option)
-      end
+      sb = Search::SearchBase.new(query,sort_option,location_filter)
+      data = sb.search      
       render :json=>{"openings"=>data,"message"=>"","error"=>""}
   end
 

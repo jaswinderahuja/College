@@ -45,6 +45,30 @@ module Search
 			return body
 		end
 
+		def location_filter(body,filters)
+			body[:query][:bool][:filter] = { :bool=> { :must=> [{ :terms=> { :"location.name"=> filters } }] } }
+			body[:query][:bool][:minimum_should_match] = 1 if body[:query][:bool][:should].present?  # if it is queried and filter then add this condition
+			return body
+		end
+
+		def match_all(sort_by)
+			body  = {				
+				:query=>{
+					:bool=>{						
+					}
+				}
+			}
+			if sort_by.present?
+				body[:sort] = [ {
+					      		:"#{sort_by}"=> {
+					        		:order=> "desc"
+					      		}
+					    	}
+					    ]
+			end
+			return body
+		end
+
 		def filter_by_ids(ids)
 			body = {
 				:query=> {

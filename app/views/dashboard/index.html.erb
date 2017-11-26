@@ -67,6 +67,10 @@ $('.sort.ui.dropdown').dropdown({
     }
 });
 
+$(".ui.checkbox").checkbox({"onChange": function(){
+  CampusConnect.Dashboard.addCityFilter();
+}})
+
 CampusConnect.Dashboard.cards();
 
 $(".prompt.search-bar").keydown(function(event){

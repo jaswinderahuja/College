@@ -1,17 +1,23 @@
 module Search
 	class SearchBase
-		def initialize(query_string,sort_by=nil,openings_search_fields=nil,companies_search_fields=nil)			
+		def initialize(query_string,sort_by=nil,city_filter=[],openings_search_fields=nil,companies_search_fields=nil)			
+			# raise "Query string can't be blank!!" if query_string.blank?
 			@keyword = query_string
 			@sort_by = sort_by
+			@city_filter = city_filter
 			@openings_search_fields = openings_search_fields
 			@companies_search_fields = companies_search_fields
 			@query_constructor = QueryConstructor.new			
 			@query_executor = Search::QueryExecutor.new
-			raise "Query string can't be blank!!" if query_string.blank?
 		end
 
 		def search
-			body = @query_constructor.openings_by_keywords(@keyword,@sort_by,@openings_search_fields,@companies_search_fields)						
+			if @keyword.present?
+				body = @query_constructor.openings_by_keywords(@keyword,@sort_by,@openings_search_fields,@companies_search_fields)						
+			else				
+				body = @query_constructor.match_all(@sort_by)
+			end
+			body = @query_constructor.location_filter(body,@city_filter) if @city_filter.present?						
 			openings = @query_executor.execute_opening(body)
 			response = construct_response(openings)
 			return response
