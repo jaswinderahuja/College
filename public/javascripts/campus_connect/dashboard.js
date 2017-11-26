@@ -215,10 +215,21 @@ CampusConnect.Dashboard = function () {
         });
     };
 
+    var ready = function(){
+        $(document).ready(function(){
+            $("#filter_cities .ui.checkbox").checkbox({"onChange": function(){
+              CampusConnect.Dashboard.addFilter();
+            }})
+            $("#filter_department .ui.checkbox").checkbox({"onChange": function(){
+              CampusConnect.Dashboard.addFilter();
+            }})
+        })
+    }
     var init =function(){
         copmileTemplate();
         filterCities();
         filterDepartment();
+        ready();
     };
 
     var showCompanyDetails =  function(opening_id){
