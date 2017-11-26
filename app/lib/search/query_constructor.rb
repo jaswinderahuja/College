@@ -46,7 +46,15 @@ module Search
 		end
 
 		def location_filter(body,filters)
-			body[:query][:bool][:filter] = { :bool=> { :must=> [{ :terms=> { :"location.name"=> filters } }] } }
+			body[:query][:bool][:filter] = { :bool=> { :must=> [] } } if !body[:query][:bool][:filter].present?
+			body[:query][:bool][:filter][:bool][:must] << { :terms=> { :"location.name"=> filters } }
+			body[:query][:bool][:minimum_should_match] = 1 if body[:query][:bool][:should].present?  # if it is queried and filter then add this condition
+			return body
+		end
+
+		def position_filter(body,filters)
+			body[:query][:bool][:filter] = { :bool=> { :must=> [] } } if !body[:query][:bool][:filter].present?
+			body[:query][:bool][:filter][:bool][:must] << { :terms=> {:position=> filters }}
 			body[:query][:bool][:minimum_should_match] = 1 if body[:query][:bool][:should].present?  # if it is queried and filter then add this condition
 			return body
 		end

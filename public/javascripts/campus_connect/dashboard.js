@@ -153,12 +153,35 @@ CampusConnect.Dashboard = function () {
         return jQuery.unique(selected);
     }
 
+    var addFilter = function(){
+        var params = addCityFilter();
+        var filter_values ="";
+        var department_filter_list = filterList("filter_department");                
+        if(department_filter_list != undefined && department_filter_list!= "" && department_filter_list.length > 0){
+            for(i =0;i< department_filter_list.length;i++){
+                if((params === undefined || params === "") && filter_values === "" ){
+                    filter_values = filter_values + "?d[]="+department_filter_list[i];
+                }else{
+                    filter_values = filter_values + "&d[]="+department_filter_list[i];
+                }
+            }            
+        }
+        params = params + encodeURI(filter_values);              
+        if(params === undefined || params ===""){
+            window.history.pushState("object or string", "Title", "user_root");
+        }else{
+            window.history.pushState("object or string", "Title", params);            
+        }
+
+        CampusConnect.Dashboard.cards();        
+    }
+
     var addCityFilter = function(){
         var params = constructParams();
         var filter_values = "";
-        var cities_filter_list = filterList("filter_cities");
-        if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list === []){
-            return null;
+        var cities_filter_list = filterList("filter_cities");        
+        if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list.length == 0){
+            return params;
         }
         console.log("not returning..");
         for(i =0;i< cities_filter_list.length;i++){
@@ -170,8 +193,9 @@ CampusConnect.Dashboard = function () {
         }
         params = params + encodeURI(filter_values);      
         console.log(params);
-        window.history.pushState("object or string", "Title", params);
-        CampusConnect.Dashboard.cards();  
+        return params;
+        // window.history.pushState("object or string", "Title", params);
+        // CampusConnect.Dashboard.cards();  
     }
 
     var search_openings = function(query){        
@@ -215,7 +239,8 @@ CampusConnect.Dashboard = function () {
         sorted_cards:sorted_cards,
         SendRequest:SendRequest,
         search_openings:search_openings,
-        addCityFilter:addCityFilter
+        addCityFilter:addCityFilter,
+        addFilter:addFilter
     };
 }();
 
