@@ -20,8 +20,8 @@ class DashboardController < AuthenticatedController
         message = "success"
         error = ""
         begin
-           params[:current_user] = current_user.id;
-           ConnectionRequest.SentRequest(params);
+           params[:current_user] = current_user.id
+           # res = ConnectionRequest.SentRequest(params);
         rescue Exception=>e
             status = 500
             error = e.message

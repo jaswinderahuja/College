@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171202122340) do
+ActiveRecord::Schema.define(version: 20171203140018) do
 
   create_table "app_exceptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -146,22 +146,23 @@ ActiveRecord::Schema.define(version: 20171202122340) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "campus_id"
+    t.integer  "opening_id"
+    t.integer  "user_id"
+    t.boolean  "accepted"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["campus_id"], name: "index_invitations_on_campus_id", using: :btree
+    t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
+  end
+
   create_table "pincodes", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "pincode",    null: false
     t.integer  "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_pincodes_on_city_id", using: :btree
-  end
-
-  create_table "received_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "campus_invites_id"
-    t.integer  "company_id",                        null: false
-    t.integer  "user_email",                        null: false
-    t.boolean  "accepted",          default: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.index ["campus_invites_id"], name: "index_received_requests_on_campus_invites_id", using: :btree
   end
 
   create_table "states", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -209,7 +210,8 @@ ActiveRecord::Schema.define(version: 20171202122340) do
   add_foreign_key "connection_requests", "campus", column: "campus_id"
   add_foreign_key "connection_requests", "users"
   add_foreign_key "courses", "departments"
+  add_foreign_key "invitations", "campus", column: "campus_id"
+  add_foreign_key "invitations", "users"
   add_foreign_key "pincodes", "cities"
-  add_foreign_key "received_requests", "campus_invites", column: "campus_invites_id"
   add_foreign_key "states", "countries"
 end

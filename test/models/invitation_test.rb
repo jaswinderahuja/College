@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ReceivedRequestTest < ActiveSupport::TestCase
+class InvitationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

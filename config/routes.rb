@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'connections', to: 'connections_dashboard#index' 
+
   post 'campus_drives/create'
 
   get 'dashboard/company_info'
