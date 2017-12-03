@@ -33,7 +33,7 @@
       <div class="four wide column verticalLine">
         <%= render partial: "filters"%>
       </div>
-      <div class="nine wide column">
+      <div id="cardsContainer" class="nine wide column" style="overflow:auto">
         <!--  grid to sort start here -->
         <div class="ui grid">
           <div class="three column row">
@@ -72,7 +72,7 @@ CampusConnect.Dashboard.cards();
 
 $(".prompt.search-bar").keydown(function(event){
     if (event.keyCode == 13) {
-        var query = $(this).val();        
+        var query = $(this).val();
         CampusConnect.Dashboard.search_openings(query);
     }
 })

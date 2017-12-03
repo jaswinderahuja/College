@@ -12,6 +12,7 @@ CampusConnect.Dashboard = function () {
 	// 	});
 	// }
     //
+    var limit = 10,offset=0;
     var compileHandlebarTemplate = function(templateId) {
         var source   = $('#' + templateId).html();
         return Handlebars.compile(source);
@@ -41,13 +42,13 @@ CampusConnect.Dashboard = function () {
     };
 
     var constructParams = function(){
-        var params = ""
-        var q = getUrlParameter("q");        
-        if(q != undefined && q.length>0){
+        var params = "";
+        var q = getUrlParameter("q");
+        if(q !== undefined && q.length>0){
             params = params+"?q="+q;
-        }        
-        return params
-    }
+        }
+        return params;
+    };
 
     var paramsExists = function() {
         var params = window.location.search.substring(1);
@@ -55,21 +56,21 @@ CampusConnect.Dashboard = function () {
             return false;
         }
         return true;
-    }
+    };
 
     var cards = function(sort_option){
         // var uri = "/dashboard/get_companies"
         // if we want to reset the sorting during refresh then this code is needed but if we want to keep the sorting on search the below code has to remove and read params from url
         // var params = constructParams();
         // if(sort_option !=undefined && sort_option != ""){
-        //     if(params === undefined || params === "" ){            
+        //     if(params === undefined || params === "" ){
         //         params = params + "?sort_option="+sort_option
         //     }else{
         //         params = params + "&sort_option="+sort_option
-        //     }            
+        //     }
         // }
         //  or
-        var params = window.location.search.substring(0)        
+        var params = window.location.search.substring(0);
         var uri = "/dashboard/search_openings"+params;
         $.ajax({url:uri,
             success: function(response){
@@ -115,7 +116,7 @@ CampusConnect.Dashboard = function () {
         params = decodeURI(params);
         var p = params.split("&");
         for(i = 0; i< p.length;i++){
-            if(p[i].includes(item)){                
+            if(p[i].includes(item)){
                 p.splice(i,1);
             }
         }
@@ -123,40 +124,40 @@ CampusConnect.Dashboard = function () {
         return encodeURI(p.join("&"));
     };
 
-    var sorted_cards =function(sort_option){        
+    var sorted_cards =function(sort_option){
         var loc_filter = getUrlParameter("l[]");
         var params = "";
         if(loc_filter === undefined || loc_filter ===""){
-            params = constructParams();            
+            params = constructParams();
         }else{
             params = window.location.search.substring(0);
             params = removeSortOption(params,"sort_option");
         }
 
         if(sort_option !=undefined && sort_option != ""){
-            if(params === undefined || params === "" ){            
+            if(params === undefined || params === "" ){
                 params = params + "?sort_option="+sort_option
             }else{
                 params = params + "&sort_option="+sort_option
-            }            
+            }
         }
-        window.history.pushState("object or string", "Title", params);        
+        window.history.pushState("object or string", "Title", params);
         CampusConnect.Dashboard.cards(sort_option);
     };
 
 
     var filterList = function(domId){
-        var selected = []
+        var selected = [];
         $("#"+domId+' .ui.checkbox input:checked').each(function() {
             selected.push($(this).attr('name'));
         });
         return jQuery.unique(selected);
-    }
+    };
 
     var addFilter = function(){
         var params = addCityFilter();
         var filter_values ="";
-        var department_filter_list = filterList("filter_department");                
+        var department_filter_list = filterList("filter_department");
         if(department_filter_list != undefined && department_filter_list!= "" && department_filter_list.length > 0){
             for(i =0;i< department_filter_list.length;i++){
                 if((params === undefined || params === "") && filter_values === "" ){
@@ -164,22 +165,22 @@ CampusConnect.Dashboard = function () {
                 }else{
                     filter_values = filter_values + "&d[]="+department_filter_list[i];
                 }
-            }            
+            }
         }
-        params = params + encodeURI(filter_values);              
+        params = params + encodeURI(filter_values);
         if(params === undefined || params ===""){
             window.history.pushState("object or string", "Title", "user_root");
         }else{
-            window.history.pushState("object or string", "Title", params);            
+            window.history.pushState("object or string", "Title", params);
         }
 
-        CampusConnect.Dashboard.cards();        
+        CampusConnect.Dashboard.cards();
     }
 
     var addCityFilter = function(){
         var params = constructParams();
         var filter_values = "";
-        var cities_filter_list = filterList("filter_cities");        
+        var cities_filter_list = filterList("filter_cities");
         if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list.length == 0){
             return params;
         }
@@ -191,15 +192,15 @@ CampusConnect.Dashboard = function () {
                 filter_values = filter_values + "&l[]="+cities_filter_list[i];
             }
         }
-        params = params + encodeURI(filter_values);      
+        params = params + encodeURI(filter_values);
         console.log(params);
         return params;
         // window.history.pushState("object or string", "Title", params);
-        // CampusConnect.Dashboard.cards();  
+        // CampusConnect.Dashboard.cards();
     }
 
-    var search_openings = function(query){        
-        window.history.pushState("object or string", "Title", "?q="+query);                    
+    var search_openings = function(query){
+        window.history.pushState("object or string", "Title", "?q="+query);
         $.ajax({
             url:"/dashboard/search_openings?q="+query,
             type: "GET",
@@ -219,12 +220,14 @@ CampusConnect.Dashboard = function () {
         $(document).ready(function(){
             $("#filter_cities .ui.checkbox").checkbox({"onChange": function(){
               CampusConnect.Dashboard.addFilter();
-            }})
+            }});
             $("#filter_department .ui.checkbox").checkbox({"onChange": function(){
               CampusConnect.Dashboard.addFilter();
-            }})
-        })
-    }
+            }});
+            registerCardsScrollBottom();
+        });
+    };
+
     var init =function(){
         copmileTemplate();
         filterCities();
@@ -241,6 +244,19 @@ CampusConnect.Dashboard = function () {
                 }
             });
 
+    };
+
+    var loadCardsOnScroll = function(e){
+        var elem = $(e.currentTarget);
+        if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
+
+        }
+    };
+
+    var registerCardsScrollBottom = function() {
+        $(document).ready(function () {
+            $('#cardsContainer').bind('scroll', loadCardsOnScroll);
+        });
     };
 
     return {
