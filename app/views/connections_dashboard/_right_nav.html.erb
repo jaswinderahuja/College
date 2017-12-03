@@ -1,0 +1,38 @@
+<%= render :partial=>"sidebar" %>
+<div class="ui fixed menu">
+  <div class="ui container">
+    <div class="left menu">
+      <a class="launch icon item" onclick="$('.ui.sidebar').sidebar('setting', 'transition', 'overlay').sidebar('toggle');">
+        <i class="content icon"></i>
+      </a>
+      <a href="#" class="header item">
+        <h3>CampusConnect</h3>
+      </a>
+    </div>
+    <div class="right menu">
+      <!-- <div class="ui search" style="padding-top:15px;padding-right:50px;">
+        <div class="ui icon input">
+          <input class="prompt search-bar" type="text" placeholder="Search here..." style="width:565px;">
+          <i class="search icon"></i>
+        </div>
+        <div class="results"></div>
+      </div> -->
+      <a href="/campus_drives/index" class="item">Create Drive</a>
+      <div class="ui right dropdown mini item">
+        <label href="#" class="item"><%=current_user.firstname%></label>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" style="margin-left:10px">Profile</div>
+          <div class="item" style="margin-left:10px" >Settings</div>
+          <div class="item" style="margin-left:10px" >Help</div>
+          <div class="item" style="margin-left:10px">
+            <a href="#" onclick="CampusConnect.Utilities.signOut('<%=form_authenticity_token%>')">Sign Out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+$('.ui.dropdown').dropdown();
+</script>
