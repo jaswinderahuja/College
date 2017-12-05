@@ -1,0 +1,36 @@
+<script id="invitation-cards-template" type="text/x-handlebars-template">
+<div class="ui cards">
+  {{#each data}}    
+  <div class="card">
+    <div class="middle aligned content">
+      <img class="left floated small ui image" src="/images/pramata.png" style="margin-bottom:0px;border: 1px solid rgba(52,73,94,.44);padding: 4px;max-height:120px">
+      <div class="right floated">
+          <a class="ui green right ribbon label">{{invitation_status}}</a>
+        <br/>
+        <br/>
+        <strong>Offering/Package:</strong><br/><br/>
+        {{opening.package_lower}} - {{opening.package_upper}}
+      </div>
+      <div class="header">
+        {{company.name}}        
+      </div>
+      <div class="meta">
+        {{opening.location.name}}
+      </div>
+      <div class="other-details">
+        <p><strong>Job Role:</strong>  &nbsp;{{opening.position}}</p>
+        <p><strong>Opening Type:</strong>  &nbsp;{{opening.opening_type}}</p>
+        <p><strong>Openings:</strong>  &nbsp;{{opening.no_of_openings}}</p>
+        <p><strong>Head Office:</strong>  &nbsp;{{company.headquarter.name}}</p>
+      </div>
+    </div>
+    <div class="extra content">
+      <a><i class="users icon"></i>{{company.no_of_employees}} + Members</a>    
+      <label class="ui right floated">Sent Date: 10/11/2017</label>
+    </div>
+  </div>
+
+  {{/each}}
+  
+</div>
+</script>

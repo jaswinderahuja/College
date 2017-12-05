@@ -1,6 +1,7 @@
 class Campus < ApplicationRecord
 	has_many :campus_users
 	has_many :campus_invites 
+	has_many :invitations 
 
 	def self.create_new_campus options
 		campus = Campus.new

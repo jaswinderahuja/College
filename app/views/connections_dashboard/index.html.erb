@@ -1,19 +1,31 @@
-<div class="ui top attached tabular menu">
-  <a class="active item" data-tab="first">First</a>
-  <a class="item" data-tab="second">Second</a>
-  <a class="item" data-tab="third">Third</a>
-</div>
-<div class="ui bottom attached active tab segment" data-tab="first">
-  First
-</div>
-<div class="ui bottom attached tab segment" data-tab="second">
-  Second
-</div>
-<div class="ui bottom attached tab segment" data-tab="third">
-  Third
+<div class="pusher main-content" style="height: 100%">
+  <div class="ui grid" style="margin-top:50px">
+    <div  class="four wide column" style="margin-left:15px">
+      <div class="ui vertical steps" style="width:100%">
+        <div class=" active step ui raised fluid grid" >
+          <div class="two wide column" ></div>
+          <div class="content fourteen wide column">
+            <div class="title"> Invitations Sent </div>
+            <div class="description"> List of sent invitations</div>
+          </div>
+        </div>
+        <div class="step ui raised fluid grid" >
+          <div class="two wide column" ></div>
+          <div class="content fourteen wide column">
+            <div class="title">  Request Received</div>
+            <div class="description">List of reveived requests</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nine wide column" style="display:block" id="cards-container">
+        Invitation >> Sent
+        <div class="ui  divider"></div>
+        <div id="invitation-sent" style="width:100%">
+      </div>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
-	$('.menu .item')
-  .tab()
-;
+CampusConnect.ConnectionDashboard.cards();
 </script>

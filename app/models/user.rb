@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable      
   # has_many :university_users    
   has_many :campus_users
+  has_many :invitations
 end

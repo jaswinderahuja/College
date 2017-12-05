@@ -11,6 +11,7 @@
         <%= javascript_include_tag 'handlebars-v4.0.5.js' %>
         <%= javascript_include_tag 'campus_connect/utilities.js' %>
         <%= javascript_include_tag 'campus_connect/dashboard.js' %>
+        <%= javascript_include_tag 'campus_connect/connection_dashboard.js' %>
         <%= javascript_include_tag 'application.js' %>
         <%= javascript_include_tag "campus_connect/college/validation.js" %>
 
@@ -18,11 +19,13 @@
         <%= render :partial=>"campus_drives/departments_handlebar" %>
         <%= render :partial=>"dashboard/cities_department_handlebar" %>
         <%= render :partial=>"dashboard/cards_handlebar" %>
+        <%= render :partial=>"connections_dashboard/cards_handlebar" %>
         <%= render :partial=>"dashboard/company_details_handlebar" %>
         <script type="text/javascript">
             $(document).ready(function() {
                 CampusConnect.Utilities.init();
                 CampusConnect.Dashboard.init();
+                CampusConnect.ConnectionDashboard.init();
             });
         </script>
 

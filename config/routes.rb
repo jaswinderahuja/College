@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   get 'connections', to: 'connections_dashboard#index' 
+    get 'connections_dashboard/invitations_sent'
 
   post 'campus_drives/create'
 
