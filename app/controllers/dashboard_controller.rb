@@ -65,9 +65,9 @@ class DashboardController < AuthenticatedController
       location_filter = params["l"].collect(&:downcase) if params["l"].present?
       department_filter = params["d"].collect{|item|  item.downcase.split(" ") }.flatten if params["d"].present?
       query = params["q"]
-      from = params["f"]
+      from = params["f"] || 0
       data = []
-      sb = Search::SearchBase.new(query,sort_option,location_filter,department_filter,from)
+      sb = Search::SearchBase.new(query,from,sort_option,location_filter,department_filter)
       data = sb.search
       render :json=>{"openings"=>data,"message"=>"","error"=>""}
   end
