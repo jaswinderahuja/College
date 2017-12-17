@@ -2,8 +2,8 @@ var CampusConnect = CampusConnect || {};
 CampusConnect.Dashboard = function () {
 
 	var cardsTemplate,locationFilterTemplate,companyDetailsTemplate,citiesAndDepartmentTemplate;
-    var cities = [{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false}];
-    var departments = [{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}];
+    var cities = [{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false} ] //,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false}];
+    var departments = [{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}] //,{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}];
 	// var init = function(){
 	// 	/* off-canvas sidebar toggle */
 	// 	$('[data-toggle=offcanvas]').click(function() {
@@ -67,8 +67,20 @@ CampusConnect.Dashboard = function () {
         $(".prompt.search-bar").val(search_query);
     }
 
-    var setfilter = function(){
-        
+
+    var setfilterOnRefresh = function(){
+        var params = decodeURI(location.search.substring(1));
+        params = params.split("&");        
+        for(var i=0;i<params.length;i++){
+            var key_value = params[i].split("=")
+            if( key_value[0] == "l[]"){                
+                $('#filter_cities .ui.checkbox input[name="'+key_value[1]+'"]').parent().checkbox('set checked');
+            }
+            if(key_value[0] == "d[]"){
+                $('#filter_department .ui.checkbox input[name="'+key_value[1]+'"]').parent().checkbox('set checked');
+            }
+        }
+
     }
     var cards = function(sort_option){
         // var uri = "/dashboard/get_companies"
@@ -90,6 +102,7 @@ CampusConnect.Dashboard = function () {
                 $("#cards-container").html(html);
                 setSortingDropdown();
                 setSearchBar();
+                setfilterOnRefresh();
             },
             error: function(xhr,status,error){
                 console.log(error);
@@ -223,6 +236,7 @@ CampusConnect.Dashboard = function () {
             async: false,
             success: function (response) {
                 $(".sort.ui.dropdown").dropdown("restore defaults");                
+                $('.ui.checkbox').checkbox('uncheck');
                 var html = cardsTemplate(response);
                 $("#cards-container").html(html);
             },
