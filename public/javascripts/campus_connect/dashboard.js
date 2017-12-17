@@ -58,6 +58,18 @@ CampusConnect.Dashboard = function () {
         return true;
     };
 
+    var setSortingDropdown = function(){
+        var sort_option = getUrlParameter("sort_option");
+        $(".ui.dropdown").dropdown("set selected",sort_option);
+    }
+    var setSearchBar = function(){
+        var search_query = getUrlParameter("q");        
+        $(".prompt.search-bar").val(search_query);
+    }
+
+    var setfilter = function(){
+        
+    }
     var cards = function(sort_option){
         // var uri = "/dashboard/get_companies"
         // if we want to reset the sorting during refresh then this code is needed but if we want to keep the sorting on search the below code has to remove and read params from url
@@ -76,6 +88,8 @@ CampusConnect.Dashboard = function () {
             success: function(response){
                 var html = cardsTemplate(response);
                 $("#cards-container").html(html);
+                setSortingDropdown();
+                setSearchBar();
             },
             error: function(xhr,status,error){
                 console.log(error);
@@ -155,6 +169,7 @@ CampusConnect.Dashboard = function () {
     };
 
     var addFilter = function(){
+        $(".sort.ui.dropdown").dropdown("restore defaults");
         var params = addCityFilter();
         var filter_values ="";
         var department_filter_list = filterList("filter_department");
@@ -199,14 +214,15 @@ CampusConnect.Dashboard = function () {
         // CampusConnect.Dashboard.cards();
     }
 
-    var search_openings = function(query){
-        window.history.pushState("object or string", "Title", "?q="+query);
+    var search_openings = function(query){        
+        window.history.pushState("object or string", "Title", "?q="+query);                
+        
         $.ajax({
             url:"/dashboard/search_openings?q="+query,
             type: "GET",
             async: false,
             success: function (response) {
-                console.log(response);
+                $(".sort.ui.dropdown").dropdown("restore defaults");                
                 var html = cardsTemplate(response);
                 $("#cards-container").html(html);
             },
