@@ -1,9 +1,10 @@
 module Search
 	class SearchInvitations < SearchBase
 		
-		def initialize(opening_ids,invitation_status)			
+		def initialize(opening_ids,invitation_status,invitation_time)			
 			@opening_ids = opening_ids
 			@invitation_status = invitation_status
+			@invitation_updated_at = invitation_time
 			@query_constructor = QueryConstructor.new
 			@query_executor = Search::QueryExecutor.new
 		end
@@ -27,7 +28,7 @@ module Search
 			companies_hash = @query_executor.execute_companies(body)
 			openings_hash["hits"]["hits"].each do |row|				
 				status = invitation(@invitation_status[row["_id"].to_s])				
-				result << {:type=>"invitation_sent",:invitation_status=>status,:opening_id=>row["_id"].to_s,:company=>get_company_from_hash(companies_hash,row["_parent"]),:opening=>row["_source"]}
+				result << {:type=>"invitation_sent",:last_updated=>@invitation_updated_at[row["_id"].to_s],:invitation_status=>status,:opening_id=>row["_id"].to_s,:company=>get_company_from_hash(companies_hash,row["_parent"]),:opening=>row["_source"]}
 			end	
 			return result
 		end	

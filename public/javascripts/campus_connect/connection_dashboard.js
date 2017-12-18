@@ -18,14 +18,16 @@ CampusConnect.ConnectionDashboard = function () {
         $('#' + domId).html(html);
     };
 
-    var cards = function(sort_option){               
-        var uri = "/connections_dashboard/invitations_sent";
+    var cards = function(option){                                       
+        var uri = "/connections_dashboard/invitations_sent?status="+option;
         $.ajax({url:uri,
             success: function(response){
-                handlebarUpdateDom("invitation-sent",cardsTemplate,response);                
+                var id ="invitation-"+option;                
+                handlebarUpdateDom(id,cardsTemplate,response);                
             },
             error: function(xhr,status,error){
                 console.log(error);
+                alert("oops something went wrong");
             }
         });
     };
