@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>College Connect</title>
+        <%=stylesheet_link_tag "dashboard.css"%>
+        <%=stylesheet_link_tag "application.css"%>
+        <%= csrf_meta_tags %>
+    </head>
+
+    <body>
+  
+       
+        <%= javascript_include_tag 'application.js' %>
+        <%= render 'layouts/header' %>
+       
+
+        <%=yield%>
+    </body>
+</html>

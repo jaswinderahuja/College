@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'user_help', to: 'user_help#index'
+
   get 'connections', to: 'connections_dashboard#index' 
     get 'connections_dashboard/invitations_sent'
 
