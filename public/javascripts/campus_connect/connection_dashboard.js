@@ -18,11 +18,25 @@ CampusConnect.ConnectionDashboard = function () {
         $('#' + domId).html(html);
     };
 
-    var cards = function(option){                                       
+    var invitationsCards = function(option){                                       
         var uri = "/connections_dashboard/invitations_sent?status="+option;
         $.ajax({url:uri,
             success: function(response){
                 var id ="invitation-"+option;                
+                handlebarUpdateDom(id,cardsTemplate,response);                
+            },
+            error: function(xhr,status,error){
+                console.log(error);
+                alert("oops something went wrong");
+            }
+        });
+    };
+
+    var requestsSentCards = function(option){                                       
+        var uri = "/connections_dashboard/invitations_sent?status="+option;
+        $.ajax({url:uri,
+            success: function(response){
+                var id ="requests-"+option;                
                 handlebarUpdateDom(id,cardsTemplate,response);                
             },
             error: function(xhr,status,error){
@@ -38,7 +52,8 @@ CampusConnect.ConnectionDashboard = function () {
 
     return {
     	init:init,
-    	cards:cards
+    	invitationsCards:invitationsCards,
+        requestsSentCards:requestsSentCards
     };
 }();
 

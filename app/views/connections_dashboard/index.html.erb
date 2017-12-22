@@ -2,14 +2,14 @@
   <div class="ui grid" style="margin-top:50px">
     <div  class="four wide column" style="margin-left:15px">
       <div class="ui vertical steps" style="width:100%">
-        <div class=" active step ui raised fluid grid" >
+        <div class="active step ui raised fluid grid" data-index="invitations-sent" style="cursor:pointer">
           <div class="two wide column" ></div>
-          <div class="content fourteen wide column">
+          <div class="content fourteen wide column" >
             <div class="title"> Invitations Sent </div>
             <div class="description"> List of sent invitations</div>
           </div>
         </div>
-        <div class="step ui raised fluid grid" >
+        <div class="step ui raised fluid grid" style="cursor:pointer" data-index="requests-recieved">
           <div class="two wide column" ></div>
           <div class="content fourteen wide column">
             <div class="title">  Request Received</div>
@@ -19,31 +19,29 @@
       </div>
     </div>
     <div class="nine wide column" style="display:block" id="cards-container">
-        Invitation >> Sent
-        <div class="ui  divider"></div>
-        <div id="invitations" style="width:100%">
-           <div class="ui pointing secondary menu">
-              <a class="active item" data-tab="accepted" onclick="CampusConnect.ConnectionDashboard.cards('accepted');">Accepted</a>
-              <a class="item" data-tab="pending"  onclick="CampusConnect.ConnectionDashboard.cards('pending');">Pending</a>
-              <a class="item" data-tab="rejected"  onclick="CampusConnect.ConnectionDashboard.cards('rejected');">Rejected</a>
-            </div>
-            <div class="ui active tab segment" data-tab="accepted">              
-              <div id="invitation-accepted" style="width:100%">
-              </div>
-            </div>
-            <div class="ui  tab segment" data-tab="pending">
-              <div id="invitation-pending" style="width:100%">
-              </div>
-            </div>
-            <div class="ui tab segment" data-tab="rejected">
-              <div id="invitation-rejected" style="width:100%">
-              </div>
-            </div>
-        </div>
+      <div id="invitations-sent" style="display:block">
+        <%= render :partial=>"invitations_sent"%>
+      </div> 
+      <div id="requests-recieved" style="display:none">
+        <%= render :partial=>"requests_recieved"%>        
+      </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
- CampusConnect.ConnectionDashboard.cards('accepted');
+ CampusConnect.ConnectionDashboard.invitationsCards('accepted');
 $('.menu .item').tab();
+$(".steps .step").click(function(){
+    $(this).addClass('active').siblings().removeClass('active');    
+    var div_id = $(this).attr("data-index");    
+    $("#"+div_id).show().siblings().hide();   
+
+    if(div_id == "invitations-sent"){
+      $('#invitations .ui.menu').find('.item').tab('change tab', 'accepted')      
+    }else if(div_id == "requests-recieved"){      
+      $('#requests .ui.menu').find('.item').tab('change tab', 'accepted')
+    }
+    
+
+});
 </script>

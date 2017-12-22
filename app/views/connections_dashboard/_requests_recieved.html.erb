@@ -1,0 +1,24 @@
+Request Recieved
+<div class="ui  divider"></div>
+<div id="requests" style="width:100%">
+   <div class="ui pointing secondary menu">
+      <a class="active item" data-tab="accepted" onclick="CampusConnect.ConnectionDashboard.requestsSentCards('accepted');">Accepted</a>
+      <a class="item" data-tab="pending" onclick="CampusConnect.ConnectionDashboard.requestsSentCards('pending');">Pending</a>
+      <a class="item" data-tab="rejected"  onclick="CampusConnect.ConnectionDashboard.requestsSentCards('rejected');">Rejected</a>
+    </div>
+    <div class="ui active tab segment" data-tab="accepted">              
+      <div id="requests-accepted" style="width:100%">
+      </div>
+    </div>
+    <div class="ui  tab segment" data-tab="pending">
+      <div id="requests-pending" style="width:100%">
+      </div>
+    </div>
+    <div class="ui tab segment" data-tab="rejected">
+      <div id="requests-rejected" style="width:100%">
+      </div>
+    </div>
+</div>
+<script>
+	CampusConnect.ConnectionDashboard.requestsSentCards("accepted");
+</script>
