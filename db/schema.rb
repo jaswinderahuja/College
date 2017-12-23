@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171203140018) do
+ActiveRecord::Schema.define(version: 20171223074211) do
 
   create_table "app_exceptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -99,17 +99,6 @@ ActiveRecord::Schema.define(version: 20171203140018) do
     t.index ["state_id"], name: "index_cities_on_state_id", using: :btree
   end
 
-  create_table "connection_requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "campus_id"
-    t.integer  "opening_id", null: false
-    t.integer  "company_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["campus_id"], name: "index_connection_requests_on_campus_id", using: :btree
-    t.index ["user_id"], name: "index_connection_requests_on_user_id", using: :btree
-  end
-
   create_table "countries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "shortname"
     t.string   "name",       null: false
@@ -178,6 +167,17 @@ ActiveRecord::Schema.define(version: 20171203140018) do
     t.integer "approving_body_id"
   end
 
+  create_table "user_helps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "contact_number"
+    t.string   "ticket_type"
+    t.string   "status"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["user_id"], name: "index_user_helps_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -207,11 +207,10 @@ ActiveRecord::Schema.define(version: 20171203140018) do
   add_foreign_key "campus_users", "campus", column: "campus_id"
   add_foreign_key "campus_users", "users"
   add_foreign_key "cities", "states"
-  add_foreign_key "connection_requests", "campus", column: "campus_id"
-  add_foreign_key "connection_requests", "users"
   add_foreign_key "courses", "departments"
   add_foreign_key "invitations", "campus", column: "campus_id"
   add_foreign_key "invitations", "users"
   add_foreign_key "pincodes", "cities"
   add_foreign_key "states", "countries"
+  add_foreign_key "user_helps", "users"
 end

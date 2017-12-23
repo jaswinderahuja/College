@@ -6,4 +6,5 @@ class User < ApplicationRecord
   # has_many :university_users    
   has_many :campus_users
   has_many :invitations
+  has_many :user_tickets
 end

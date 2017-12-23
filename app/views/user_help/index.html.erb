@@ -4,7 +4,7 @@
 	<div class="eight wide column">
 		<h1>We are there to help you!</h1>
 		<br/>		
-		<form class="ui form">
+		<%= form_tag({controller: "user_help",action: "create"},method: "post", :class=>"ui large form") do %>
 		  <div class="field">
 		    <label>Contact Detail</label>
 		    <div class="three fields">
@@ -20,7 +20,7 @@
 		    </div>
 		  </div>	
 		  
-		</form>				
+		<%end%>
 	</div>
 	<div class="five wide column"></div>
 
