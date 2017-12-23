@@ -1,5 +1,7 @@
 class UserHelpController < ApplicationController
   def index
+    @message = params[:message]
+    @error = params[:error]
   end
   def create
   	begin  		
@@ -8,7 +10,7 @@ class UserHelpController < ApplicationController
 	  	redirect_to(:controller=>"user_help",:action=>"index",:message=>"Request Submitted successfully!")
   	rescue =>e
   		p e
-  		redirect_to(:controller=>"user_help",:action=>"index",:message=>"OOPS something went wrong, Please try again later!!")
+  		redirect_to(:controller=>"user_help",:action=>"index",:error=>"OOPS something went wrong, Please try again later!!")
   	end
   end
 end

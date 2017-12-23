@@ -22,7 +22,9 @@
 		  
 		<%end%>
 	</div>
-	<div class="five wide column"></div>
+	<div class="four wide column"> 		
+		
+	</div>
 
 	<div class="three wide column"></div>
 	<div class="eight wide column">
@@ -40,3 +42,32 @@
 
 
 </div>
+<div class="response" style="position:absolute;top:80px;left:600px;">
+<div  class="ui floating info message" id="message" style="padding-left:50px;padding-right:50px;display:<%= @message.present? ? 'block' : 'none' %>">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    Request Submitted successfully!
+		  </div>
+		  <p>Our Executive will contact you shortly.</p>
+		</div>
+		<div class="ui floating warning message" id="message" style="padding-right:50px;padding-left:50px;display:<%=@error.present? ? 'block' : 'none'%>">
+		  <i class="close icon"></i>
+		  <div class="header">
+		    OOPS, something went wrong!.
+		  </div>
+		  <p>Please try again later.</p>
+		</div>
+</div>
+
+<script type="text/javascript">
+	$('.message .close').on('click', function() {
+    	$(this).closest('.message').transition('fade');
+    	window.history.pushState({}, document.title, "/user_help" );
+  })
+	setTimeout(function () {
+	    document.getElementById('message').style.display='none';
+	    window.history.pushState({}, document.title, "/user_help" );
+    }, 10000);
+
+
+</script>
