@@ -134,6 +134,7 @@ CampusConnect.Dashboard = function () {
                     },
                     error: function(xhr,status,error){
                             console.log("error");
+                            console.log(error);
                     }
 
                 });
