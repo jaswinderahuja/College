@@ -268,9 +268,12 @@ CampusConnect.Dashboard = function () {
     var showCompanyDetails =  function(opening_id){
            $.ajax({url:"/dashboard/company_info?op_id="+opening_id,
                 success: function(response){
-                    console.log(response);
-                    var html = companyDetailsTemplate(response);
+                    console.log(response.data);                   
+                    var html = companyDetailsTemplate(response.data);
                     $("#company_detail_container").html(html);
+                },
+                error: function(xhr,status,error){
+                    console.log(error);
                 }
             });
 

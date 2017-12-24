@@ -124,8 +124,105 @@ module ES
           }
     end
 
+        def create_mapping_company
 
-    def create_mapping_company
+        companies_map = {
+                :name=> { :type=> "text" },
+                :company_logo=>{ :type=>"text"},
+                :established=> { :type=> "integer"},
+                :no_of_employess=> { :type=> "integer"},
+                :headquarter=> {
+                  :type=> "object",
+                  :properties=>{
+                    :name=>{ :type=> "text"},
+                    :geo_location=>{ :type=>"geo_point"}
+                  }
+                },                
+                :revenue=> { :type=> "integer"},
+                :description=> { :type=> "text"},
+                :business_nature=> { :type=> "text"},
+                :achievement=> { :type=> "text"},
+                :website_url=> { :type=> "text"},
+                :funding=>{
+                   :type=> "object",
+                    :properties=>{
+                      :funding_by=> { :type=> "text" },
+                      :date=> { :type=> "text" },
+                      :amount=> { :type=> "integer" }
+                    }
+                },
+                :tech_stack=>{
+                   :type=> "object",
+                    :properties=>{
+                      :name=> { :type=> "text" }                      
+                    }
+                },
+                :ceo=>{
+                   :type=> "object",
+                    :properties=>{
+                      :name=> { :type=> "text" },
+                      :image=> { :type=> "text" }
+                    }
+                },
+                :contact_details=>{
+                   :type=> "nested",
+                    :properties=>{
+                      :email_1=> { :type=> "keyword" },
+                      :email_2=> { :type=> "keyword" },
+                      :phone_1=> { :type=> "keyword" },
+                      :phone_2=> { :type=> "keyword" }  
+                    }
+                }
+        }
+
+
+       openings_map =  {
+              :position=> {:type=> "text"},
+              :department=> {:type=> "text"},
+              :description=> {:type=> "text"},
+              :no_of_openings=> {:type=> "integer"},
+              :opening_type=> {:type=> "text"},
+              :package_upper=> {:type=> "integer"},
+              :package_lower=> {:type=> "integer"},
+              :location=> {
+                :type=> "object",
+                :properties=>{
+                  :name=>{:type=> "text"},
+                  :geo_location=>{:type=>"geo_point"}
+                }
+              },
+              :contact_details=>{
+               :type=> "nested",
+                 :properties=>{
+                   :email_1=> { :type=> "keyword" },
+                   :email_2=> { :type=> "keyword" },
+                   :phone_1=> { :type=> "keyword" },
+                   :phone_2=> { :type=> "keyword" }  
+                 }
+             }            
+          }
+
+
+        @client_obj.indices.create index: COMPANY_INDEX,
+          body: {
+            settings:{
+              "number_of_shards": 2,
+              "number_of_replicas": 0
+            },
+            mappings: {
+              companies: {
+                properties: companies_map
+              },
+              openings: {
+                _parent: { type: "companies" },
+                properties: openings_map
+              }
+            }
+          } 
+    end
+
+
+    def create_mapping_company_old
 
         companies_map = {
                 :name=> { :type=> "text" },

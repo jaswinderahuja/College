@@ -1,23 +1,23 @@
 <script id="company-details-template" type="text/x-handlebars-template">
-{{#if CompanyName}}
+{{#if company}}
 <div class="ui grid" style="position:relative;background:cadetblue">
     <div class="sixteen wide column" style="height:60px"></div>
     <div class="one wide column"></div>
     <div class="two wide column">
-        <img src="{{CompanyLogo}}" style="padding:4px;max-height:120px">
+        <img src="{{company.company_logo}}" style="padding:4px;max-height:120px">
     </div>
     <div class="thirteen wide column">
-        <h1 style="color:white">{{CompanyName}}</h1>
-        <h2 style="color:white;line-height:0px;font-size:17px;">{{tag_line}}</h2>
+        <h1 style="color:white">{{company.name}}</h1>
+        <h2 style="color:white;line-height:0px;font-size:17px;">{{company.business_nature}}</h2>
         <div class="ui horizontal bulleted list" style="color:white;margin-top:10px;">
             <p class="item">
-                Founded in: {{StartedIn}}
+                Founded in: {{company.established}}
             </p>
             <p class="item">
-                Employees: {{NoOfEmployees}}
+                Employees: {{company.no_of_employees}}
             </p>
             <p class="item">
-                HeadQuater: {{HeadQuarter.name}}
+                HeadQuater: {{company.headquarter.name}}
             </p>
         </div>
     </div>
@@ -32,28 +32,28 @@
                 <i class="marker arrow icon"></i>
                 <div class="content">
                     <div class="title">Location</div>
-                    <div class="description">{{opening_details.location.name}}</div>
+                    <div class="description">{{opening.location.name}}</div>
                 </div>
             </div>
             <div class="step">
                 <i class="users icon"></i>
                 <div class="content">
                     <div class="title">No of openings</div>
-                    <div class="description">{{opening_details.no_of_openings}}</div>
+                    <div class="description">{{opening.no_of_openings}}</div>
                 </div>
             </div>
             <div class="step">
                 <i class="user outline icon"></i>
                 <div class="content">
                     <div class="title">Position</div>
-                    <div class="description">{{opening_details.position}}</div>
+                    <div class="description">{{opening.position}}</div>
                 </div>
             </div>
             <div class="step">
                 <i class="rupee icon"></i>
                 <div class="content">
                     <div class="title">CTC</div>
-                    <div class="description">{{opening_details.CTC}}</div>
+                    <div class="description">{{opening.package_lower}} - {{opening.package_upper}} </div>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="row">
                     <div class="sixteen wide column">
-                    {{#if <%=@knocked%>}}
+                    {{#if <%=@knocked.present?%>}}
                         <center>
                             <button class="ui disabled button" id="" onclick="">Interest Sent</button>
                         </center>
@@ -84,8 +84,7 @@
                         </center>
                         <form id="InterestSendForm">
                             <input type="hidden" name="campus_id" value="<%=@campus_id%>">
-                            <input type="hidden" name="opening_id" value="<%=@op_id%>">
-                            <input type="hidden" name="company_id" value="{{company_id}}">
+                            <input type="hidden" name="opening_id" value="{{opening_id}}">
                         </form>
                     {{/if}}
                     </div>
@@ -98,7 +97,7 @@
                 <div class="two column row">
                     <div class="column">
                         <i class="external icon"></i>
-                        <a href="{{WebsiteUrl}}" target="_blank">Website</a>
+                        <a href="{{company.website_url}}" target="_blank">Website</a>
                     </div>
                     <div class="column">
                         <i class="linkedin square icon"></i>
@@ -111,21 +110,17 @@
         <div class="content">
             <h3>Funding information</h3>
             <div class="ui bulleted list">
-                {{#each FundingDetail}}
-                <div class="item">{{this}}</div>
+                {{#each company.funding}}
+                <div class="item">{{this.amount}} from {{this.funding_by}}</div>
                 {{/each}}
             </div>
         </div>
-        <!--         <div class="content">
-            <h3>Our tech stack</h3>
-            <div class="ui label">java</div>
-            <div class="ui label">javascript</div>
-            <div class="ui label">python</div>
-            <div class="ui label">css3</div>
-            <div class="ui label">AngularJS</div>
-            <div class="ui label">Rapid Miner</div>
-            
-        </div> -->
+        <div class="content">
+            <h3>Our tech stack</h3>         
+            {{#each company.tech_stack}}   
+                <div class="ui label">{{this.name}}</div>            
+             {{/each}}   
+        </div>
     </div>
 </div>
 <!--  -->
@@ -143,20 +138,20 @@
                     </div>
                     <div class="column">
                         <div class="ui list">
-                            <div class="item" style="font-size:initial">Job Title: <strong>{{opening_details.position}}</strong></div>
-                            <div class="item" style="font-size:initial">Job Location:<strong> {{opening_details.location.name}}</strong></div>
-                            <div class="item" style="font-size:initial">Openings: <strong>{{opening_details.no_of_openings}}</strong> </div>
+                            <div class="item" style="font-size:initial">Job Title: <strong>{{opening.position}}</strong></div>
+                            <div class="item" style="font-size:initial">Job Location:<strong> {{opening.location.name}}</strong></div>
+                            <div class="item" style="font-size:initial">Openings: <strong>{{opening.no_of_openings}}</strong> </div>
                         </div>
                     </div>
                     <div class="column extra content">
                         <br/>
                         <p style="">
-                            {{opening_details.description}}
+                            {{opening.description}}
                         </p>
                     </div>
                     <div class="column">
                         <br/>
-                        <h3>About : <i>{{CompanyName}}</i></h3>
+                        <h3>About : <i>{{company.name}}</i></h3>
                     </div>
                     <div class="column">
                         <div class="ui divider"></div>
@@ -170,12 +165,12 @@
                                     <div class="ui grid two column row">
                                         <div class="column">
                                             <div class="image">
-                                                <img src="/images/img.jpg"/>
+                                                <img src="{{company.ceo.image}}"/>
                                             </div>
                                         </div>
                                         <div class="column">
                                             <div class="header">
-                                                {{CEOName}}
+                                                {{company.ceo.name}}
                                             </div>                                            
                                             <div class="meta">
                                                 CEO
@@ -184,7 +179,7 @@
                                     </div>
                                 </div>
                             </div>
-                        {{#if Revenue}}
+                        {{#if company.revenue}}
                             <div class="card">
                                 <div class="content">
                                     <div class="header">
@@ -195,8 +190,8 @@
                                     <center>
                                     <h2 class="ui header">
                                       <div class="content">
-                                        {{Revenue}}
                                         <i class="dollar icon"></i>
+                                        {{company.revenue}} MN
                                       </div>
                                     </h2>
                                     </center>
@@ -208,11 +203,11 @@
                     <div class="column">
                         <br/>
                         <p>
-                            Delhivery is India's leading ecommerce fulfillment company, where we use technology to drive supply chain solutions. Delhivery provides an array of products and services for online businesses including online channel integration services, sourcing, catalogue management, inventory management, multicity fulfillment, express shipping, same day delivery services, reverse logistics, offline payment collection and processing, customer support,social media engagement and channel analytics.
+                             {{company.description}}
                         </p>
                         <p>
                             <br/>
-                            5 years into the industry, Delhivery handles over 250,000 shipments per day for over 100,000+ merchants, 25000 clients and 1800+ retailers across 350+ cities. We provide a modular set of ecommerce technologies and logistics solutions to over 6000+pincodes.
+                            {{company.achievement}}
                         </p>
                     </div>
                 </div>

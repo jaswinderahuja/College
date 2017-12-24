@@ -17,7 +17,7 @@ module Search
 		end
 
 
-	private
+	# private
 
 		def construct_response(openings_hash)
 			company_ids = []
