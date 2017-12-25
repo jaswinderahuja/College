@@ -1,11 +1,11 @@
 module Search
 	class QueryConstructor
-		SIZE = 5
-		
+		SIZE = 4
+
 		def initialize(keyword=nil,from=0,sort_by=nil,loc_filter=nil,pos_filter=nil,openings_search_fields=nil,companies_search_fields=nil)
 			@body = {from: from, size: SIZE, query: { bool: {should: []} } }
 			@openings_search_fields = ["department","opening_type","position","location.name"]
-			@companies_search_fields = ["business_nature","description","headquarter.name","name"]			
+			@companies_search_fields = ["business_nature","description","headquarter.name","name"]
 			@sort_by = sort_by if sort_by.present?
 			@locations = loc_filter if loc_filter.present?
 			@positions =  pos_filter if pos_filter.present?

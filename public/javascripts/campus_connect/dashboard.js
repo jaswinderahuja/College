@@ -12,7 +12,7 @@ CampusConnect.Dashboard = function () {
 	// 	});
 	// }
     //
-    var limit = 10,offset=0;
+    var limit = 4,offset=0;
     var compileHandlebarTemplate = function(templateId) {
         var source   = $('#' + templateId).html();
         return Handlebars.compile(source);
@@ -46,6 +46,9 @@ CampusConnect.Dashboard = function () {
         var q = getUrlParameter("q");
         if(q !== undefined && q.length>0){
             params = params+"?q="+q;
+            params += "&f=" + offset;
+        }else {
+            params = "?f" + limit;
         }
         return params;
     };
@@ -61,19 +64,19 @@ CampusConnect.Dashboard = function () {
     var setSortingDropdown = function(){
         var sort_option = getUrlParameter("sort_option");
         $(".ui.dropdown").dropdown("set selected",sort_option);
-    }
+    };
     var setSearchBar = function(){
-        var search_query = getUrlParameter("q");        
+        var search_query = getUrlParameter("q");
         $(".prompt.search-bar").val(search_query);
-    }
+    };
 
 
     var setfilterOnRefresh = function(){
         var params = decodeURI(location.search.substring(1));
-        params = params.split("&");        
+        params = params.split("&");
         for(var i=0;i<params.length;i++){
-            var key_value = params[i].split("=")
-            if( key_value[0] == "l[]"){                
+            var key_value = params[i].split("=");
+            if( key_value[0] == "l[]"){
                 $('#filter_cities .ui.checkbox input[name="'+key_value[1]+'"]').parent().checkbox('set checked');
             }
             if(key_value[0] == "d[]"){
@@ -81,7 +84,7 @@ CampusConnect.Dashboard = function () {
             }
         }
 
-    }
+    };
     var cards = function(sort_option){
         // var uri = "/dashboard/get_companies"
         // if we want to reset the sorting during refresh then this code is needed but if we want to keep the sorting on search the below code has to remove and read params from url
@@ -103,6 +106,7 @@ CampusConnect.Dashboard = function () {
                 setSortingDropdown();
                 setSearchBar();
                 setfilterOnRefresh();
+
             },
             error: function(xhr,status,error){
                 console.log(error);
@@ -162,11 +166,11 @@ CampusConnect.Dashboard = function () {
             params = removeSortOption(params,"sort_option");
         }
 
-        if(sort_option !=undefined && sort_option != ""){
+        if(sort_option !==undefined && sort_option !== ""){
             if(params === undefined || params === "" ){
-                params = params + "?sort_option="+sort_option
+                params = params + "?sort_option="+sort_option;
             }else{
-                params = params + "&sort_option="+sort_option
+                params = params + "&sort_option="+sort_option;
             }
         }
         window.history.pushState("object or string", "Title", params);
@@ -202,15 +206,15 @@ CampusConnect.Dashboard = function () {
         }else{
             window.history.pushState("object or string", "Title", params);
         }
-
+        console.log(params);
         CampusConnect.Dashboard.cards();
-    }
+    };
 
     var addCityFilter = function(){
         var params = constructParams();
         var filter_values = "";
         var cities_filter_list = filterList("filter_cities");
-        if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list.length == 0){
+        if(cities_filter_list === undefined || cities_filter_list === "" || cities_filter_list.length === 0){
             return params;
         }
         console.log("not returning..");
@@ -226,19 +230,24 @@ CampusConnect.Dashboard = function () {
         return params;
         // window.history.pushState("object or string", "Title", params);
         // CampusConnect.Dashboard.cards();
-    }
+    };
 
-    var search_openings = function(query){        
-        window.history.pushState("object or string", "Title", "?q="+query);                
-        
+    var updateUIOnSearchOpeningSuccess = function (response) {
+        $(".sort.ui.dropdown").dropdown("restore defaults");
+        $('.ui.checkbox').checkbox('uncheck');
+        var html = cardsTemplate(response);
+        return html;
+    };
+
+    var search_openings = function(query){
+        window.history.pushState("object or string", "Title", "?q="+query);
+
         $.ajax({
             url:"/dashboard/search_openings?q="+query,
             type: "GET",
             async: false,
             success: function (response) {
-                $(".sort.ui.dropdown").dropdown("restore defaults");                
-                $('.ui.checkbox').checkbox('uncheck');
-                var html = cardsTemplate(response);
+                var html = updateUIOnSearchOpeningSuccess(response);
                 $("#cards-container").html(html);
             },
             error: function(xhr,status,error){
@@ -255,7 +264,6 @@ CampusConnect.Dashboard = function () {
             $("#filter_department .ui.checkbox").checkbox({"onChange": function(){
               CampusConnect.Dashboard.addFilter();
             }});
-            registerCardsScrollBottom();
         });
     };
 
@@ -269,7 +277,7 @@ CampusConnect.Dashboard = function () {
     var showCompanyDetails =  function(opening_id){
            $.ajax({url:"/dashboard/company_info?op_id="+opening_id,
                 success: function(response){
-                    console.log(response.data);                   
+                    console.log(response.data);
                     var html = companyDetailsTemplate(response.data);
                     $("#company_detail_container").html(html);
                 },
@@ -282,15 +290,44 @@ CampusConnect.Dashboard = function () {
 
     var loadCardsOnScroll = function(e){
         var elem = $(e.currentTarget);
-        if (elem[0].scrollHeight - elem.scrollTop() == elem.outerHeight()) {
-
+        if (elem[0].scrollHeight - elem.scrollTop() <= elem.outerHeight() + 100) {
+            paginate();
         }
     };
 
     var registerCardsScrollBottom = function() {
-        $(document).ready(function () {
-            $('#cardsContainer').bind('scroll', loadCardsOnScroll);
+        document.getElementById("cardsContainer").removeEventListener("scroll", loadCardsOnScroll);
+        document.getElementById("cardsContainer").addEventListener("scroll", loadCardsOnScroll);
+
+    };
+
+    var paginate = function() {
+        offset += limit;
+        var limitQuery = "f=" + offset;
+        var currentPageParams = window.location.href.split('?')[1];
+        if(currentPageParams !== undefined){
+            currentPageParams += "&" + limitQuery;
+        }else{
+            currentPageParams = "?" + limitQuery;
+        }
+        url = "dashboard/search_openings" + currentPageParams;
+        console.log(url);
+        $.ajax({
+            url: url,
+            type: "GET",
+            async: false,
+            success: function (response) {
+                var html = updateUIOnSearchOpeningSuccess(response);
+                $("#cards-container").append(html);
+                if(response.openings.length === 0){
+                    document.getElementById("cardsContainer").removeEventListener("scroll", loadCardsOnScroll);
+                }
+            },
+            error: function(xhr,status,error){
+                console.log(error);
+            }
         });
+
     };
 
     return {
