@@ -83,7 +83,33 @@ CampusConnect.College.Validation = function() {
             }
         });
     };
+    var userHelp = function () {
+        $('.ui.large.form').form({                            
+            fields: {
+                'email': {
+                    identifier: 'email',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a valid email address'
+                    }]
+                },
+                'phone_number': {
+                    identifier: 'phone_number',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only for phone #'
+                    },{
+                        type: 'exactLength[10]',
+                        prompt: 'Contact number length should be 10 digits'
+                    }]
+                }
+            },
+            inline : true,
+            on     : 'blur'            
+        });
+    };
     return {
-        campusDrive :campusDrive
+        campusDrive :campusDrive,
+        userHelp:userHelp
     };
 }();

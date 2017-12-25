@@ -9,14 +9,14 @@
 		    <label>Contact Detail</label>
 		    <div class="three fields">
 		      <div class="field">
-		        <input type="text" name="email" placeholder="Enter Email">
+		        <%= text_field_tag "email",nil,placeholder: "Enter Email"%>
 		      </div>
 		      <div class="field">
-		        <input type="text" name="phone_number" placeholder="Phone number">
+		        <%= text_field_tag "phone_number",nil,placeholder: "Phone Number"%>	        
 		      </div>
 		      <div class="field">
 		       <button class="ui primary button" type="submit">Contact Me</button>
-		      </div>
+		      </div>		      
 		    </div>
 		  </div>	
 		  
@@ -70,4 +70,5 @@
     }, 10000);
 
 
+CampusConnect.College.Validation.userHelp();
 </script>
