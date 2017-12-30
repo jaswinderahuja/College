@@ -1,5 +1,5 @@
 class CampusAddress < ApplicationRecord
-  belongs_to :college_detail
+  belongs_to :campus
 
   def self.create_new_campus_address options		
 		address = CampusAddress.new
