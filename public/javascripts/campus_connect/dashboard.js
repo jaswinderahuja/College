@@ -227,7 +227,7 @@ CampusConnect.Dashboard = function () {
 
     var search_openings = function(query){
         window.history.pushState("object or string", "Title", "?q="+query);
-
+        $("#dashboard-cards-loader").addClass("active");
         $.ajax({
             url:"/dashboard/search_openings?q="+query,
             type: "GET",
@@ -237,9 +237,11 @@ CampusConnect.Dashboard = function () {
                 $('.ui.checkbox').checkbox('uncheck');
                 var html = cardsTemplate(response);
                 $("#cards-container").html(html);
+                $("#dashboard-cards-loader").removeClass("active");
             },
             error: function(xhr,status,error){
                 console.log(error);
+                $("#dashboard-cards-loader").removeClass("active");
             }
         });
     };
@@ -284,12 +286,13 @@ CampusConnect.Dashboard = function () {
 
     var registerCardsScrollBottom = function() {
         limit = 4;offset=0;
-        document.getElementById("cardsContainer").removeEventListener("scroll", loadCardsOnScroll);
-        document.getElementById("cardsContainer").addEventListener("scroll", loadCardsOnScroll);
+        document.getElementById("scrollItem").removeEventListener("scroll", loadCardsOnScroll);
+        document.getElementById("scrollItem").addEventListener("scroll", loadCardsOnScroll);
 
     };
 
     var paginate = function() {
+        $("#dashboard-cards-loader").addClass("active");
         offset += limit;
         var limitQuery = "f=" + offset;
         var currentPageParams = window.location.href.split('?')[1];
@@ -306,8 +309,9 @@ CampusConnect.Dashboard = function () {
             success: function (response) {
                 var html = cardsTemplate(response);
                 $("#cards-container").append(html);
+                 $("#dashboard-cards-loader").removeClass("active");
                 if(response.openings.length === 0){
-                    document.getElementById("cardsContainer").removeEventListener("scroll", loadCardsOnScroll);
+                    document.getElementById("scrollItem").removeEventListener("scroll", loadCardsOnScroll);
                 }
             },
             error: function(xhr,status,error){

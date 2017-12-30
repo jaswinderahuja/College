@@ -1,10 +1,10 @@
-<div class="main-content container" style="padding-top:5%;height: 87%">
+<div class="main-content container" style="padding-top:5%;height: 87%;overflow:auto" id="scrollItem">
   <div class="pusher" style="height: 100%">
     <div class="ui grid" style="height: 100%">
       <div class="four wide column verticalLine">
         <%= render partial: "filters"%>
       </div>
-      <div id="cardsContainer" class="nine wide column" style="overflow:auto">
+      <div id="cardsContainer" class="nine wide column" style="">
         <!--  grid to sort start here -->
         <div class="ui grid">
           <div class="three column row">
@@ -24,6 +24,7 @@
         <div class="ui  divider"></div>
         <div id="cards-container">
         </div>
+        <div class="ui centered inline loader" id="dashboard-cards-loader" style="position:relative;top:-50px;"></div>
       </div>
       <div class="three wide column">
         <!-- kept for ads -->
