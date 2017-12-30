@@ -1,132 +1,16 @@
 <br/>
 <br/>
 <br/>
-<br/>
 
 <div class="ui center aligned container">  
-<h2 class="ui header">
-		  <img class="ui image" src="/images/icons/school.png">
-		  <div class="content">
+	<h2 class="ui header">
+		<img class="ui image" src="/images/icons/school.png">
+		<div class="content">
 		    Manage Campus Profile
-		  </div>
-		</h2>		
-<table class="ui single line table" id="company_info_table">
-  <thead>
-    <tr>
-      <th colspan="3">
-      	<h2 class="ui header">		  
-		  <div class="content">
-		    Campus Information
-		  </div>
-		</h2>
-      </th>
-      <th>
-      	<div id="edit_company_info">
-      	<a  style="cursor:pointer;float:right;padding-right:10px;"><i title="edit" class="edit icon" style="font-size:x-large;"></i></a>
-      	</div>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      	<td class="active"><b>College Name</b></td>
-     	<td class="active"><b>University Name</b></td>
-		<td class="active"><b>Address line 1</b></td>
-      	<td class="active"><b>Address Line 2</b></td>
-    </tr>
-    <tr>
-    	<% campus,address = campus_info %>
-      	<td class="value">
-      		<label> <%=campus.college_name %></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="college_name" value="<%=campus.college_name %>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label><%=campus.university_name %></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="university_name" value="<%=campus.university_name %>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label><%=address.address1 %></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="address1" value="<%=address.address1 %>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label><%=address.address2 %></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="address2" value="<%=address.address2 %>">
-      		</div>
-      	</td>
-      	
-    </tr>
-    <tr>
-		<td class="active"><b>Pin code</b></td>
-      	<td class="active"><b>City</b></td>
-      	<td class="active"><b>State</b></td>
-      	<td class="active"><b>Country</b></td>
-    </tr>
-    <tr>
-    	<%city,state = city_state(address.pin_code)%>
-      	<td class="value">
-      		<label><%= address.pin_code%></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="pincode" value="<%=address.pin_code %>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label><%=city %></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="city" value="<%=city%>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label><%=state%></label>
-      		<div class="ui input" style="display:none">
-      			<input type="text" name="state" value="<%=state %>">
-      		</div>
-      	</td>
-      	<td class="value">
-      		<label>India</label>
-      	</td>      
-    </tr>
-  </tbody>
-   <tfoot class="full-width" style="display:none">
-    <tr>      
-      <th colspan="4">
-        <div class="ui right floated primary button" id="save_company_info">
-          Save
-        </div>        
-      </th>
-    </tr>
-  </tfoot>
-</table>
-<br/>
-<br/>
-<br/>
-</div>
-<script type="text/javascript">
-	$('#edit_company_info').click(function(){
-	  $('#edit_company_info').hide();
-	  $('#company_info_table label').each(function(){
-	    	$(this).hide();	    
-	  });  
-	  $('#company_info_table .ui.input').each(function(){
-	    	$(this).show();	    
-	  });  
-  		$("#company_info_table tfoot").show()	// enabling save button
-	});
+		</div>
+	</h2>		
+	<%= render :partial=>"campus_info_table"%>
+	<br/>
+	<br/>
 
-	$('#save_company_info').click(function(){		
-  		$("#company_info_table tfoot").hide()	// disabling save button
- 		$('#company_info_table label').each(function(){
-	    	$(this).show();	    
-		});  
-	  	$('#company_info_table .ui.input').each(function(){
-	    	$(this).hide();
-	  	});  
-	  $('#edit_company_info').show();
-	});
-</script>
+</div>

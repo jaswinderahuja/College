@@ -108,8 +108,61 @@ CampusConnect.College.Validation = function() {
             on     : 'blur'            
         });
     };
+
+    var companyInfo = function () {
+        $('.ui.large.form.campus_info').form({                            
+            fields: {
+                'college_name': {
+                    identifier: 'college_name',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'College name can not be blank'
+                    }]
+                },
+                'university_name': {
+                    identifier: 'university_name',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'University name can not be blank'
+                    }]
+                },                
+                'address1': {
+                    identifier: 'address1',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter the address'
+                    }]
+                },
+                'pincode': {
+                    identifier: 'pincode',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter a pincode'
+                    },{
+                        type: 'exactLength[6]',
+                        prompt: 'Pincode number length should be 6 digits'
+                    }]
+                },
+                'city': {
+                    identifier: 'city',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter the city'
+                    }]
+                },
+                'state': {
+                    identifier: 'state',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter a state'
+                    }]
+                }
+            }
+        });
+    };
     return {
         campusDrive :campusDrive,
-        userHelp:userHelp
+        userHelp:userHelp,
+        companyInfo:companyInfo
     };
 }();
