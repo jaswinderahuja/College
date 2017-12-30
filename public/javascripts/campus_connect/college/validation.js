@@ -109,7 +109,7 @@ CampusConnect.College.Validation = function() {
         });
     };
 
-    var companyInfo = function () {
+    var campusInfo = function () {
         $('.ui.large.form.campus_info').form({                            
             fields: {
                 'college_name': {
@@ -163,6 +163,6 @@ CampusConnect.College.Validation = function() {
     return {
         campusDrive :campusDrive,
         userHelp:userHelp,
-        companyInfo:companyInfo
+        campusInfo:campusInfo
     };
 }();
