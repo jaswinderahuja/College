@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'profile', to: 'profile_management#index'
+
   get 'user_help', to: 'user_help#index'
   post 'user_help/create' 
   get 'connections', to: 'connections_dashboard#index' 
