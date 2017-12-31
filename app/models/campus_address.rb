@@ -1,6 +1,6 @@
 class CampusAddress < ApplicationRecord
   belongs_to :campus
-
+  validates :pin_code, presence: true
   def self.create_new_campus_address options		
 		address = CampusAddress.new
 		address.create_campus_address options
@@ -13,4 +13,12 @@ class CampusAddress < ApplicationRecord
       	self.pin_code = options["pincode"]
 	    self.save!      	
 	end
+
+	def self.update_campus_address options
+		address = CampusAddress.where(:campus_id=>options["campus_id"]).first
+				
+		address.create_campus_address options
+		return address
+	end
+
 end

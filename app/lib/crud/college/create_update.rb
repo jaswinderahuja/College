@@ -1,7 +1,7 @@
 module CRUD
   module College
     class CreateUpdate
-      #Used to create and update company registration details
+      #Used to create and update company registration details      
 
       def create_address_detail options
         country = Country.find_or_create_by(name: options[:country])
@@ -29,6 +29,30 @@ module CRUD
           end
       end
 
+      
+      def update_campus options
+          Campus.transaction do 
+            campus = Campus.where(:college_name=>options[:college_name]).first            
+            if !campus.present?
+              campus = Campus.create_new_campus options              
+              #  update the campus_id in campususer and campus_id in campus_addresses
+              cu = CampusUser.where(:user_id=>options[:user_id]).first
+              old_campus_id = cu.campus_id
+              cu.campus_id = campus.id              
+              cu.save!              
+              address = CampusAddress.where(:campus_id=>old_campus_id).first
+              address.campus_id = campus.id
+              address.save!
+            end            
+              campus.university_name = options[:university_name] 
+              campus.save!            
+              options["campus_id"] = campus.id
+              pin = create_address_detail options            
+              options["pincode"] = pin.pincode
+              CampusAddress.update_campus_address options                
+            return campus.id
+          end
+      end
     end
   end
 end

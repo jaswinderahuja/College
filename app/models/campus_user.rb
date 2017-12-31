@@ -1,7 +1,8 @@
 class CampusUser < ApplicationRecord
   belongs_to :campus
   belongs_to :user
-
+  validates :campus_id, presence: true
+  validates :user_id, presence: true
   def self.create_new_campus_user options
   		campus_user = CampusUser.new
   		campus_user.create_campus_user options

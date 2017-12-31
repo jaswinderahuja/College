@@ -4,7 +4,7 @@ class Campus < ApplicationRecord
 	has_many :invitations 
 	has_one :campus_address
 	has_one :campus_contact_detail
-
+	validates :college_name, presence: true
 	def self.create_new_campus options
 		campus = Campus.new
 		campus.create_campus options		
@@ -16,4 +16,5 @@ class Campus < ApplicationRecord
         self.university_name = options["university_name"]
         self.save!		
 	end
+
 end

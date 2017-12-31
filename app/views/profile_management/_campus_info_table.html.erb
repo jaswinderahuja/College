@@ -40,13 +40,13 @@
       	<td class="value">
       		<label><%=address.address1 %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "address1",address.address1%>      			
+            <%= text_field_tag "address_line_1",address.address1%>      			
       		</div>
       	</td>
       	<td class="value">
       		<label><%=address.address2 %></label>
       		<div class="ui input" style="display:none">
-      			<%= text_field_tag "address2",address.address2%>
+      			<%= text_field_tag "address_line_2",address.address2%>
       		</div>
       	</td>
       	
@@ -68,7 +68,7 @@
       	<td class="value">
       		<label><%=city %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "city",city%>           
+            <%= text_field_tag "town_city",city%>           
       		</div>
       	</td>
       	<td class="value">
