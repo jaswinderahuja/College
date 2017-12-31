@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'profile', to: 'profile_management#index'
   post 'profile_management/edit', to: 'profile_management#edit'
+  post 'profile_management/edit_campus_and_address', to: 'profile_management#edit_campus_and_address'
 
   get 'user_help', to: 'user_help#index'
   post 'user_help/create' 

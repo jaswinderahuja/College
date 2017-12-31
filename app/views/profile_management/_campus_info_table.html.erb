@@ -1,4 +1,4 @@
-  <%= form_tag({controller: "profile_management",:action=>"edit"},method: "post", :class=>"ui large form campus_info") do %>
+  <%= form_tag({controller: "profile_management",:action=>"edit_campus_and_address"},method: "post", :class=>"ui large form campus_info") do %>
 <table class="ui single line table" id="campus_info_table">
   <thead>
     <tr>
@@ -85,7 +85,7 @@
    <tfoot class="full-width" style="display:none">
     <tr>      
       <th colspan="4">
-      	<button  onclick="" class="ui right floated primary button" id="save_campus_info">
+      	<button  class="ui right floated primary button" id="save_campus_info">
           Save
         </button>
       	<div class="ui right floated green button" id="cancel_edit_campus_info">
@@ -96,7 +96,23 @@
     </tr>
   </tfoot>
 </table>
-  <div class="ui error message"></div>
+<div class="ui error message campus_info"></div>
+
+<div class="response" style="position:fixed;top:10px;left:30%;z-index:999">
+<div  class="ui floating green message" id="message" style="padding-left:50px;padding-right:50px;display:<%= @message.present? ? 'block' : 'none' %>">
+      <i class="close icon"></i>
+      <div class="header">
+        Campus information updated successfully.
+      </div>
+    </div>
+    <div class="ui floating warning message" id="message" style="padding-right:50px;padding-left:50px;display:<%=@error.present? ? 'block' : 'none'%>">
+      <i class="close icon"></i>
+      <div class="header">
+        OOPS, something went wrong!.
+      </div>
+      <p>Please try again later.</p>
+    </div>
+</div>
 <%end%>
 <script type="text/javascript">
   $('#edit_campus_info').click(function(){
@@ -112,7 +128,7 @@
 
   $('#cancel_edit_campus_info').click(function(){    
       $("#campus_info_table tfoot").hide() // disabling save button
-      $(".ui.error.message").html('');
+      $(".ui.error.message.campus_info").html('');
     $('#campus_info_table label').each(function(){
         $(this).show();     
     });  
@@ -122,4 +138,14 @@
     $('#edit_campus_info').show();
   });
   CampusConnect.College.Validation.campusInfo();
+
+  $('.message .close').on('click', function() {
+      $(this).closest('.message').transition('fade');
+      window.history.pushState({}, document.title, "/profile" );
+  })
+  setTimeout(function () {
+      document.getElementById('message').style.display='none';
+      window.history.pushState({}, document.title, "/profile" );
+    }, 6000);
+
 </script>

@@ -1,13 +1,20 @@
 class ProfileManagementController < ApplicationController
   def index
+    @message = params[:message]
+    @error = params[:error]
   end
 
   def edit
   	puts params
-  	redirect_to(:action=>"index",:message=>"cool")
   end
 
-  def edit_company_info
-  	
+  def edit_campus_and_address    
+    begin
+      
+    	
+      redirect_to(:action=>"index",:message=>"Campus information updated successfully.")
+    rescue => e      
+      redirect_to(:action=>"index",:error=>"OOPS, something went wrong!")
+    end         
   end
 end
