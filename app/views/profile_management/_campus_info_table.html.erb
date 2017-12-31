@@ -114,31 +114,8 @@
     </div>
 </div>
 <%end%>
+
 <script type="text/javascript">
-  $('#edit_campus_info').click(function(){
-    $('#edit_campus_info').hide();
-    $('#campus_info_table label').each(function(){
-        $(this).hide();     
-    });  
-    $('#campus_info_table .ui.input').each(function(){
-        $(this).show();     
-    });  
-      $("#campus_info_table tfoot").show() // enabling save button
-  });
-
-  $('#cancel_edit_campus_info').click(function(){    
-      $("#campus_info_table tfoot").hide() // disabling save button
-      $(".ui.error.message.campus_info").html('');
-    $('#campus_info_table label').each(function(){
-        $(this).show();     
-    });  
-      $('#campus_info_table .ui.input').each(function(){
-        $(this).hide();
-      });  
-    $('#edit_campus_info').show();
-  });
-  CampusConnect.College.Validation.campusInfo();
-
   $('.message .close').on('click', function() {
       $(this).closest('.message').transition('fade');
       window.history.pushState({}, document.title, "/profile" );
