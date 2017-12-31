@@ -126,8 +126,8 @@ CampusConnect.College.Validation = function() {
                         prompt: 'University name can not be blank'
                     }]
                 },                
-                'address1': {
-                    identifier: 'address1',
+                'address_line_1': {
+                    identifier: 'address_line_1',
                     rules: [{
                         type: 'empty',
                         prompt: 'Please enter the address'
@@ -143,8 +143,8 @@ CampusConnect.College.Validation = function() {
                         prompt: 'Pincode number length should be 6 digits'
                     }]
                 },
-                'city': {
-                    identifier: 'city',
+                'town_city': {
+                    identifier: 'town_city',
                     rules: [{
                         type: 'empty',
                         prompt: 'Please enter the city'
