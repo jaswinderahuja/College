@@ -6,12 +6,12 @@
         <%=stylesheet_link_tag "dashboard.css"%>
         
         <%= csrf_meta_tags %>
+    </head>
+    <body>  
         <%= javascript_include_tag 'application.js' %>
         <%= javascript_include_tag 'campus_connect/utilities.js' %>       
         <%= javascript_include_tag "campus_connect/college/validation.js" %>        
         <%= javascript_include_tag "campus_connect/college/profile_management.js" %>        
-    </head>
-    <body>  
         <%= render 'layouts/header' %>
        
 

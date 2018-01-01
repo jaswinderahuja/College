@@ -1,4 +1,5 @@
-
+<%= render :partial=>"sidebar" %>
+<div class="pusher" style="padding-top:5%;">
 <div class="ui grid" style="margin-top:50px">
 	<div class="three wide column"></div>
 	<div class="eight wide column">
@@ -40,7 +41,7 @@
 	</div>
 	<div class="five wide column"></div>
 
-
+</div>
 </div>
 <div class="response" style="position:absolute;top:80px;left:600px;">
 <div  class="ui floating info message" id="message" style="padding-left:50px;padding-right:50px;display:<%= @message.present? ? 'block' : 'none' %>">
