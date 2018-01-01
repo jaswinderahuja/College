@@ -42,7 +42,10 @@ module CRUD
               cu.save!              
               address = CampusAddress.where(:campus_id=>old_campus_id).first
               address.campus_id = campus.id
-              address.save!
+              address.save!              
+              contact_detail = CampusContactDetail.where(:campus_id=>old_campus_id).first
+              contact_detail.campus_id = campus.id
+              contact_detail.save!
             end            
               campus.university_name = options[:university_name] 
               campus.save!            
@@ -53,6 +56,7 @@ module CRUD
             return campus.id
           end
       end
+
     end
   end
 end

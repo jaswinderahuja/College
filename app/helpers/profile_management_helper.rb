@@ -10,4 +10,10 @@ module ProfileManagementHelper
 			inner join cities c on p.city_id=c.id 
 			inner join states s on c.state_id=s.id where p.pincode=#{pincode}").first
 	end
+
+	def contact_details
+		campus = CampusUser.where(:user_id=>current_user.id).first.campus
+		contact_info = campus.campus_contact_detail
+		return contact_info
+	end
 end

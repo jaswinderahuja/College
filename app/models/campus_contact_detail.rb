@@ -1,5 +1,7 @@
 class CampusContactDetail < ApplicationRecord
+  self.primary_key = "campus_id"
   belongs_to :campus
+
 
   def self.create_new_campus_contact options
       campus_contact = CampusContactDetail.new

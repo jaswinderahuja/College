@@ -160,9 +160,61 @@ CampusConnect.College.Validation = function() {
             }
         });
     };
+
+     var campusContactInfo = function () {
+        $('.ui.large.form.campus_contact_info').form({
+            fields: {                    
+                'email_id_1': {
+                    identifier: 'email_id_1',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a correct email address'
+                    }]
+                },
+                'email_id_2': {
+                    identifier: 'email_id_2',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a correct email address'
+                    }]
+                },
+                'phone_1': {
+                    identifier: 'phone_1',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only for phone #'
+                    },{
+                        type: 'exactLength[10]',
+                        prompt: 'Contact number length should be 10 digits'
+                    }]
+                },
+                'phone_2': {
+                    identifier: 'phone_2',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only'
+                    },{
+                        type: 'exactLength[10]',
+                        prompt: 'Contact number length should be 10 digits'
+                    }]
+                },
+                'landline_no': {
+                    identifier: 'landline_no',
+                    rules: [{
+                        type: 'integer',
+                        prompt: 'Please enter numbers only'
+                    },{
+                        type: 'exactLength[11]',
+                        prompt: 'Please enter valid landline number'
+                    }]
+                }
+            }
+        });
+    };
     return {
         campusDrive :campusDrive,
         userHelp:userHelp,
-        campusInfo:campusInfo
+        campusInfo:campusInfo,
+        campusContactInfo:campusContactInfo
     };
 }();

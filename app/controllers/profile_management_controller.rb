@@ -19,4 +19,15 @@ class ProfileManagementController < ApplicationController
       redirect_to(:action=>"index",:error=>"OOPS, something went wrong!")
     end         
   end
+  def edit_campus_contact
+     begin
+      params[:campus_id] = current_user.campus_users.first.campus.id
+      cc = CRUD::College::CampusContact.new(params)
+      cc.update
+      redirect_to(:action=>"index",:message=>"Campus Contact information updated successfully.")
+    rescue => e            
+      puts e
+      redirect_to(:action=>"index",:error=>"OOPS, something went wrong!")
+    end         
+  end
 end
