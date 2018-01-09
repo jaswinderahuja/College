@@ -1,7 +1,7 @@
 var CampusConnect = CampusConnect || {};
 CampusConnect.ConnectionDashboard = function () {
 
-	var cardsTemplate;
+	// var cardsTemplate;
     
     var compileHandlebarTemplate = function(templateId) {
         var source   = $('#' + templateId).html();
