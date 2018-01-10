@@ -52,29 +52,29 @@ CampusConnect.College.ProfileManagement = function() {
 		    $('#edit_campus_contact_info').show();
 		  });
 	}
-
-	var user_info_table_init = function(){
-		$('#edit_user_info').click(function(){
-		    $('#edit_user_info').hide();
-		    $('#user_info_table label').each(function(){
+	
+	var inplace_edit_init = function(id){
+		$('#edit_'+id).click(function(){
+		    $(this).hide();
+		    $('#'+id+'_table label').each(function(){
 		        $(this).hide();     
 		    });  
-		    $('#user_info_table .ui.input').each(function(){
+		    $('#'+id+'_table .ui.input').each(function(){
 		        $(this).show();     
 		    });  
-		      $("#user_info_table tfoot").show() // enabling save button
+		      $("#"+id+"_table tfoot").show() // enabling save button
 		  });
 
-		  $('#cancel_edit_user_info').click(function(){    
-		      $("#user_info_table tfoot").hide() // disabling save button
-		      $(".ui.error.message.user_info").html('');
-		    $('#user_info_table label').each(function(){
+		  $('#cancel_edit_'+id).click(function(){    
+		      $("#"+id+"_table tfoot").hide() // disabling save button
+		      $(".ui.error.message."+id).html('');
+		    $('#'+id+'_table label').each(function(){
 		        $(this).show();     
 		    });  
-		      $('#user_info_table .ui.input').each(function(){
+		      $('#'+id+'_table .ui.input').each(function(){
 		        $(this).hide();
 		      });  
-		    $('#edit_user_info').show();
+		    $('#edit_'+id).show();
 		  });
 	}
 
@@ -82,8 +82,9 @@ CampusConnect.College.ProfileManagement = function() {
 	var ready = function(){
 		$(document).ready(function(){
 			campus_info_table_init();
-			campus_contact_info_table_init();	
-			user_info_table_init();
+			campus_contact_info_table_init();				
+			inplace_edit_init("user_info");
+			inplace_edit_init("social_connect");
 		  	CampusConnect.College.Validation.campusInfo();
 		  	CampusConnect.College.Validation.campusContactInfo();
 		})
