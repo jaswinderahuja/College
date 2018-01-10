@@ -1,0 +1,69 @@
+  <%= form_tag({:action=>"edit_contact_details"},method: "post", :class=>"ui large form user_contact_info") do %>
+<table class="ui single line table" id="user_contact_info_table">
+  <thead>
+    <tr>
+      <th colspan="3">
+        <h2 class="ui header">      
+      <div class="content">
+        Contact Information
+      </div>
+    </h2>
+      </th>
+      <th>
+        <div id="edit_user_contact_info">
+        <a  style="cursor:pointer;float:right;padding-right:10px;"><i title="edit" class="edit icon" style="font-size:x-large;"></i></a>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="active"><b>Primary email</b></td>
+      <td class="active"><b>Primary phone#</b></td>
+     	<td class="active"><b>Secondary email</b></td>
+      <td class="active"><b>Secondary phone#</b></td>
+    </tr>
+    <tr>
+    	<% campus_contact_info = contact_details %>
+      	<td class="value">
+      		<label> <%=campus_contact_info.email_1 %></label>
+      		<div class="ui input" style="display:none">
+            <%= text_field_tag "email_id_1",campus_contact_info.email_1%>
+      		</div>
+      	</td>      	
+      	<td class="value">
+      		<label><%=campus_contact_info.phone_number_1 %></label>
+      		<div class="ui input" style="display:none">
+            <%= text_field_tag "phone_1",campus_contact_info.phone_number_1%>      			
+      		</div>
+      	</td>
+        <td class="value">
+          <label><%=campus_contact_info.email_2 %></label>
+          <div class="ui input" style="display:none">
+            <%= text_field_tag "email_id_2",campus_contact_info.email_2%>           
+          </div>
+        </td>
+      	<td class="value">
+      		<label><%=campus_contact_info.phone_number_2 %></label>
+      		<div class="ui input" style="display:none">
+      			<%= text_field_tag "phone_2",campus_contact_info.phone_number_2%>
+      		</div>
+      	</td>      	
+    </tr>
+    
+  </tbody>
+   <tfoot class="full-width" style="display:none">
+    <tr>      
+      <th colspan="4">
+      	<button  class="ui right floated primary button" id="save_user_contact_info">
+          Save
+        </button>
+      	<div class="ui right floated green button" id="cancel_edit_user_contact_info">
+          Cancel
+        </div>        
+      </th>
+    </tr>
+  </tfoot>
+</table>
+<div class="ui error message user_contact_info"></div>
+<%end%>

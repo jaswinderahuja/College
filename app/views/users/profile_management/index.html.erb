@@ -1,0 +1,19 @@
+<%= render :partial=>"sidebar" %>
+<div class="pusher" style="padding-top:5%;">
+<div class="ui center aligned container pusher">  
+	<h2 class="ui header">
+		<img class="ui image" src="/images/icons/school.png">
+		<div class="content">
+		    You can manage your account here!
+		    <!-- Please update if not correct -->
+		</div>
+	</h2>		
+	<%= render :partial=>"user_info_table"%>
+	<br/>
+	<br/>
+	<%= render :partial=>"social_connect"%>
+	<br/>
+	
+</div>
+</div>
+<%=render :partial=>"response_message"%>

@@ -1,0 +1,68 @@
+  <%= form_tag({:action=>"edit"},method: "post", :class=>"ui large form user_info") do %>
+<table class="ui single line table" id="user_info_table">
+  <thead>
+    <tr>
+      <th colspan="3">
+        <h2 class="ui header">      
+      <div class="content">
+        User Information
+      </div>
+    </h2>
+      </th>
+      <th>
+        <div id="edit_user_info">
+        <a  style="cursor:pointer;float:right;padding-right:10px;"><i title="edit" class="edit icon" style="font-size:x-large;"></i></a>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="active"><b>Salutation</b></td>
+      <td class="active"><b>First Name</b></td>
+      <td class="active"><b>Last Name</b></td>        
+      <td class="active"><b>Email</b></td>
+    </tr>
+    <tr> 
+      <td class="value">
+        <label>Mr/Mrs</label>
+        <div class="ui input disabled" style="display:none">
+          <%= text_field_tag "salutation","Mr/Mrs"%>           
+        </div>
+      </td> 	    	
+    	<td class="value">
+    		<label><%=current_user.firstname %></label>
+    		<div class="ui input" style="display:none">
+          <%= text_field_tag "firstname",current_user.firstname%>      			
+    		</div>
+    	</td>
+    	<td class="value">
+    		<label><%=current_user.lastname %></label>
+    		<div class="ui input" style="display:none">
+    			<%= text_field_tag "lastname",current_user.lastname%>
+    		</div>
+    	</td>
+      <td class="value">
+        <label><%=current_user.email %></label>
+        <div class="ui input" style="display:none">
+          <%= text_field_tag "email",current_user.email%>
+        </div>
+      </td>
+      
+    </tr>    
+  </tbody>
+   <tfoot class="full-width" style="display:none">
+    <tr>      
+      <th colspan="4">
+      	<button  class="ui right floated primary button" id="save_user_info">
+          Save
+        </button>
+      	<div class="ui right floated green button" id="cancel_edit_user_info">
+          Cancel
+        </div>                
+      </th>
+    </tr>
+  </tfoot>
+</table>
+<div class="ui error message user_info"></div>
+<%end%>

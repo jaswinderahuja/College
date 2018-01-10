@@ -7,4 +7,11 @@ class User < ApplicationRecord
   has_many :campus_users
   has_many :invitations
   has_many :user_tickets
+  
+  def update_user(options)
+  		self.firstname = options[:firstname]
+      self.lastname = options[:lastname]
+  		self.email = options[:email]
+  		self.save!
+  end
 end
