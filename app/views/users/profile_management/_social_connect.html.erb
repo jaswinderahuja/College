@@ -1,8 +1,8 @@
-  <%= form_tag({controller: "profile_management",:action=>"edit_contact_details"},method: "post", :class=>"ui large form social_connect_form") do %>
+  <%= form_tag({:action=>"edit_social_connect"},method: "post", :class=>"ui large form social_connect_form") do %>
 <table class="ui single line table" id="social_connect_table">
   <thead>
     <tr>
-      <th colspan="3">
+      <th colspan="2">
         <h2 class="ui header">      
       <div class="content">
         Social Connect
@@ -18,37 +18,30 @@
   </thead>
   <tbody>
     <tr>
-      <td class="active"><b>Primary email</b></td>
-      <td class="active"><b>Primary phone#</b></td>
-     	<td class="active"><b>Secondary email</b></td>
-      <td class="active"><b>Secondary phone#</b></td>
+      <td class="active"><b>LinkedIn </b></td>
+      <td class="active"><b>Facebook </b></td>
+     	<td class="active"><b>Twitter</b></td>
     </tr>
     <tr>
-    	<% campus_contact_info = contact_details %>
+    	
       	<td class="value">
-      		<label> <%=campus_contact_info.email_1 %></label>
+      		<label> <%=current_user.linkedin_link.present? ? current_user.linkedin_link : "--" %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "email_id_1",campus_contact_info.email_1%>
+            <%= text_field_tag "linkedin_link",current_user.linkedin_link%>
       		</div>
       	</td>      	
       	<td class="value">
-      		<label><%=campus_contact_info.phone_number_1 %></label>
+      		<label><%=current_user.facebook_link.present? ?  current_user.facebook_link : "--" %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "phone_1",campus_contact_info.phone_number_1%>      			
+            <%= text_field_tag "fb_link",current_user.facebook_link%>      			
       		</div>
       	</td>
         <td class="value">
-          <label><%=campus_contact_info.email_2 %></label>
+          <label><%=current_user.twitter_link.present? ? current_user.twitter_link : "--"%></label>
           <div class="ui input" style="display:none">
-            <%= text_field_tag "email_id_2",campus_contact_info.email_2%>           
+            <%= text_field_tag "twitter_link",current_user.twitter_link %>           
           </div>
-        </td>
-      	<td class="value">
-      		<label><%=campus_contact_info.phone_number_2 %></label>
-      		<div class="ui input" style="display:none">
-      			<%= text_field_tag "phone_2",campus_contact_info.phone_number_2%>
-      		</div>
-      	</td>      	
+        </td>      	
     </tr>    
   </tbody>
    <tfoot class="full-width" style="display:none">

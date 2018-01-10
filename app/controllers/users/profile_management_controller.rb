@@ -5,8 +5,14 @@ class Users::ProfileManagementController < ApplicationController
     @error = params[:error]
   end
 
-  def edit_contact_details
-
+  def edit_social_connect
+      begin
+        current_user.update_social_connect(params)
+        redirect_to(:action=>"index",:message=>"Campus information updated successfully.")        
+      rescue => e
+        puts e
+        redirect_to(:action=>"index",:error=>"OOPS, something went wrong!")
+      end
   end
 
   def edit

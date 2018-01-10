@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :users do    
     get '/profile', to: 'profile_management#index'
-    post "edit_contact_details", to: "profile_management#edit_contact_details"
+    post "edit_social_connect", to: "profile_management#edit_social_connect"
     post "edit", to: "profile_management#edit"
   end
 

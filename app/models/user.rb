@@ -15,4 +15,11 @@ class User < ApplicationRecord
   		self.email = options[:email]
   		self.save!
   end
+
+  def update_social_connect(options)
+    self.linkedin_link = options[:linkedin_link]
+    self.facebook_link = options[:fb_link]
+    self.twitter_link = options[:twitter_link]
+    self.save!
+  end
 end
