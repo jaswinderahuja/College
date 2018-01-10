@@ -87,6 +87,8 @@ CampusConnect.College.ProfileManagement = function() {
 			inplace_edit_init("social_connect");
 		  	CampusConnect.College.Validation.campusInfo();
 		  	CampusConnect.College.Validation.campusContactInfo();
+		  	CampusConnect.College.Validation.UserInfo();
+		  	CampusConnect.College.Validation.UserSocialConnect();
 		})
 	}();
 
