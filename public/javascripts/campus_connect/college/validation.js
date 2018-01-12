@@ -211,10 +211,72 @@ CampusConnect.College.Validation = function() {
             }
         });
     };
+
+    var UserInfo = function () {
+        $('.ui.large.form.user_info').form({
+            fields: {                    
+                'firstname': {
+                    identifier: 'firstname',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter a firstname'
+                    }]
+                },
+                'lastname': {
+                    identifier: 'lastname',
+                    rules: [{
+                        type: 'empty',
+                        prompt: 'Please enter a lastname'
+                    }]
+                },
+                'email': {
+                    identifier: 'email',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a correct email'
+                    }]
+                }
+            }
+        });
+    };
+
+    var UserSocialConnect = function () {
+        $('.ui.large.form.social_connect_form').form({
+            fields: {                    
+                'linkedin_link': {
+                    identifier: 'linkedin_link',
+                    optional: true,
+                    rules: [{
+                        type: 'url',
+                        prompt: 'Please enter a valid linkedin profile link'
+                    }]
+                },
+                'fb_link': {
+                    identifier: 'fb_link',
+                    optional: true,
+                    rules: [{
+                        type: 'url',
+                        prompt: 'Please enter a valid facebook profile link'
+                    }]
+                },
+                'twitter_link': {
+                    identifier: 'twitter_link',
+                    optional: true,
+                    rules: [{
+                        type: 'url',
+                        prompt: 'Please enter a valid twitter profile link'
+                    }]
+                }
+            }
+        });
+    };
+
     return {
         campusDrive :campusDrive,
         userHelp:userHelp,
         campusInfo:campusInfo,
-        campusContactInfo:campusContactInfo
+        campusContactInfo:campusContactInfo,
+        UserInfo:UserInfo,
+        UserSocialConnect:UserSocialConnect
     };
 }();
