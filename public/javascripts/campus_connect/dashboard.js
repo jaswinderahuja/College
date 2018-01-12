@@ -248,12 +248,9 @@ CampusConnect.Dashboard = function () {
 
     var ready = function(){
         $(document).ready(function(){
-            $("#filter_cities .ui.checkbox").checkbox({"onChange": function(){
+            $(".ui.checkbox").change(function(){
               CampusConnect.Dashboard.addFilter();
-            }});
-            $("#filter_department .ui.checkbox").checkbox({"onChange": function(){
-              CampusConnect.Dashboard.addFilter();
-            }});
+            });           
         });
     };
 
