@@ -13,8 +13,8 @@ CampusConnect.Utilities = function () {
     };
 
     var copmileTemplate = function(){
-        var source   = $("#departments-template").html();
-        departmentTemplate = Handlebars.compile(source);
+        // var source   = $("#departments-template").html();
+        // departmentTemplate = Handlebars.compile(source);
     };
 
     var departments = function(){
