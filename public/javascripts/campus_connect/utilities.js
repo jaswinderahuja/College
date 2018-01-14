@@ -29,12 +29,14 @@ CampusConnect.Utilities = function () {
 
 
     var init =function(){
-        copmileTemplate();
+        $(document).ready(function() {
+            copmileTemplate();
+        });
     };
-
     return {
         init: init,
         departments: departments,
         signOut: signOut
     };
 }();
+CampusConnect.Utilities.init();

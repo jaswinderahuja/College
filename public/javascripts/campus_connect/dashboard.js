@@ -2,8 +2,8 @@ var CampusConnect = CampusConnect || {};
 CampusConnect.Dashboard = function () {
 
 	var cardsTemplate,locationFilterTemplate,companyDetailsTemplate,citiesAndDepartmentTemplate;
-    var cities = [{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false} ] //,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false}];
-    var departments = [{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}] //,{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}];
+    var cities = [{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false} ];//,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},,{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false},{name: "Bangalore",seleted:true},{name: "Mumbai", seleted:false}];
+    var departments = [{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}];//,{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false},{name: "Software Engineer",seleted:true},{name:"Support Engineer", seleted:false}];
 	// var init = function(){
 	// 	/* off-canvas sidebar toggle */
 	// 	$('[data-toggle=offcanvas]').click(function() {
@@ -11,7 +11,6 @@ CampusConnect.Dashboard = function () {
 	// 	    $('.collapse').toggleClass('in').toggleClass('hidden-xs').toggleClass('visible-xs');
 	// 	});
 	// }
-    //
     var limit,offset;
     var compileHandlebarTemplate = function(templateId) {
         var source   = $('#' + templateId).html();
@@ -170,7 +169,7 @@ CampusConnect.Dashboard = function () {
             }
         }
         window.history.pushState("object or string", "Title", params);
-        CampusConnect.Dashboard.cards(sort_option);
+        cards(sort_option);
     };
 
 
@@ -187,7 +186,7 @@ CampusConnect.Dashboard = function () {
         var params = addCityFilter();
         var filter_values ="";
         var department_filter_list = filterList("filter_department");
-        if(department_filter_list != undefined && department_filter_list!= "" && department_filter_list.length > 0){
+        if(department_filter_list !== undefined && department_filter_list!== "" && department_filter_list.length > 0){
             for(i =0;i< department_filter_list.length;i++){
                 if((params === undefined || params === "") && filter_values === "" ){
                     filter_values = filter_values + "?d[]="+department_filter_list[i];
@@ -202,7 +201,7 @@ CampusConnect.Dashboard = function () {
         }else{
             window.history.pushState("object or string", "Title", params);
         }
-        CampusConnect.Dashboard.cards();
+        cards();
     };
 
     var addCityFilter = function(){
@@ -246,21 +245,29 @@ CampusConnect.Dashboard = function () {
         });
     };
 
-    var ready = function(){
-        $(document).ready(function(){
+    var init =function(){
+        $().ready(function() {
+            console.log("CampusConnect.Dashboard.init");
+            copmileTemplate();
+            filterCities();
+            filterDepartment();
             $(".ui.checkbox").change(function(){
-              CampusConnect.Dashboard.addFilter();
-            });           
+              addFilter();
+            });
+            $('.sort.ui.dropdown').dropdown({
+              onChange: function(value, text, $selectedItem) {
+                sorted_cards(value);
+              }
+            });
+            $(".prompt.search-bar").keydown(function(event){
+              if (event.keyCode == 13) {
+                  var query = $(this).val();
+                  search_openings(query);
+              }
+            });
+            cards();
         });
     };
-
-    var init =function(){
-        copmileTemplate();
-        filterCities();
-        filterDepartment();
-        ready();
-    };
-
     var showCompanyDetails =  function(opening_id){
            $.ajax({url:"/dashboard/company_info?op_id="+opening_id,
                 success: function(response){
@@ -321,12 +328,7 @@ CampusConnect.Dashboard = function () {
     return {
         showCompanyDetails:showCompanyDetails,
     	init:init,
-    	cards:cards,
-        sorted_cards:sorted_cards,
-        SendRequest:SendRequest,
-        search_openings:search_openings,
-        addCityFilter:addCityFilter,
-        addFilter:addFilter
+        SendRequest:SendRequest
     };
 }();
 

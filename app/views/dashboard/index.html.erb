@@ -33,21 +33,6 @@
     </div>
   </div>
 </div>
-<script>
-$('.sort.ui.dropdown').dropdown({
-    onChange: function(value, text, $selectedItem) {
-      CampusConnect.Dashboard.sorted_cards(value);
-    }
-});
-
-
-CampusConnect.Dashboard.cards();
-
-$(".prompt.search-bar").keydown(function(event){
-    if (event.keyCode == 13) {      
-        var query = $(this).val();
-        CampusConnect.Dashboard.search_openings(query);
-    }
-})
-
+<script type="text/javascript">
+    CampusConnect.Dashboard.init();
 </script>

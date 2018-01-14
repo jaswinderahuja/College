@@ -22,27 +22,28 @@
     <div class="nine wide column" style="display:block" id="cards-container">
       <div id="invitations-sent" style="display:block">
         <%= render :partial=>"invitations_sent"%>
-      </div> 
+      </div>
       <div id="requests-recieved" style="display:none">
-        <%= render :partial=>"requests_recieved"%>        
+        <%= render :partial=>"requests_recieved"%>
       </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
- CampusConnect.ConnectionDashboard.invitationsCards('accepted');
-$('.menu .item').tab();
-$(".steps .step").click(function(){
-    $(this).addClass('active').siblings().removeClass('active');    
-    var div_id = $(this).attr("data-index");    
-    $("#"+div_id).show().siblings().hide();   
+$(document).ready(function() {
+  CampusConnect.ConnectionDashboard.init();
+  CampusConnect.ConnectionDashboard.invitationsCards('accepted');
+  $('.menu .item').tab();
+  $(".steps .step").click(function(){
+    $(this).addClass('active').siblings().removeClass('active');
+    var div_id = $(this).attr("data-index");
+    $("#"+div_id).show().siblings().hide();
 
     if(div_id == "invitations-sent"){
-      $('#invitations .ui.menu').find('.item').tab('change tab', 'accepted')      
-    }else if(div_id == "requests-recieved"){      
+      $('#invitations .ui.menu').find('.item').tab('change tab', 'accepted')
+    }else if(div_id == "requests-recieved"){
       $('#requests .ui.menu').find('.item').tab('change tab', 'accepted')
     }
-    
-
+  });
 });
 </script>
