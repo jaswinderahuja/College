@@ -1,5 +1,4 @@
-module Search
-	class QueryConstructor
+class QueryConstructor
 		SIZE = 4
 
 		def initialize(keyword=nil,from=0,sort_by=nil,loc_filter=nil,pos_filter=nil,openings_search_fields=nil,companies_search_fields=nil)
@@ -127,5 +126,13 @@ module Search
 			}
 			return body
 		end
-	end
+
+		def top_city_list
+			body = {
+				:_source=>["location.name"],
+				:query =>{
+					:match_all=>{}
+				}
+			}
+		end
 end

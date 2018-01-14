@@ -4,7 +4,7 @@ module Search
 		def initialize(opening_id)		
 			@opening_ids = [opening_id]
 			@query_constructor = QueryConstructor.new
-			@query_executor = Search::QueryExecutor.new
+			@query_executor = QueryExecutor.new
 		end
 
 		def search

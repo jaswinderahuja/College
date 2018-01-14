@@ -70,4 +70,10 @@ class DashboardController < AuthenticatedController
       render :json=>{"openings"=>data,"message"=>"","error"=>""}
   end
 
+  def cities
+    city_obj = List::City.new
+    cities = city_obj.search
+    response = {:data=>cities}
+    render :json=>response.to_json
+  end
 end

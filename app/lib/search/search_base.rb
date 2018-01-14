@@ -5,7 +5,7 @@ module Search
 			@openings_search_fields = openings_search_fields
 			@companies_search_fields = companies_search_fields		
 			@query_constructor = QueryConstructor.new(@keyword,from,sort_by,city_filter,positions,@openings_search_fields,@companies_search_fields)			
-			@query_executor = Search::QueryExecutor.new
+			@query_executor = QueryExecutor.new
 		end
 
 		def search

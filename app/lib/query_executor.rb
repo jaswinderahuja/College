@@ -1,5 +1,4 @@
-module Search
-	class QueryExecutor < ES::Configuration
+class QueryExecutor < ES::Configuration
 		INDEX_NAME = "company"
     	INDEX_TYPES = [COMPANIES = "companies", OPENINGS = "openings"]
 
@@ -16,5 +15,4 @@ module Search
 			@body = body if body.present?
 			companies_hash = @client.search :index=>INDEX_NAME,:type=>COMPANIES,:body=>@body
 		end
-	end
 end

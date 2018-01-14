@@ -6,7 +6,7 @@ module Search
 			@invitation_status = invitation_status
 			@invitation_updated_at = invitation_time
 			@query_constructor = QueryConstructor.new
-			@query_executor = Search::QueryExecutor.new
+			@query_executor = QueryExecutor.new
 		end
 
 		def search
