@@ -76,4 +76,11 @@ class DashboardController < AuthenticatedController
     response = {:data=>cities}
     render :json=>response.to_json
   end
+
+  def positions
+      pos_obj = List::Position.new
+      position = pos_obj.search
+      response = {:data=>position}
+      render :json=>response.to_json
+  end
 end

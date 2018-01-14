@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   post 'campus_drives/create'
 
+  get 'dashboard/positions'
   get 'dashboard/cities'
   get 'dashboard/company_info'
   get 'dashboard/company_details'

@@ -135,4 +135,13 @@ class QueryConstructor
 				}
 			}
 		end
+
+		def select_top_position
+			body = {
+				:_source=>["position"],
+				:query =>{
+					:match_all=>{}
+				}
+			}
+		end
 end
