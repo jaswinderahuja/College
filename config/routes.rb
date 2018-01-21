@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'landing#index'
   get '/dashboard', to: 'dashboard#index'
-  devise_for :users, controllers: { sessions: 'users/sessions',registrations: 'users/registrations' }
+  devise_for :users, controllers: { sessions: 'users/sessions',registrations: 'users/registrations',passwords: 'users/passwords' }
   match 'user_root' => 'dashboard#index', as: :user_root,via: :all
 
   get 'locations/countries'
