@@ -1,16 +1,28 @@
-<h2>Forgot your password?</h2>
+<div class="ui middle aligned center aligned grid">
+  <div class="six wide column">
+    <h2 class="ui image header">
+      <div class="content">
+        <h2>Forgot your password? </h2>
+      </div>
+    </h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),:html=>{:class=>"ui large form"}) do |f| %>
+      <div class="ui   segment">
+        
+        <h4 style="padding: 10px 25px 20px 25px;">  We will send you a link to reset your password. Please enter email
+        </h4>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>            
+            <%= f.email_field :email, autofocus: true, placeholder: 'Please enter email' %>            
+          </div>
+        </div>
+        <%= f.submit "Send me reset password link", :class=>"ui fluid large teal submit button" %>
+        <div class="ui error message"><%= devise_error_messages1!%></div>
+      </div>
+     <%end %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages1! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <div class="ui segment">
+       <a href="/users/sign_in">Login</a>
+    </div>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>
