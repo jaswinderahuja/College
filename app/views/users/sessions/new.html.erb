@@ -33,17 +33,21 @@
       <div class="ui horizontal divider">
         Or
       </div>
-      <div  class="ui other-login">
+      <!-- <div  class="ui other-login">
         <button class="ui basic button">
         <i class=""> <img class="avatar ui image" src="/images/google.png"></i>
         <span> Google<span>
           </button>
-        </div>
+      </div> -->
+       <div class="ui">   
+        Click here if,  <%= link_to("Forgot Password", new_user_password_path, id:"forget-password", class:"forget-password") %>
+      </div>
         <div class="ui error message">
           <%= devise_error_messages1!%>
         </div>        
       </div>
       <%end %>
+     
       <div class="ui segment">
         New to us? <a href="/users/sign_up">Register</a>
       </div>
