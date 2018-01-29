@@ -22,4 +22,7 @@ class User < ApplicationRecord
     self.twitter_link = options[:twitter_link]
     self.save!
   end
+  def send_devise_notification(notification, *args)
+       devise_mailer.delay.send(notification, self, *args)
+  end
 end
