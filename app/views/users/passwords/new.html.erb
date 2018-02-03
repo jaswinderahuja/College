@@ -9,7 +9,7 @@
         <h2>Forgot your password? </h2>
       </div>
     </h2>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name),:remote=>true,:html=>{:class=>"ui large form reset-password"}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),:html=>{:class=>"ui large form reset-password"}) do |f| %>
       <div class="ui   segment">
         
         <h4 style="padding: 10px 25px 20px 25px;">  We will send you a link to reset your password. Please enter an Email
@@ -38,10 +38,16 @@
 </div>
 
 <script type="text/javascript">
-$(".ui.large.form.reset-password").on("submit", function(e) {
+CampusConnect.Login.Validation.forgotPassword();
+$(".ui.large.form.reset-password .submit.button").on("click", function(e) {
+    var email = $("#user_email").val();
+  if( email === undefined || email ===""){
+    return false;
+  }
+    var url = $(".ui.large.form.reset-password").attr('action');
     $.ajax({
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
+        url: url ,
+        data: $(".ui.large.form.reset-password").serialize(),
         type: "POST",
         dataType: "json",
         success: function(response) {
@@ -62,5 +68,6 @@ $(".ui.large.form.reset-password").on("submit", function(e) {
         }
     });
     e.preventDefault(); //THIS IS VERY IMPORTANT
+    return false;
 });
 </script>

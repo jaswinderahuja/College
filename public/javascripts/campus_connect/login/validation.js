@@ -70,6 +70,22 @@ CampusConnect.Login.Validation = function() {
         });
     };
 
+    var forgotPassword = function () {
+        $('.ui.large.form.reset-password').form({                            
+            fields: {
+                'user[email]': {
+                    identifier: 'user_email',
+                    rules: [{
+                        type: 'email',
+                        prompt: 'Please enter a valid email address'
+                    }]
+                }
+            },
+            inline : true,
+            on     : 'blur'            
+        });
+    };
+
     var collegeRegistration = function () {
         $('.ui.large.form').form({
             fields: {
@@ -175,6 +191,7 @@ CampusConnect.Login.Validation = function() {
     return {
         initial: initial,
         login: login,
-        collegeRegistration :collegeRegistration
+        collegeRegistration :collegeRegistration,
+        forgotPassword:forgotPassword
     };
 }();
