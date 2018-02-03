@@ -21,18 +21,17 @@
           </div>
         </div>
         <%= f.submit "Send me reset password link", :class=>"ui fluid large teal submit button" %>
-        <div class="ui error message"><%= devise_error_messages1!%></div>
       </div>
      <%end %>
-
     <div class="ui segment">
        <a href="/users/sign_in">Login</a>
     </div>
   </div>
   <div class="six wide column response-div"  style="display:none">
       <div class="ui segment"> 
-        <div class="ui info message" style="display:none"><h2>Successfully sent!</h2>
-          <p>We have sent reset password instructions to registered email at . Please check your email to reset the password and enjoy our service. 
+        <div class="ui info message" style="display:none">
+          <h2></h2>
+          <p>
           </p>
         </div>
   </div>
@@ -50,12 +49,16 @@ $(".ui.large.form.reset-password").on("submit", function(e) {
             $(".default-div").hide();
             $(".response-div").show();
             $(".info.message").show();            
+            $(".info.message h2").html("Successfully sent!");            
             $(".info.message p").html("We have sent reset password instructions to registered email at <b>"+response.data+"</b> . Please check your email to reset the password and enjoy our service.")
         },
         error: function(xhr, textStatus, errorThrown) {
-            console.log("in error")
-            alert("OOPs something went wrong!. Please try again later");
-           $(".error.message").show();
+            $(".default-div").hide();
+            $(".message").removeClass("info message").addClass("error message");
+            $(".response-div").show();
+            $(".error.message").show();
+            $(".error.message h2").html("OOPS, something went wrong");
+            $(".error.message p").html("Please try again after sometime!");
         }
     });
     e.preventDefault(); //THIS IS VERY IMPORTANT
