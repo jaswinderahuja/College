@@ -3,16 +3,16 @@
 <br/>
 
 <div class="ui middle aligned center aligned grid">
-  <div class="six wide column">
+  <div class="six wide column default-div">
     <h2 class="ui image header">
       <div class="content">
         <h2>Forgot your password? </h2>
       </div>
     </h2>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name),:html=>{:class=>"ui large form"}) do |f| %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name),:remote=>true,:html=>{:class=>"ui large form reset-password"}) do |f| %>
       <div class="ui   segment">
         
-        <h4 style="padding: 10px 25px 20px 25px;">  We will send you a link to reset your password. Please enter email
+        <h4 style="padding: 10px 25px 20px 25px;">  We will send you a link to reset your password. Please enter an Email
         </h4>
         <div class="field">
           <div class="ui left icon input">
@@ -29,4 +29,35 @@
        <a href="/users/sign_in">Login</a>
     </div>
   </div>
+  <div class="six wide column response-div"  style="display:none">
+      <div class="ui segment"> 
+        <div class="ui info message" style="display:none"><h2>Successfully sent!</h2>
+          <p>We have sent reset password instructions to registered email at . Please check your email to reset the password and enjoy our service. 
+          </p>
+        </div>
+  </div>
 </div>
+
+<script type="text/javascript">
+$(".ui.large.form.reset-password").on("submit", function(e) {
+    $.ajax({
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        type: "POST",
+        dataType: "json",
+        success: function(response) {
+            console.log(response.data);
+            $(".default-div").hide();
+            $(".response-div").show();
+            $(".info.message").show();            
+            $(".info.message p").html("We have sent reset password instructions to registered email at <b>"+response.data+"</b> . Please check your email to reset the password and enjoy our service.")
+        },
+        error: function(xhr, textStatus, errorThrown) {
+            console.log("in error")
+            alert("OOPs something went wrong!. Please try again later");
+           $(".error.message").show();
+        }
+    });
+    e.preventDefault(); //THIS IS VERY IMPORTANT
+});
+</script>

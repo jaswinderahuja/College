@@ -8,10 +8,9 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    puts "========="
-    p params
-    puts "========="
-    super
+    self.resource = resource_class.send_reset_password_instructions(resource_params)
+    yield resource if block_given?
+    render :json=>{:data=>self.resource.email}
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef
@@ -28,6 +27,7 @@ class Users::PasswordsController < Devise::PasswordsController
 
   def after_resetting_password_path_for(resource)
     super(resource)
+    puts "after_resetting_password_path_for(resource)"
   end
 
   # The path used after sending reset password instructions
