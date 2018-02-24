@@ -12,9 +12,14 @@ CampusConnect.Dashboard = function () {
 
 	var copmileTemplate = function(){
         cardsTemplate = compileHandlebarTemplate("cards-template");
-        companyDetailsTemplate = compileHandlebarTemplate("company-details-template");
+        // companyDetailsTemplate = compileHandlebarTemplate("company-details-template");
         citiesAndDepartmentTemplate = compileHandlebarTemplate('cities-department-filter-template');
     };
+    var compileCompanyDetailTemplate = function () {
+        $().ready(function() {
+            companyDetailsTemplate = compileHandlebarTemplate("company-details-template");
+        });
+    }
 
     var handlebarUpdateDom = function(domId,template,json) {
         var html = template(json);
@@ -353,7 +358,8 @@ CampusConnect.Dashboard = function () {
     return {
         showCompanyDetails:showCompanyDetails,
     	init:init,
-        SendRequest:SendRequest
+        SendRequest:SendRequest,
+        compileCompanyDetailTemplate:compileCompanyDetailTemplate
     };
 }();
 
