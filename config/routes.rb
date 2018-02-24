@@ -14,8 +14,9 @@ Rails.application.routes.draw do
 
   get 'user_help', to: 'user_help#index'
   post 'user_help/create' 
-  get 'connections', to: 'connections_dashboard#index' 
+  get 'connections', to: 'connections_dashboard#index'
   get 'connections_dashboard/invitations_sent'
+  get 'connections_dashboard/notifications'
 
   post 'campus_drives/create'
 

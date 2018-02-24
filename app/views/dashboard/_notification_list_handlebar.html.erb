@@ -1,0 +1,10 @@
+<script id="notification-template" type="text/x-handlebars-template">
+  <div class="header">
+    Notifications
+  </div>
+  {{#each notifications}}
+  <div class="item" style="white-space: normal;max-width: 220px">
+    <a href="{{this.url}}">{{this.message}}</a>
+  </div>
+  {{/each}}
+</script>

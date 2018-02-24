@@ -46,74 +46,6 @@ html, body {
 }
 
 
-/*.wrapper, .row {
-   height: 100%;
-   margin-left:0;
-   margin-right:0;
-}
-
-.wrapper:before, .wrapper:after,
-.column:before, .column:after {
-    content: "";
-    display: table;
-}
-
-.wrapper:after,
-.column:after {
-    clear: both;
-}
-
-#sidebar {
-    background-color: #eee;
-    padding-left: 0;
-    float: left;
-    min-height: 100%;
-}
-
-#sidebar .collapse.in {
-    display: inline;
-}
-
-#sidebar > .nav>li>a {
-    white-space: nowrap;
-    overflow: hidden;
-}
-#sidebar > .nav>li {
-    line-height: 30px;
-    vertical-align: middle;
-}
-
-.img-circle{
-    width: 80%;
-    background: #fff;
-    margin-left: 5%;
-    z-index: 1000;
-    position: inherit;
-    margin-top: 10px;
-    border: 1px solid rgba(52,73,94,.44);
-    padding: 3px;
-}
-.profile_pic {
-    width: 35%;
-    float: left;
-}
-.profile_info {
-    padding: 15px 10px 10px;
-    width: 65%;
-    float: left;
-}
-
-.site_title {
-    font-weight: 400;
-    font-size: 22px;
-    width: 100%;
-    line-height: 59px;
-    display: block;
-    height: 55px;
-    margin: 0;
-    padding-left: 10px;
-    /*color: #ECF0F1!important;*/
-}
 
 .top_nav{
   margin-left: 16.8%;
@@ -379,4 +311,23 @@ ul.msg_list li a .image img {
     float: right !important;
   }
 }
-*/
+
+.notification-icon {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 1s;
+    /* When the animation is finished, start again */
+
+}
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-90deg); }
+    20% { transform: translate(-3px, 0px) rotate(90deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(90deg); }
+    50% { transform: translate(-1px, 2px) rotate(-90deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-90deg); }
+    80% { transform: translate(-1px, -1px) rotate(90deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-90deg); }
+}

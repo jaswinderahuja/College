@@ -39,6 +39,7 @@ class DashboardController < AuthenticatedController
 
   def company_details
       @op_id = params["op_id"].to_i
+      @responded = params[:accepted].present?
       @campus_id = current_user.campus_users.first.campus_id
       @knocked =  Invitation.where(:campus_id=>@campus_id,:opening_id=>@op_id).present?
   end

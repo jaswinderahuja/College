@@ -62,6 +62,7 @@
 <!-- right company pannel -->
 <div class="container" style="position:fixed;z-index:10;top:22%;left:72%;bottom:10%">
     <div class="ui card">
+      {{#if <%=!@responded%>}}
         <div class="content">
             <div class="ui grid">
                 <div class="row">
@@ -91,6 +92,7 @@
                 </div>
             </div>
         </div>
+      {{/if}}
         <div class="content">
             <h3>Company Links</h3>
             <div class="ui grid">
