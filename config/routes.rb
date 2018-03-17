@@ -6,6 +6,12 @@ Rails.application.routes.draw do
     post "edit", to: "profile_management#edit"
   end
 
+  namespace :api do
+    namespace :v0 do
+      put 'college-seen-status', to: 'connections_dashboard#college_seen_status'
+    end
+  end
+  
   get 'profile', to: 'profile_management#index'
   
   post 'profile_management/edit', to: 'profile_management#edit'

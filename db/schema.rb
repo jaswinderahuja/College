@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180110174614) do
+ActiveRecord::Schema.define(version: 20180317074902) do
+
+  create_table "account", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "acct_num"
+    t.decimal "amount",   precision: 10, scale: 2
+  end
 
   create_table "app_exceptions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -135,13 +140,21 @@ ActiveRecord::Schema.define(version: 20180110174614) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "emp", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string  "emp_name", limit: 20
+    t.integer "emp_sal"
+    t.index ["emp_name"], name: "emp_sal_index", unique: true, using: :btree
+  end
+
   create_table "invitations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "campus_id"
     t.integer  "opening_id"
     t.integer  "user_id"
     t.boolean  "accepted"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "is_college_user_seen", default: false
+    t.boolean  "is_company_user_seen", default: false
     t.index ["campus_id"], name: "index_invitations_on_campus_id", using: :btree
     t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end

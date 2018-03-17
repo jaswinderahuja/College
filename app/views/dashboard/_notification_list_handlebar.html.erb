@@ -4,7 +4,7 @@
   </div>
   {{#each notifications}}
   <div class="item" style="white-space: normal;max-width: 220px">
-    <a href="{{this.url}}">{{this.message}}</a>
+    <a href="{{this.url}}" onclick="CampusConnect.Notifications.updateNotificationStatus('{{this.url}}')">{{this.message}}</a>
   </div>
   {{/each}}
 </script>

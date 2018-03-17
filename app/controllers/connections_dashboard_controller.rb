@@ -24,12 +24,14 @@ class ConnectionsDashboardController < ApplicationController
   	render :json=>response
   end
 
-  #  this api will provide information of accepted/rejected request sent from college side
+  #  this api will provide information of accepted/rejected request sent from college side which is not yet seen by college user
   def notifications
     @campus_id = current_user.campus_users.first.campus_id
     invi_status=CRUD::Utility::Invitations.new(@campus_id)
      data = invi_status.get_request_sent
      render :json=>{:data=>data}
   end
+
+  
 
 end

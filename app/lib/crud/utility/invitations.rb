@@ -3,7 +3,7 @@ module CRUD
     class Invitations < Notifications
 
       def get_request_sent
-        invitations = Invitation.where(:campus_id=>@campus_id)
+        invitations = Invitation.where(:campus_id=>@campus_id,:is_college_user_seen=>false)
         if invitations.present?
           openings = []
           invitation_status = {}
@@ -18,6 +18,12 @@ module CRUD
           construct_response(data)
         end
 
+      end
+
+      def update_is_college_user_seen(op_id)
+        return "opening id is missing!.", 400 unless op_id.present?
+        Invitation.where(:opening_id=>op_id,:campus_id=>@campus_id).limit(1).update_all(:is_college_user_seen=>true)
+        return "Invitation seen status updated successfully!.", 200
       end
 
       def construct_response(data)
