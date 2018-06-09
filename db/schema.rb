@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180317074902) do
+ActiveRecord::Schema.define(version: 20180423143052) do
 
   create_table "account", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "acct_num"
@@ -83,7 +83,9 @@ ActiveRecord::Schema.define(version: 20180317074902) do
     t.boolean  "status"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "city_id"
     t.index ["campus_id"], name: "index_campus_invites_on_campus_id", using: :btree
+    t.index ["city_id"], name: "index_campus_invites_on_city_id", using: :btree
     t.index ["department_id"], name: "index_campus_invites_on_department_id", using: :btree
   end
 
@@ -219,6 +221,7 @@ ActiveRecord::Schema.define(version: 20180317074902) do
   add_foreign_key "campus_addresses", "campus", column: "campus_id"
   add_foreign_key "campus_contact_details", "campus", column: "campus_id"
   add_foreign_key "campus_courses", "campus", column: "campus_id"
+  add_foreign_key "campus_invites", "cities"
   add_foreign_key "campus_invites", "departments"
   add_foreign_key "campus_users", "campus", column: "campus_id"
   add_foreign_key "campus_users", "users"

@@ -29,6 +29,11 @@ module CRUD
             end
             return result
         end
+
+        def get_cities
+            result = City.select("id,name").as_json
+            return result 
+        end
     	
     end
   end

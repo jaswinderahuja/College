@@ -84,8 +84,8 @@ module ES
               type: "text"
             },
             location: {
-              :type=> "nested",
-              :Properties=>{
+              :type=> "object",
+              :properties=>{
                 :name=>{:type=>"text"},
                 :geo_location=>{:type=>"geo_point"}
               }

@@ -1,7 +1,10 @@
 module ProfileManagementHelper
 	def campus_info
-		campus = CampusUser.where(:user_id=>current_user.id).first.campus
-		address = campus.campus_address
+		campus, address = nil, nil
+		if current_user.present?
+		  campus = CampusUser.where(:user_id=>current_user.id).first.campus
+		  address = campus.campus_address
+		end
 		return [campus,address]
 	end
 
@@ -12,8 +15,11 @@ module ProfileManagementHelper
 	end
 
 	def contact_details
-		campus = CampusUser.where(:user_id=>current_user.id).first.campus
-		contact_info = campus.campus_contact_detail
+		contact_info = nil
+		if current_user.present?
+		  campus = CampusUser.where(:user_id=>current_user.id).first.campus
+		  contact_info = campus.campus_contact_detail
+		end
 		return contact_info
 	end
 end

@@ -15,7 +15,7 @@ module ES
 					inner join campus_addresses addr on addr.campus_id =  c.id
 					inner join pincodes pin on pin.pincode = addr.pin_code
 					inner join cities on cities.id = pin.city_id where c.id=#{univ_id};").first			
-			hash = {:college_name=>row[0],:university_name=>row[1],:city=>row[2],:approved_by=>"UGC",:rank=>111,:description=>" something",:established_year=>1990,:asia_rank=>1}
+			hash = {:college_name=>row[0],:university_name=>row[1],:city=>row[2],:approved_by=>"UGC",:rank=>nil,:description=>"",:established_year=>nil,:asia_rank=>nil}
 			return hash
 		end
 

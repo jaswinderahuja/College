@@ -3,6 +3,7 @@ module CRUD
     class Invitations < Notifications
 
       def get_request_sent
+        response = []
         invitations = Invitation.where(:campus_id=>@campus_id,:is_college_user_seen=>false)
         if invitations.present?
           openings = []
@@ -15,9 +16,9 @@ module CRUD
           openings = invitation_status.keys
           si = Search::SearchInvitations.new(openings, invitation_status, invitation_updated)
           data = si.search
-          construct_response(data)
+          response = construct_response(data)
         end
-
+        return response
       end
 
       def update_is_college_user_seen(op_id)

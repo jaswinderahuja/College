@@ -14,12 +14,28 @@ module ES
 		end
 
 		def create_campus_drive_hash(drive_id)
-		    hash = {}
-			row = res = ActiveRecord::Base.connection.select_rows("select c.college_name,c.university_name,drive.address,drive.date_of_drive,drive.no_of_students,d.name,drive.hod_email ,drive. coordinator_email_1,drive.coordinator_email_2,drive.coordinator_phone_1,drive.coordinator_phone_2,drive.description,drive.status from campus_invites drive inner join campus c on c.id=drive.campus_id inner join departments d on d.id = drive.department_id where drive.id=#{drive_id}").first
-			# :date_of_drive=>row[3]
-			hash = {:address=>row[2],:no_of_students=>row[4].to_i,:department=>row[5],:description=>row[11],
-					:contact_details=>{:hod_email=>row[6],:email_1=>row[7],:email_2=>row[8],:phone_1=>row[9],:phone_2=>row[10]}}
-			return hash
+			hash_response = {}
+			hash_data =  CampusInvite.joins(:campus,:department,:city).where("campus_invites.id=#{drive_id}")
+			.select("college_name,university_name,address,date_of_drive,no_of_students,departments.name as department_name,hod_email,coordinator_email_1,coordinator_email_2,coordinator_phone_1,coordinator_phone_2,description,status,cities.name as location").last.as_json
+			date_of_drive = (Date.parse(hash_data["date_of_drive"].to_s).to_time.to_i rescue nil)
+			hash_response = {
+				:address=>hash_data["address"],
+				:date_of_drive=>date_of_drive,
+				:no_of_students=>hash_data["no_of_students"].to_i,
+				:department=>hash_data["department_name"],
+				:description=>hash_data["description"],
+				:contact_details=>{
+					:hod_email=>hash_data["hod_email"],
+					:email_1=>hash_data["coordinator_email_1"],
+					:email_2=>hash_data["coordinator_phone_2"],
+					:phone_1=>hash_data["coordinator_phone_1"],
+					:phone_2=>hash_data["coordinator_phone_2"],
+				},
+				location: {
+					name: hash_data["location"]
+					}
+			}
+			return hash_response
 		end
 
 		def self.execute(drive_id)

@@ -1,5 +1,6 @@
 class CampusAddress < ApplicationRecord
   belongs_to :campus
+  belongs_to :pincode
   validates :pin_code, presence: true
   def self.create_new_campus_address options		
 		address = CampusAddress.new

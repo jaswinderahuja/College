@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get 'dashboard/company_details'
   get 'campus_drives/index'
   get 'campus_drives/get_departments'
+  get 'campus_drives/cities'           => "campus_drives#get_cities"
   get 'dashboard/get_companies'
   get 'dashboard/search_openings'
 

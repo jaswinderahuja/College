@@ -1,6 +1,4 @@
-<script type="text/javascript">
-CampusConnect.Utilities.departments();
-</script>
+
 <!-- main content goes here -->
 <%= render :partial=>"sidebar" %>
 <div class="pusher">
@@ -30,12 +28,24 @@ CampusConnect.Utilities.departments();
             <%= text_field_tag "college_name",nil, placeholder: "Enter College name"%>
           </div>
         </div>
+        
         <div class="field">
-          <div class="ui left icon input">
-            <i class="marker icon"></i>
-            <%= text_field_tag "address_line_1",nil,placeholder: "Enter Address"%>
+          <!-- <label>Name</label> -->
+          <div class="two fields">
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="marker icon"></i>
+                <%= text_field_tag "address_line_1",nil,placeholder: "Enter Address" %>
+              </div>
+            </div>
+            <div class="field" id="cities-container">
+              <select class="ui search selection dropdown" name="city" id="search-select-city">
+                <!-- dynamic generation of departments -->
+              </select>
+            </div>
           </div>
         </div>
+
         <div class="field">
           <!-- <label>Name</label> -->
           <div class="two fields">
@@ -57,7 +67,7 @@ CampusConnect.Utilities.departments();
           <!-- <label>Name</label> -->
           <div class="two fields">
             <div class="field" id="department-container">
-              <select class="ui search selection dropdown" name="dept" id="search-select">
+              <select class="ui search selection dropdown" name="dept" id="search-select-dept">
                 <!-- dynamic generation of departments -->
               </select>
             </div>
@@ -121,5 +131,7 @@ CampusConnect.Utilities.departments();
 </div>
 <script type="text/javascript">
 CampusConnect.College.Validation.campusDrive();
-$('#search-select').dropdown();
+CampusConnect.Utilities.departments();
+CampusConnect.Utilities.cities();
+$('.ui.search.selection.dropdown').dropdown();
 </script>

@@ -32,4 +32,18 @@ class CampusDrivesController < ApplicationController
     end
   end
 
+  def get_cities
+    status, message, error = 200, "success", ""
+    data = []
+    begin
+      data = CRUD::Drive::CreateUpdate.new.get_cities
+    rescue Exception=>e
+      status = 500
+      error = e.message
+      message = "OOPS, something went wrong!"
+    end
+    result = { "cities"=>data,"message"=>message,"error"=>error}.to_json
+    render json: result,code: status
+  end
+
 end

@@ -26,29 +26,29 @@
     <tr>
     	<% campus_contact_info = contact_details %>
       	<td class="value">
-      		<label> <%=campus_contact_info.email_1 %></label>
+      		<label> <%=campus_contact_info.email_1 if campus_contact_info.present? %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "email_id_1",campus_contact_info.email_1%>
+            <%= text_field_tag "email_id_1",campus_contact_info.email_1 if campus_contact_info.present?%>
       		</div>
       	</td>      	
       	<td class="value">
-      		<label><%=campus_contact_info.phone_number_1 %></label>
+      		<label><%=campus_contact_info.phone_number_1 if campus_contact_info.present? %></label>
       		<div class="ui input" style="display:none">
-            <%= text_field_tag "phone_1",campus_contact_info.phone_number_1%>      			
+            <%= text_field_tag "phone_1",campus_contact_info.phone_number_1 if campus_contact_info.present?%>
       		</div>
       	</td>
         <td class="value">
-          <label><%=campus_contact_info.email_2 %></label>
+          <label><%=campus_contact_info.email_2  if campus_contact_info.present?%></label>
           <div class="ui input" style="display:none">
-            <%= text_field_tag "email_id_2",campus_contact_info.email_2%>           
+            <%= text_field_tag "email_id_2",campus_contact_info.email_2 if campus_contact_info.present?%>
           </div>
         </td>
       	<td class="value">
-      		<label><%=campus_contact_info.phone_number_2 %></label>
+      		<label><%=campus_contact_info.phone_number_2 if campus_contact_info.present? %></label>
       		<div class="ui input" style="display:none">
-      			<%= text_field_tag "phone_2",campus_contact_info.phone_number_2%>
+      			<%= text_field_tag "phone_2",campus_contact_info.phone_number_2 if campus_contact_info.present?%>
       		</div>
-      	</td>      	
+      	</td>
     </tr>
     
   </tbody>
